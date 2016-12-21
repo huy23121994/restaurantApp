@@ -11,8 +11,15 @@
 |
 */
 
-Route::get('/', 'Pagescontroller@index');
-
 Auth::routes();
 
-Route::get('/home', 'Pagescontroller@index');
+Route::group(['middleware' => 'auth'],function(){
+	Route::get('/','DashboardController@index');
+	Route::get('/dashboard','DashboardController@index');
+	Route::resource('employees', 'EmployeeController');
+});
+
+
+Route::group(['namespace' => 'Admin'], function () {
+    Route::get('demo','DashboardController@index');
+});

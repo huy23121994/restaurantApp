@@ -13,23 +13,24 @@
     <!-- Bootstraps 3.0 -->
     <link href="/css/bootstrap.v3.3.7.css" rel="stylesheet">
     <link href="/css/lib/nprogress.css" rel="stylesheet">
+    <link href="/css/lib/green.css" rel="stylesheet">
     @yield('add_css')
 
-    <script src="/js/jquery.v3.1.js"></script> 
+    <script src="/js/app.js" data-turbolinks-track="reload"></script>
+    <script src="/js/lib/icheck.min.js"></script>
     <script src="/js/lib/turbolinks.v2.5.3.js"></script>
     <script src="/js/lib/nprogress.js"></script>
-    <script src="/js/common.js" data-turbolinks-track="reload"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-    @yield('add_js')
+    @yield('top_js')
 </head>
 <body class="@yield('body_class')">
 
 	@yield('main')
 
-    @yield('custom_js')
+    @yield('bottom_js')
 </body>
 </html>

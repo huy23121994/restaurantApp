@@ -1,0 +1,38 @@
+.panel_toolbox{
+	min-width: inherit;
+}
+#datatable tr.selected{
+	background-color: #10c7a4;
+    color: #fff;
+}
+#datatable tbody tr:not(.selected):hover{
+	background-color: #eaf9f6;
+}
+.dataTables_info .select-info{
+	margin-left: 15px;
+	font-weight: bold;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	vertical-align: middle;
+}
+table td.has_img{
+	display: flex;
+}
+table td.has_img img{
+	margin: auto;
+}
+.x_button_helper{
+	float: left;
+	margin-left: 10px;
+}
+.form-group .checkbox{
+	display: inline-block;
+	margin-left: 15px;
+}
+.form-control-feedback.left{
+	left: 0;
+	font-size: 18px;
+}
+.full_width{
+	width: 100%;
+}

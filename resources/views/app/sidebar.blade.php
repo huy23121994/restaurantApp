@@ -22,15 +22,15 @@
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
         <ul class="nav side-menu">
-          <li data="dashboard"><a href="/admin"><i class="fa fa-home"></i> Tổng quan </a></li>
+          <li data="dashboard"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Tổng quan </a></li>
           <li data="posts"><a><i class="fa fa-user"></i> Nhân viên <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="/admin/categories">Danh sách nhân viên</a></li>
+              <li><a href="{{ url('/employees') }}">Danh sách nhân viên</a></li>
               <li><a href="/admin/books">Thêm nhân viên</a></li>
               <li><a href="/admin/tags">Lịch làm việc</a></li>
             </ul>
           </li>
-          <li data="users"><a><i class="fa fa-user"></i> đặt chỗ <span class="fa fa-chevron-down"></span></a>
+          <li data="users"><a><i class="fa fa-user"></i> Đặt chỗ <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="/admin/users">Danh sách bàn</a></li>
             </ul>
