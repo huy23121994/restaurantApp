@@ -11,6 +11,7 @@ if (typeof NProgress != 'undefined') {
 }
 
 $(document).ready(function() {
+  // Datatable
   $('#datatable').dataTable({
   	'order': [[ 1, 'asc' ]],
     select: true,
@@ -24,10 +25,23 @@ $(document).ready(function() {
             }
         }
   });
+
+  // Datepicker
   $('.daterangepicker').daterangepicker({
     singleDatePicker: true,
     calender_style: "picker_1"
   }, function(start, end, label) {
     console.log(start.toISOString(), end.toISOString(), label);
   });
+
+  // Select2
+  $(".select2_single").select2({
+    placeholder: "Chọn một địa điểm",
+    allowClear: true
+  });
+  $(".select2_single.weekdays").select2({
+    placeholder: "Chọn thứ",
+    allowClear: true
+  });
+  $(".select2_multiple").select2();
 })

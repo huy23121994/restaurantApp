@@ -1,3 +1,9 @@
+li{
+	list-style: none;
+}
+.m_t_10{
+	margin-top: 10px;
+}
 .panel_toolbox{
 	min-width: inherit;
 }
@@ -35,4 +41,19 @@ table td.has_img img{
 }
 .full_width{
 	width: 100%;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    background-color: #ffffff;
+    border-bottom: 0;
+}
+ul.bar_tabs > li{
+	margin-top: -19px;
+}
+ul.bar_tabs > li.active{
+	margin-top: -16px;
+}
+@media (max-width: 1200px){
+	.x_title h2 {
+	     width: auto; 
+	}
 }

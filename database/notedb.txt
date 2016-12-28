@@ -1,0 +1,11 @@
+timeserving
+id, employee_id, start_date, end_date, 
+
+schedule
+id, employee_id, weekday, shift_id
+
+shifts
+id, name, start_time, end_time
+
+Department
+id, name, location, description
