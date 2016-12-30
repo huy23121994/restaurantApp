@@ -43,7 +43,8 @@
 	<!-- bootstrap-daterangepicker -->
     <script src="/js/lib/moment.min.js"></script>
     <script src="/js/lib/daterangepicker.js"></script>
-
+    <!-- jquery.inputmask -->
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
 	<script src="/js/template.js"></script>
     <script src="/js/common.js"></script>
 @endsection

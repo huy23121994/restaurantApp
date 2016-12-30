@@ -19,7 +19,9 @@ class CreateTableEmployees extends Migration
             $table->dateTime('birthday')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->dateTime('date_start')->nullable();
+            $table->string('address')->nullable();
+            $table->string('avatar')->nullable();
+            $table->boolean('gender')->nullable();
             $table->timestamps();
         });
     }

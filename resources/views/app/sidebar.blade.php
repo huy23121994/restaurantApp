@@ -26,7 +26,7 @@
           <li data="posts"><a><i class="fa fa-user"></i> Nhân viên <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{ url('/employees') }}">Danh sách nhân viên</a></li>
-              <li><a href="/admin/books">Thêm nhân viên</a></li>
+              <li><a href="{{ url('/employees/create') }}">Thêm nhân viên</a></li>
               <li><a href="/admin/tags">Lịch làm việc</a></li>
             </ul>
           </li>

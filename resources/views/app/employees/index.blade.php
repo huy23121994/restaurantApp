@@ -7,7 +7,7 @@
         <div class="x_title">
           <h2>Danh sách nhân viên</h2>
           <div class="x_button_helper">
-          	<button class="btn btn-success btn-xs m_l_10" data-toggle="modal" data-target=".modal"><i class="fa fa-plus"></i> Thêm mới</button>
+          	<button class="btn btn-primary btn-xs m_l_10" data-toggle="modal" data-target=".modal"><i class="fa fa-plus"></i> Thêm mới</button>
           </div>
           <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -56,7 +56,20 @@
 	        <h4 class="modal-title">Thêm nhân viên mới</h4>
 	      </div>
 	      <div class="modal-body" style="min-height: 545px;">
-	        @include('app.employees.form_new')
+	      	<div class="" role="tabpanel" data-example-id="togglable-tabs">
+			  	<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+			    	<li role="presentation" class="active"><a href="#general_info" role="tab" data-toggle="tab" aria-expanded="true">Thông tin cơ bản</a></li>
+			    	<li role="presentation"><a href="#work_info" role="tab" data-toggle="tab" aria-expanded="false">Thông tin làm việc</a></li>
+			  	</ul>
+			  	<div id="myTabContent" class="tab-content">
+			  		<div role="tabpanel" class="tab-pane fade active in" id="general_info">
+				        @include('app.employees.form_new')
+			  		</div>
+			  		<div role="tabpanel" class="tab-pane fade" id="work_info">
+				        @include('app.employees.form_work')
+			  		</div>
+			  	</div>
+			</div>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

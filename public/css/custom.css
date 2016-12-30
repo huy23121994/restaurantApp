@@ -4,6 +4,12 @@ li{
 .m_t_10{
 	margin-top: 10px;
 }
+.m_l_10{
+	margin-left: 10px;
+}
+.m_t_5{
+	margin-top: 5px;
+}
 .panel_toolbox{
 	min-width: inherit;
 }

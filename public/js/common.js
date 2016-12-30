@@ -28,6 +28,9 @@ $(document).ready(function() {
 
   // Datepicker
   $('.daterangepicker').daterangepicker({
+    locale: {
+      format: 'DD/MM/YYYY'
+    },
     singleDatePicker: true,
     calender_style: "picker_1"
   }, function(start, end, label) {
@@ -44,4 +47,6 @@ $(document).ready(function() {
     allowClear: true
   });
   $(".select2_multiple").select2();
+
+  // $(":input").inputmask();
 })
