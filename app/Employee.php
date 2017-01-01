@@ -12,11 +12,25 @@ class Employee extends Model
     ];
 
     public static function get_all() {
-    	return self::all();
+        return self::all();
+    }
+
+    public function get_age() {
+        $birthday =  Carbon::createFromFormat('d / m / Y', $this->birthday);
+        return $birthday->age;
     }
 
     public function setBirthdayAttribute($date)
     {
-        $this->attributes['birthday'] = Carbon::createFromDate(2016, 1, 1, 'Asia/Ho_Chi_Minh');
+        $this->attributes['birthday'] = Carbon::createFromFormat('d/m/Y', $date);
+    }
+    public function getBirthdayAttribute($date)
+    {
+        $birthday = Carbon::parse($date);
+        return $birthday->day . ' / ' . $birthday->month . ' / ' . $birthday->year;
+    }
+    public function getFullnameAttribute($value)
+    {
+        return ucfirst($value);
     }
 }

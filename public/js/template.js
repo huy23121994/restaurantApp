@@ -80,11 +80,8 @@ $(document).ready(function() {
         setContentHeight();
     }).parent().addClass('active');
 
-    if (CURRENT_URL.search('posts') != -1 
-        || CURRENT_URL.search('tags') != -1 
-        || CURRENT_URL.search('categories') != -1
-        || CURRENT_URL.search('books') != -1) {
-        $SIDEBAR_MENU.find('li[data="posts"]').addClass('active').find('ul').slideDown(150,function() {
+    if (CURRENT_URL.search('employees') != -1) {
+        $SIDEBAR_MENU.find('li[data="employees"]').addClass('active').find('ul').slideDown(150,function() {
             setContentHeight();
         });
     }

@@ -12,30 +12,39 @@ if (typeof NProgress != 'undefined') {
 
 $(document).ready(function() {
   // Datatable
-  $('#datatable').dataTable({
+  var table = $('#datatable').DataTable({
   	'order': [[ 1, 'asc' ]],
-    select: true,
-        language: {
-            select: {
-                rows: {
-                    _: "You have selected %d rows",
-                    0: "Click a row to select it",
-                    1: "Only 1 row selected"
-                }
-            }
-        }
+    "columnDefs": [
+      {
+        "targets": [ 0 ],
+        "visible": false,
+        "searchable": false
+      }
+    ],
+    // select: true,
+    //     language: {
+    //         select: {
+    //             rows: {
+    //                 _: "You have selected %d rows",
+    //                 0: "Click a row to select it",
+    //                 1: "Only 1 row selected"
+    //             }
+    //         }
+    //     }
   });
+
+  $('#datatable tbody').on('dblclick', 'tr', function () {
+    var data = table.row( this ).data();
+    Turbolinks.visit(data[0]);
+  } );
 
   // Datepicker
   $('.daterangepicker').daterangepicker({
-    locale: {
-      format: 'DD/MM/YYYY'
-    },
+    format: 'DD/MM/YYYY',
+
     singleDatePicker: true,
     calender_style: "picker_1"
-  }, function(start, end, label) {
-    console.log(start.toISOString(), end.toISOString(), label);
-  });
+  }).inputmask('dd/mm/yyyy');
 
   // Select2
   $(".select2_single").select2({
@@ -48,5 +57,29 @@ $(document).ready(function() {
   });
   $(".select2_multiple").select2();
 
-  // $(":input").inputmask();
+  // SlimScroll
+  $('.slim').slimscroll({
+    alwaysVisible: true,
+    height: '300px'
+  })
+
+  /* Change images before upload */
+  $('.need_preview').on('change',function(){
+        readURL(this,$(this).data('img')); 
+    })
+  function readURL(input,selector) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (theFile) {
+              var image = new Image();
+              image.src = theFile.target.result;
+              image.onload = function() {
+                  $(selector).attr('src', this.src);
+           
+              };
+          }
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  /* END change image*/
 })

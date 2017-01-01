@@ -7,6 +7,9 @@ li{
 .m_l_10{
 	margin-left: 10px;
 }
+.m_b_10{
+	margin-bottom: 10px;
+}
 .m_t_5{
 	margin-top: 5px;
 }
@@ -62,4 +65,19 @@ ul.bar_tabs > li.active{
 	.x_title h2 {
 	     width: auto; 
 	}
+}
+.modal-body{
+  /*max-height: calc(100vh - 195px);*/
+}
+
+#general_info i{
+	color: #1abb9c;
+  margin-right: 10px;
+}
+#general_info .list_info>.row{
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+#general_info .list_info>.row:last-child{
+  border-bottom: none;
 }

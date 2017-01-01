@@ -1,14 +1,14 @@
-@extends('app.employees.master')
+@extends('layouts.app')
 
-@section('main_content')
+@section('content')
   <div class="row">
     <div class="col-xs-12">
       <div class="x_panel">
         <div class="x_title">
           <h2>Danh sách nhân viên</h2>
-          <div class="x_button_helper">
+          {{-- <div class="x_button_helper">
           	<button class="btn btn-primary btn-xs m_l_10" data-toggle="modal" data-target=".modal"><i class="fa fa-plus"></i> Thêm mới</button>
-          </div>
+          </div> --}}
           <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
@@ -19,25 +19,27 @@
         	<table id="datatable" class="table table-striped table-bordered">
         		<thead>
 	        		<tr>
-	        			<th width="72">Avatar</th>
+	        			<th>url</th>
+	        			<th width="40">Avatar</th>
 	        			<th>Họ tên</th>
-	        			<th>Tuổi</th>
+	        			<th width="40">Tuổi</th>
+	        			<th>Số điện thoại</th>
+	        			<th>Email</th>
 	        			<th>Ngày bắt đầu</th>
-	        			<th>Số ngày làm việc</th>
-	        			<th>Số ngày nghỉ</th>
 	        			<th>Trạng thái</th>
 	        		</tr>
         		</thead>
         		<tbody>
-        			@foreach($users as $user)
+        			@foreach($employees as $employee)
 		        		<tr>
+		        			<td>{{ url('/employees/'.$employee->id) }}</td>
 		        			<td class="has_img"><img src="/img/user.png" height="40"></td>
-		        			<td>{{ $user->fullname }}</td>
-		        			<td>{{ $user->birthday }}</td>
-		        			<td>{{ $user->date_start }}</td>
-		        			<td>2</td>
-		        			<td>3</td>
-		        			<td>active</td>
+		        			<td><a href="{{ url('/employees/'.$employee->id) }}"><u>{{ $employee->fullname }}</u></a></td>
+		        			<td>{{ $employee->get_age() }}</td>
+		        			<td>{{ $employee->phone }}</td>
+		        			<td>{{ $employee->email }}</td>
+		        			<td></td>
+		        			<td><button class="btn btn-primary btn-xs">Đang làm việc</button></td>
 		        		</tr>
 	        		@endforeach
         		</tbody>
@@ -47,7 +49,7 @@
     </div>
   </div>
 
-	<!-- MODAL -->
+	{{-- <!-- MODAL -->
 	<div class="modal fade" role="dialog">
 	  <div class="modal-dialog modal-lg" role="document">
 	    <div class="modal-content">
@@ -55,7 +57,7 @@
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title">Thêm nhân viên mới</h4>
 	      </div>
-	      <div class="modal-body" style="min-height: 545px;">
+	      <div class="modal-body">
 	      	<div class="" role="tabpanel" data-example-id="togglable-tabs">
 			  	<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 			    	<li role="presentation" class="active"><a href="#general_info" role="tab" data-toggle="tab" aria-expanded="true">Thông tin cơ bản</a></li>
@@ -76,5 +78,5 @@
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	</div><!-- /.modal --> --}}
 @endsection

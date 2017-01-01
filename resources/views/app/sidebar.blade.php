@@ -23,7 +23,7 @@
       <div class="menu_section">
         <ul class="nav side-menu">
           <li data="dashboard"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Tổng quan </a></li>
-          <li data="posts"><a><i class="fa fa-user"></i> Nhân viên <span class="fa fa-chevron-down"></span></a>
+          <li data="employees"><a><i class="fa fa-user"></i> Nhân viên <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{ url('/employees') }}">Danh sách nhân viên</a></li>
               <li><a href="{{ url('/employees/create') }}">Thêm nhân viên</a></li>
