@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Employee;
+use App\Http\Requests\EmployeeRequest;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -35,17 +36,17 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
-        $employee = new Employee;
-        $employee->avatar = $request->avatar;
-        $employee->fullname = $request->fullname;
-        $employee->phone = $request->phone;
-        $employee->birthday = $request->birthday;
-        $employee->address = $request->address;
-        $employee->gender = $request->gender;
-
-        if( $employee->save() ){
+        $employee = Employee::create([
+            'avatar' => $request->avatar,
+            'fullname' => $request->fullname,
+            'phone' => $request->phone,
+            'birthday' => $request->birthday,
+            'address' => $request->address,
+            'gender' => $request->gender,
+        ]);
+        if($employee){
             return redirect('/employees');
         }
 
@@ -60,9 +61,11 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $employee = Employee::find($id);
-        // $birthday = Carbon::parse($employee->birthday);
-        // dd($birthday->day . '/' . $birthday->month . '/' . $birthday->year);
-        return view('app.employees.show', compact('employee'));
+        if ($employee) {
+            return view('app.employees.show', compact('employee'));
+        }else{
+            abort('404_user');
+        }
     }
 
     /**

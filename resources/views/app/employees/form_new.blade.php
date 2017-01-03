@@ -1,4 +1,4 @@
-<form method="POST" action="{{ url('/employees') }}">
+<form method="POST" action="{{ url('/employees') }}" data-parsley-validate>
 	{{ csrf_field() }}
 	<div class="row">
 		<div class="col-sm-4 col-xs-12">
@@ -12,8 +12,8 @@
 		</div>
 		<div class="col-sm-8 col-xs-12">
 			<div class="form-group">
-		    <label for="fullname">Họ và tên</label>
-		    <input type="fullname" class="form-control" id="fullname" name="fullname" placeholder="Nguyễn Văn A">
+		    <label for="fullname">Họ và tên <small>{{ ($errors->first('email')) }}</small></label>
+		    <input type="fullname" class="form-control" id="fullname" name="fullname" placeholder="Nguyễn Văn A"required="required">
 		  </div>
 		  <div class="form-group">
 		    <label for="email">Email</label>

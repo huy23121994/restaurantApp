@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $fillable = [
-        'fullname', 'email', 'phone', 'birthday', 'date_start'
+        'fullname', 'email', 'phone', 'birthday', 'avatar','gender'
     ];
 
     public static function get_all() {

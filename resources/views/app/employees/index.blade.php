@@ -34,7 +34,9 @@
 		        		<tr>
 		        			<td>{{ url('/employees/'.$employee->id) }}</td>
 		        			<td class="has_img"><img src="/img/user.png" height="40"></td>
-		        			<td><a href="{{ url('/employees/'.$employee->id) }}"><u>{{ $employee->fullname }}</u></a></td>
+		        			<td><a href="{{ url('/employees/'.$employee->id) }}">
+		        				<u class="text-success">{{ $employee->fullname }}</u>
+		        			</a></td>
 		        			<td>{{ $employee->get_age() }}</td>
 		        			<td>{{ $employee->phone }}</td>
 		        			<td>{{ $employee->email }}</td>
@@ -43,7 +45,7 @@
 		        		</tr>
 	        		@endforeach
         		</tbody>
-					</table>
+			</table>
         </div>
       </div>
     </div>

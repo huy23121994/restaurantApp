@@ -44,8 +44,12 @@
 							    <div class="col-sm-9">{{ $employee->birthday }}</div>
 							  </div>
 								<div class="row">
-							    <label class="col-sm-3"><i class="fa fa-heart-o"></i> Tuổi</label>
+							    <label class="col-sm-3"><i class="fa fa-gift"></i> Tuổi</label>
 							    <div class="col-sm-9">{{ $employee->get_age() }}</div>
+							  </div>
+								<div class="row">
+							    <label class="col-sm-3"><i class="fa fa-map-marker"></i> Địa chỉ</label>
+							    <div class="col-sm-9">{{ $employee->address }}</div>
 							  </div>
 								<div class="row">
 							    <label class="col-sm-3"><i class="fa fa-venus-mars"></i> Giới tính</label>

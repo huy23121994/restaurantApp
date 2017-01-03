@@ -15,9 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('myname', 'Kakalot');
         View::composer('*',function($view){
-            $view->with('auth',Auth::user());
+            $view->with('current_user',Auth::user());
         });
     }
 

@@ -13,7 +13,7 @@ if (typeof NProgress != 'undefined') {
 $(document).ready(function() {
   // Datatable
   var table = $('#datatable').DataTable({
-  	'order': [[ 1, 'asc' ]],
+  	'order': [[ 2, 'asc' ]],
     "columnDefs": [
       {
         "targets": [ 0 ],
@@ -82,4 +82,6 @@ $(document).ready(function() {
       }
   }
   /* END change image*/
+  var required_error = $('input[required="required"]');
+  window.ParsleyUI.updateError(required_error, {message: 'ok'});
 })
