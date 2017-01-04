@@ -29,6 +29,8 @@
 .auth .nav-right ul>li{
 	float: left;
 	margin-left: 15px;
+	height: 35px;
+    line-height: 35px;
 }
 .auth .nav-right ul>li a{
 	color: inherit;
@@ -43,5 +45,5 @@
 	clear: both;
 }
 .auth>section>.row>div{
-	min-height: calc(100vh - 66px);
+	min-height: calc(100vh - 116px);
 }

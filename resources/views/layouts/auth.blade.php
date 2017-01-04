@@ -51,12 +51,21 @@
         </nav>
     </header>
     <section class="container-fluid">
-        <div class="sidebar">
-            ed
+        <div class="row">
+            @if(Auth::check())
+                <div class="sidebar pull-left">
+                    <ul>
+                        <li><a href="/{{ $current_username }}/edit">Account Setting</a></li>
+                        <li><a href="/{{ $current_username }}/edit">App WorkSpaces</a></li>
+                    </ul>
+                </div>
+            @endif
+            <div class="wrapper-right pull-left">
+                @yield('content')
+            </div>
         </div>
-        <div class="wrapper-right">
-            @yield('content')
-        </div>
-        <div class="clearfix"></div>
     </section>
+    <footer style="height:50px;">
+        FOOTER
+    </footer>
 @endsection
