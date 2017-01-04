@@ -14,9 +14,15 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
+    {   
         View::composer('*',function($view){
-            $view->with('current_user',Auth::user());
+            if (Auth::check()) {
+                $current_user = Auth::user();
+                $view->with([
+                    'current_user' => $current_user,
+                    'current_username' => $current_user->username
+                ]);
+            }
         });
     }
 

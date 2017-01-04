@@ -1,63 +1,62 @@
 @extends('layouts.master')
 
+@section('add_css')
+    <link rel="stylesheet" href="/css/auth.css">
+@endsection
+
+@section('body_class','auth')
+
 @section('main')
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
+    <header class="container-fluid">
+        <nav>
+            <div class="nav-left pull-left">
+                <a href="">RestaurantApp</a>
             </div>
+            <div class="nav-right pull-right">
+                <ul>
+                    @if (Auth::guest())
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li>
+                    @else
+                        <li>
+                            <div title="Account Settings">
+                                <a href="/{{ $current_username }}/edit" class="circle">
+                                    <i class="fa fa-cogs"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div title="Sign Out">
+                                <a href="{{ url('/logout') }}" class="circle" 
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-sign-out"></i>
+                                </a>
+                            </div>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                        <li>
+                            <div>
+                                <a href="/{{ $current_username }}" class="circle">
+                                    <img src="/img/user.png" class="full_size" alt="">
+                                </a>
+                            </div>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+            <div class="clearfix"></div>
         </nav>
-
-        @yield('content')
-    </div>
+    </header>
+    <section class="container-fluid">
+        <div class="sidebar">
+            ed
+        </div>
+        <div class="wrapper-right">
+            @yield('content')
+        </div>
+        <div class="clearfix"></div>
+    </section>
 @endsection

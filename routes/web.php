@@ -13,12 +13,16 @@
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['middleware' => 'authenticated'],function(){
 	Route::get('/','DashboardController@index');
 	Route::get('/dashboard','DashboardController@index');
 	Route::resource('employees', 'EmployeeController');
+	Route::resource('', 'UserController', [
+		'only' => ['index', 'show', 'edit', 'update'],
+		'names' => ['show' => 'users.show'],
+		'parameters' => ['' => 'username']
+	]);
 });
-
 
 Route::group(['namespace' => 'Admin'], function () {
     Route::get('demo','DashboardController@index');

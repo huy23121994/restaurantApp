@@ -7,7 +7,6 @@
 	<link rel="stylesheet" type="text/css" href="/css/lib/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/lib/pnotify.css">
 	<link rel="stylesheet" type="text/css" href="/css/lib/pnotify.buttons.css">
-	<link rel="stylesheet" type="text/css" href="/css/lib/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/app.css">
 	<link rel="stylesheet" type="text/css" href="/css/custom.css">
 @endsection

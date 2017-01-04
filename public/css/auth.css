@@ -1,0 +1,47 @@
+.auth{
+	background-color: #fff;
+}
+.auth header{
+	background-color: #F7F7F7;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0px 1px 5px 0px #ddd;
+}
+.auth header nav{
+	margin: 0 60px;
+}
+.auth header nav .nav-left{
+	margin-top: 13px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2C91DE;
+}
+.auth header .circle{
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	border: 1px solid #a3a3a3;
+	overflow: hidden;
+	display: flex;
+}
+.auth header .circle *{
+	margin: auto;
+}
+.auth .nav-right ul>li{
+	float: left;
+	margin-left: 15px;
+}
+.auth .nav-right ul>li a{
+	color: inherit;
+}
+.auth .nav-right ul{
+	margin-bottom: 0;
+    padding: 15px 0;
+}
+.auth .nav-right ul:after{
+	display: block;
+	content: '';
+	clear: both;
+}
+.auth>section>.row>div{
+	min-height: calc(100vh - 66px);
+}

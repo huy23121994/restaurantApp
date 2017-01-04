@@ -1,0 +1,1 @@
+Ko có quyền truy cập
