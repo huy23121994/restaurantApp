@@ -13,9 +13,11 @@
 
 Auth::routes();
 
+Route::group(['namespace' => 'Admin'], function () {
+    Route::post('demo','DashboardController@index');
+});
+
 Route::group(['middleware' => 'authenticated'],function(){
-	Route::get('/','DashboardController@index');
-	Route::get('/dashboard','DashboardController@index');
 	Route::resource('employees', 'EmployeeController');
 	Route::resource('', 'UserController', [
 		'only' => ['index', 'show', 'edit', 'update'],
@@ -24,6 +26,3 @@ Route::group(['middleware' => 'authenticated'],function(){
 	]);
 });
 
-Route::group(['namespace' => 'Admin'], function () {
-    Route::get('demo','DashboardController@index');
-});

@@ -2,6 +2,13 @@
 
 @section('add_css')
     <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/lib/cropper.css">
+@endsection
+
+@section('top_js')
+    <script src="/js/lib/passwordStrength.js"></script>
+    <script src="/js/lib/cropper.min.js"></script>
+    <script src="/js/auth.js"></script>
 @endsection
 
 @section('body_class','auth')
@@ -40,7 +47,7 @@
                         <li>
                             <div>
                                 <a href="/{{ $current_username }}" class="circle">
-                                    <img src="/img/user.png" class="full_size" alt="">
+                                    <img src="{{ $current_user->avatar }}" class="full_size" alt="">
                                 </a>
                             </div>
                         </li>
@@ -50,22 +57,33 @@
             <div class="clearfix"></div>
         </nav>
     </header>
-    <section class="container-fluid">
-        <div class="row">
-            @if(Auth::check())
+    @if(Auth::check())
+        <section class="container-fluid">
+            <div class="row">
                 <div class="sidebar pull-left">
-                    <ul>
-                        <li><a href="/{{ $current_username }}/edit">Account Setting</a></li>
-                        <li><a href="/{{ $current_username }}/edit">App WorkSpaces</a></li>
+                    <div class="top">
+                        <div class="text-center">
+                            <a href="/{{ $current_username }}"><img src="{{ $current_user->avatar }}" alt="" width="75" height="75" class="img-rounded"></a>
+                            <a href="/{{ $current_username }}">{{ $current_user->fullname }}</a>
+                        </div>
+                    </div>
+                    <ul class="menu">
+                        <li class="{{ $show or '' }}"><a href="/{{ $current_username }}/workspaces">App WorkSpaces</a></li>
+                        <li class="{{ $edit or '' }}"><a href="/{{ $current_username }}/edit">Account Setting</a></li>
                     </ul>
                 </div>
-            @endif
-            <div class="wrapper-right pull-left">
-                @yield('content')
+                <div class="wrapper-right">
+                    <div id="content">
+                        @yield('content')
+                    </div>
+
+                    <footer style="height:50px;" class="white">
+                        FOOTER
+                    </footer>
+                </div>
             </div>
-        </div>
-    </section>
-    <footer style="height:50px;">
-        FOOTER
-    </footer>
+        </section>
+    @else
+        @yield('content')
+    @endif
 @endsection

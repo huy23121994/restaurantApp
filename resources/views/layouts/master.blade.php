@@ -22,6 +22,7 @@
     <script src="/js/lib/icheck.min.js"></script>
     <script src="/js/lib/turbolinks.v2.5.3.js"></script>
     <script src="/js/lib/nprogress.js"></script>
+    <script src="/js/common.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -34,6 +35,5 @@
 	@yield('main')
 
     @yield('bottom_js')
-    <script src="/js/common.js"></script>
 </body>
 </html>
