@@ -135,8 +135,20 @@
 .auth .wrapper-right button[type="submit"]:hover{
 	opacity: 0.9;
 }
-.auth .wrapper-right label{
-	/*font-weight: normal;*/
+.auth .wrapper-right footer{
+	border-top: 1px solid #dedede;
+    padding: 20px 60px;
+    background-color: #F7F7F7;
+}
+.auth .wrapper-right p,.auth .wrapper-right ul{
+    margin-bottom: 0;
+}
+.auth .wrapper-right ul.pull-right li{
+	display: inline-block;
+    margin-left: 20px;
+}
+.auth .wrapper-right ul.pull-right li a{
+	color: inherit;
 }
 /**/
 .password-box { margin:20px auto}
@@ -175,6 +187,10 @@
   background: #1ABB9C;
   border: 1px solid #1ABB9C;
 }
-/*.cropper-bg{
-	background-image: none!important;
-}*/
+.has-error{
+	border-color: #a94442!important;
+}
+.auth .alert li{
+	list-style: initial;
+	margin-left: 15px;
+}

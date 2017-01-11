@@ -17,7 +17,7 @@
     <header class="container-fluid">
         <nav>
             <div class="nav-left pull-left">
-                <a href="">RestaurantApp</a>
+                <a href="/{{ $current_username }}">RestaurantApp</a>
             </div>
             <div class="nav-right pull-right">
                 <ul>
@@ -77,8 +77,15 @@
                         @yield('content')
                     </div>
 
-                    <footer style="height:50px;" class="white">
-                        FOOTER
+                    <footer>
+                        <p class="pull-left">© 2017 BaoHuy Company Inc.</p>
+                        <ul class="pull-right">
+                            <li><a href="">Blog</a></li>
+                            <li><a href="https://facebook.com/baohuy23121994">Facebook</a></li>
+                            <li><a href="mailto:huytb.contac@gmail.com">Email</a></li>
+                            <li><a href="">Website</a></li>
+                        </ul>
+                        <div class="clearfix"></div>
                     </footer>
                 </div>
             </div>

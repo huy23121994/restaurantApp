@@ -6,21 +6,37 @@
 		<p>Account Settings</p>
 	</div>
 	<div class="main">
-		<div class=""></div>
+		@if (count($errors) > 0)
+		    <div class="alert alert-danger alert-dismissible fade in">
+		    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+		        <ul>
+		            @foreach ($errors->all() as $error)
+		                <li>{{ $error }}</li>
+		            @endforeach
+		        </ul>
+		    </div>
+		@endif
+		@if (session('status'))
+		    <div class="alert alert-success alert-dismissible fade in">
+			    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+		        {{ session('status') }}
+		    </div>
+		@endif
 		<form action="/{{ $current_username }}" method="POST" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			{{ method_field('PUT') }}
+			<input type="hidden" name="id" value="{{ $current_user->id }}">
 			<div class="form-group">
 			    <label for="fullname">Full Name</label>
 			    <input type="text" class="form-control" id="fullname" value="{{ $current_user->fullname }}" name="fullname">
 			</div>
 			<div class="form-group">
 			    <label for="username">Username</label>
-			    <input type="text" class="form-control" id="username" value="{{ $current_user->username }}" disabled>
+			    <input type="text" class="form-control" id="username" value="{{ $current_user->username }}" name="username" readonly>
 			</div>
 			<div class="form-group">
 			    <label for="email">Email</label>
-			    <input type="email" class="form-control" id="email" value="{{ $current_user->email }}" disabled>
+			    <input type="email" class="form-control" id="email" value="{{ $current_user->email }}" name="email" readonly>
 			</div>
 			<div class="form-group">
 			    <label for="avatar">
@@ -29,8 +45,7 @@
 			    		<img src="{{ $current_user->avatar }}" alt="" class="img-thumbnail">
 			    	</div>
 			    </label>
-			    <input type="file" id="avatar" data-img=".avatar_preview" class="need_preview" name="avatar">
-			    <p class="help-block">Change your current avatar</p>
+			    <input type="file" id="avatar" data-img=".avatar_preview" class="need_preview" name="avatar" accept="image/*" >
 
 			    <!-- MODAL -->
 			    <div class="modal fade" id="crop_avatar_modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">

@@ -6,6 +6,7 @@ use App\User;
 use Auth;
 use File;
 use Image;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class UserController extends Controller
         }
     }
 
-    public function update(Request $request, $username)
+    public function update(UserRequest $request, $username)
     {
         $user = User::where('username',$username)->first();
         if ($user) {
@@ -63,10 +64,9 @@ class UserController extends Controller
             }
 
             if ($user->save()) {
-                return back();
+                return back()->with('status', 'Profile updated');;
             }
 
-            
         }else{
             abort(404);
         }

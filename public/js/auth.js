@@ -16,6 +16,10 @@ function initFunc(){
         // }}
     );
 
+	setTimeout(function(){
+		$('.alert-success').alert('close');
+	},3000)
+
 	var $crop_avatar_modal = $('#crop_avatar_modal'),
 		$input = $('input[name="avatar"]'),
 		status = '';
