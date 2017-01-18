@@ -17,7 +17,7 @@
     <header class="container-fluid">
         <nav>
             <div class="nav-left pull-left">
-                <a href="/{{ $current_username }}">RestaurantApp</a>
+                <a href="/">RestaurantApp</a>
             </div>
             <div class="nav-right pull-right">
                 <ul>
