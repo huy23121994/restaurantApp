@@ -136,8 +136,10 @@
 	opacity: 0.9;
 }
 .auth .wrapper-right footer{
+    height: 50px;
+    line-height: 49px;
 	border-top: 1px solid #dedede;
-    padding: 20px 60px;
+    padding: 0 60px;
     background-color: #F7F7F7;
 }
 .auth .wrapper-right p,.auth .wrapper-right ul{
@@ -193,4 +195,12 @@
 .auth .alert li{
 	list-style: initial;
 	margin-left: 15px;
+}
+.auth #workspaces{
+	min-height: calc(100vh - 116px);
+    background-color: #ededed;
+    padding: 80px 60px;
+}
+#workspaces .list-workspaces-item{
+	width: 350px;
 }

@@ -13,21 +13,15 @@
 
 Auth::routes();
 
+Route::get('/', 'UserController@index');
+
 Route::group(['namespace' => 'Admin'], function () {
     Route::post('demo','DashboardController@index');
 });
 
-Route::group(['domain' => '{subdomain}.restaurant.dev'], function () {
-    Route::get('/', function($subdomain){
-        return 'Subdomain ' . $subdomain;
-    });
-});
-
 Route::group(['middleware' => 'authenticated'],function(){
 	Route::resource('employees', 'EmployeeController');
-	Route::resource('', 'UserController', [
-		'only' => ['index', 'show', 'edit', 'update'],
-		'names' => ['show' => 'users.show'],
-		'parameters' => ['' => 'username']
-	]);
+	Route::resource('{username}/workspaces', 'WorkspaceController');
+	Route::get('{username}/profile', 'UserController@edit')->name('profile.edit');
+	Route::put('{username}/profile', 'UserController@update')->name('profile.update');
 });

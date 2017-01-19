@@ -15,18 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('users.show');
-    }
-
-    public function show($username)
-    {
-        $user = User::where('username',$username)->first();
-        $active_sidebar = 'active';
-        if ($user) {
-            return view('users.show')->with('show',$active_sidebar);
-        }else{
-            abort(404);
-        }
+        return redirect()->route('profile.edit', ['user'=>$user->username]);
     }
 
     public function edit($username)
@@ -34,7 +23,7 @@ class UserController extends Controller
         $user = User::where('username',$username)->first();
         $active_sidebar = 'active';
         if ($user) {
-            return view('users.edit')->with('edit',$active_sidebar);
+            return view('users.edit')->with('profile',$active_sidebar);
         }else{
             abort(404);
         }
@@ -47,6 +36,8 @@ class UserController extends Controller
             $user->fullname = $request->fullname;
             $user->phone = $request->phone;
             $user->address = $request->address;
+
+            //Crop avatar
             if ($request->avatar != '') {
                 $result = crop_image(
                     $request->avatar ,
