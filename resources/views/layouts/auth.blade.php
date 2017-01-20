@@ -9,6 +9,8 @@
     <script src="/js/lib/passwordStrength.js"></script>
     <script src="/js/lib/cropper.min.js"></script>
     <script src="/js/auth.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
 @endsection
 
 @section('body_class','auth')
@@ -27,7 +29,7 @@
                     @else
                         <li>
                             <div title="Account Settings">
-                                <a href="/{{ $current_username }}/edit" class="circle">
+                                <a href="/{{ $current_username }}/profile" class="circle">
                                     <i class="fa fa-cogs"></i>
                                 </a>
                             </div>
@@ -63,8 +65,8 @@
                 <div class="sidebar pull-left">
                     <div class="top">
                         <div class="text-center">
-                            <a href="/{{ $current_username }}"><img src="{{ $current_user->avatar }}" alt="" width="75" height="75" class="img-rounded"></a>
-                            <a href="/{{ $current_username }}">{{ $current_user->fullname }}</a>
+                            <a href="/{{ $current_username }}/profile"><img src="{{ $current_user->avatar }}" alt="" width="75" height="75" class="img-rounded"></a>
+                            <a href="/{{ $current_username }}/profile">{{ $current_user->fullname }}</a>
                         </div>
                     </div>
                     <ul class="menu">
@@ -77,6 +79,10 @@
                         @yield('content')
                     </div>
 
+                </div>
+            </div>
+        </section>
+        
                     <footer>
                         <p class="pull-left">© 2017 BaoHuy Company Inc.</p>
                         <ul class="pull-right">
@@ -87,9 +93,6 @@
                         </ul>
                         <div class="clearfix"></div>
                     </footer>
-                </div>
-            </div>
-        </section>
     @else
         @yield('content')
     @endif

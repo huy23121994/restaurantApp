@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Auth;
-use File;
-use Image;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;

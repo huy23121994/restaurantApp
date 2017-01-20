@@ -30,13 +30,14 @@ function initFunc(){
 			// No files chosen
 			$('.cropper').cropper('destroy');
 			$crop_avatar_modal.modal('hide');
+
 		}else if ($crop_avatar_modal.hasClass('in')){
-			
+			// change image preview
 			readURL(this,$(this).data('img'), function(){
 				var img_change_url = $('.cropper').attr('src');
 				$('.cropper').cropper('reset').cropper('replace', img_change_url);
-				// $crop_avatar_modal.modal('show');
 			}); 
+
 		}else{
 			$('.cropper').cropper('destroy');
 			$crop_avatar_modal.modal('show');
@@ -55,13 +56,21 @@ function initFunc(){
 			})
 		}
 	})
+
 	$('#crop_avatar_modal').find('button#save').click(function(){
 		status = 'save';
 	})
+
 	$crop_avatar_modal.on('hidden.bs.modal',function(){
 		if (status != 'save') {
 			$input.val('');
 			$('.cropper').cropper('destroy');
 		};
 	})
+
+	$('.list-workspaces').imagesLoaded( function() {
+		$('.list-workspaces').masonry({
+			itemSelector: '.list-workspaces-item'
+		});
+	});
 }

@@ -13,14 +13,13 @@
 
 Auth::routes();
 
-Route::get('/', 'UserController@index');
-
 Route::group(['namespace' => 'Admin'], function () {
     Route::post('demo','DashboardController@index');
 });
 
 Route::group(['middleware' => 'authenticated'],function(){
 	Route::resource('employees', 'EmployeeController');
+	Route::get('/', 'UserController@index');
 	Route::resource('{username}/workspaces', 'WorkspaceController');
 	Route::get('{username}/profile', 'UserController@edit')->name('profile.edit');
 	Route::put('{username}/profile', 'UserController@update')->name('profile.update');
