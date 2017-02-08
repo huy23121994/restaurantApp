@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 
 class WorkspaceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $active_sidebar = 'active';

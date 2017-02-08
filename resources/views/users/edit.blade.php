@@ -22,7 +22,7 @@
 		        {{ session('status') }}
 		    </div>
 		@endif
-		<form action="{{ route('profile.update',['username'=>$current_username ]) }}" method="POST" enctype="multipart/form-data">
+		<form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			{{ method_field('PUT') }}
 			<input type="hidden" name="id" value="{{ $current_user->id }}">

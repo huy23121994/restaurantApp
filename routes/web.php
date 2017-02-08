@@ -18,9 +18,10 @@ Route::group(['namespace' => 'Admin'], function () {
 });
 
 Route::group(['middleware' => 'authenticated'],function(){
-	Route::resource('employees', 'EmployeeController');
 	Route::get('/', 'UserController@index');
-	Route::resource('{username}/workspaces', 'WorkspaceController');
-	Route::get('{username}/profile', 'UserController@edit')->name('profile.edit');
-	Route::put('{username}/profile', 'UserController@update')->name('profile.update');
+	Route::get('profile', 'UserController@edit')->name('profile.edit');
+	Route::put('profile', 'UserController@update')->name('profile.update');
+	Route::resource('workspaces', 'WorkspaceController');
+	
+	Route::resource('employees', 'EmployeeController');
 });

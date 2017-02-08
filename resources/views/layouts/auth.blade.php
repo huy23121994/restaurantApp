@@ -70,8 +70,8 @@
                         </div>
                     </div>
                     <ul class="menu">
-                        <li class="{{ $workspace or '' }}"><a href="/{{ $current_username }}/workspaces">App WorkSpaces</a></li>
-                        <li class="{{ $profile or '' }}"><a href="/{{ $current_username }}/profile">Account Setting</a></li>
+                        <li class="{{ $workspace or '' }}"><a href="{{ route('workspaces.index') }}">App WorkSpaces</a></li>
+                        <li class="{{ $profile or '' }}"><a href="{{ route('profile.edit') }}">Account Setting</a></li>
                     </ul>
                 </div>
                 <div class="wrapper-right">

@@ -193,40 +193,23 @@
 .auth #workspaces{
 	min-height: calc(100vh - 116px);
     background-color: #ededed;
-    padding: 80px 60px;
+    padding: 30px 60px 60px;
 }
 #workspaces .list-workspaces-item{
 	width: 300px;
 	border-radius: 3px;
     margin-right: 40px;
     margin-bottom: 40px;
-}
-#workspaces .list-workspaces-item:not(.new-workspace){
-	border: 1px solid #ddd;
-	padding: 5px 5px;
+    border: 1px solid #ddd;
+    padding: 5px 5px;
     background-color: #fff;
 }
-#workspaces .list-workspaces-item.new-workspace{
-    height: 320px;
-    background-color: #82807E;
-    color: #E6E6E6;
-    display: flex;
-}
-#workspaces a.list-workspaces-item.new-workspace:hover{
-    text-decoration: none;
-    background-color: #676767;
-}
-#workspaces .list-workspaces-item.new-workspace .wrapper{
-    margin: auto;
-}
-#workspaces .list-workspaces-item.new-workspace .wrapper .plus{
-    font-size: 80px;
-    border: 1px solid #e6e6e6;
-    border-radius: 50%;
-    width: 70px;
+#workspaces .header{
     height: 70px;
-    line-height: 70px;
-    margin: 0 auto 23px;
+}
+#workspaces .header button{
+    margin-left: 30px;
+    margin-top: 15px;
 }
 #workspaces .list-workspaces-item .wrapper small{
     color: #7C7C7C;

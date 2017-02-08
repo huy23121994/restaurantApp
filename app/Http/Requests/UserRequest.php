@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\User;
+use Auth;
 
 class UserRequest extends FormRequest
 {
@@ -24,7 +24,7 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        $user = User::where('username',$this->route('username'))->first();
+        $user = Auth::user();
         return [
             'username' => 'required|max:25|min:6|unique:users,username,'.$user->id,
             'fullname' => 'required|max:25|min:6',

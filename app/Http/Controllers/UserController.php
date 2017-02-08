@@ -13,12 +13,12 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return redirect()->route('profile.edit', ['user'=>$user->username]);
+        return redirect('/profile');
     }
 
-    public function edit($username)
+    public function edit()
     {
-        $user = User::where('username',$username)->first();
+        $user = Auth::user();
         $active_sidebar = 'active';
         if ($user) {
             return view('users.edit')->with('profile',$active_sidebar);
@@ -27,9 +27,9 @@ class UserController extends Controller
         }
     }
 
-    public function update(UserRequest $request, $username)
+    public function update(UserRequest $request)
     {
-        $user = User::where('username',$username)->first();
+        $user = Auth::user();
         if ($user) {
             $user->fullname = $request->fullname;
             $user->phone = $request->phone;
