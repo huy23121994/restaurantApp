@@ -1,9 +1,11 @@
 @extends('layouts.auth')
 
 @section('content')
-	<div class="top">
-		<h3>{{ $current_user->fullname }}</h3>
-		<p>Account Settings</p>
+	<div class="top flex">
+		<div class="wr">
+			<h3>{{ $current_user->fullname }}</h3>
+			<p>Account Settings</p>
+		</div>
 	</div>
 	<div class="main">
 		@if (count($errors) > 0)

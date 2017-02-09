@@ -26,7 +26,9 @@ function readURL(input,selector, callback) {
         image.src = theFile.target.result;
         image.onload = function() {
             $(selector).attr('src', this.src);
-            callback();
+            if (typeof callback === "function") {
+              callback();
+            }
         };
     }
     reader.readAsDataURL(input.files[0]);

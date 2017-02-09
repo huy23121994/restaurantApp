@@ -22,3 +22,12 @@ function crop_image($image, $directiory, $name, $crop_width, $crop_height, $crop
     }
     return false;
 }
+
+function save_image($image, $directiory, $name) {
+    $filename  = $name . '.' . $image->getClientOriginalExtension();
+    $save_result = $image->storeAs('public/workspace_covers', $filename);
+    if ($save_result) {
+        return Storage::url($directiory . $filename);;
+    }
+    return false;
+}

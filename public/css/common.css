@@ -33,3 +33,7 @@ img{
 .text-white{
 	background-color: #fff;
 }
+.flex{
+	display: -webkit-flex;
+    display: flex;
+}

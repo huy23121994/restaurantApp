@@ -93,10 +93,14 @@
 	margin-left: 300px;
 }
 .auth .wrapper-right #content > .top{
+	height: 148px;
 	padding: 29px 60px;
 	border-bottom: 1px solid #dedede;
 	background-color: #ededed;
 	font-size: 12px;
+}
+.auth .wrapper-right #content > .top > .wr{
+	margin: auto 0;
 }
 .auth .wrapper-right #content > .main{
 	padding: 29px 60px;

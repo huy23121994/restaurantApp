@@ -21,7 +21,7 @@ class UserController extends Controller
         $user = Auth::user();
         $active_sidebar = 'active';
         if ($user) {
-            return view('users.edit')->with('profile',$active_sidebar);
+            return view('users.edit')->with('p',$active_sidebar);
         }else{
             abort(404);
         }
