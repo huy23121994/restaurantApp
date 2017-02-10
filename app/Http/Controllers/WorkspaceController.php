@@ -14,7 +14,7 @@ class WorkspaceController extends Controller
         $active_sidebar = 'active';
         return view('workspaces.index')
             ->with('w',$active_sidebar)
-            ->with('workspaces',$workspaces);
+            ->with('workspaces', $workspaces);
     }
 
     /**
@@ -64,8 +64,7 @@ class WorkspaceController extends Controller
     public function show($url)
     {
         $workspace = Workspace::where('url',$url)->first();
-        dd($workspace);
-        return view('workspaces.show');
+        return view('workspaces.show', ['workspace' => $workspace]);
     }
 
     /**

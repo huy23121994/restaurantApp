@@ -12,17 +12,17 @@
 			<input type="hidden" value="{{ $current_user->id }}" name="user_id">
 			<div class="form-group">
 			    <label for="name">Restaurant name</label>
-			    <input type="text" class="form-control" id="fullname" placeholder="your-restaurant-name" name="name">
+			    <input type="text" class="form-control" id="name" placeholder="your-restaurant-name" name="name">
 			</div>
 			<div class="form-group">
 			    <label for="description">Description</label>
-			    <input type="text" class="form-control" id="fullname" placeholder="description" name="description">
+			    <input type="text" class="form-control" id="description" placeholder="description" name="description">
 			</div>
 			<div class="form-group">
 			    <label for="url">Access link address</label>
 			    <div class="input-group">
 				  <span class="input-group-addon" id="sizing-addon2">{{ url('/') }}/</span>
-				  <input type="text" class="form-control" id="fullname" placeholder="description" name="url">
+				  <input type="text" class="form-control" id="url" placeholder="url" name="url">
 				</div>
 			</div>
 			<div class="form-group">
