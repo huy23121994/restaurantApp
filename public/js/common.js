@@ -14,7 +14,12 @@ $(document).ready(function() {
 
   $(document).on('change','.need_preview',function(){
     readURL(this,$(this).data('img'));
+  });
+
+  $(document).on('click','button[data-loading-text]', function () {
+    $(this).button('loading');
   })
+
 })
 
 /* Change image before upload */

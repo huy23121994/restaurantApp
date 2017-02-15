@@ -218,3 +218,9 @@
 #workspaces .list-workspaces-item .wrapper small{
     color: #7C7C7C;
 }
+#show-workspace #access-link .access-link{
+	position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 2;
+}

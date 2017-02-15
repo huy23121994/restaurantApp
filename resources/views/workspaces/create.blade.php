@@ -7,6 +7,16 @@
 		</div>
 	</div>
 	<div class="main">
+		@if (count($errors) > 0)
+		    <div class="alert alert-danger alert-dismissible fade in">
+		    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+		        <ul>
+		            @foreach ($errors->all() as $error)
+		                <li>{{ $error }}</li>
+		            @endforeach
+		        </ul>
+		    </div>
+		@endif
 		<form action="{{ route('workspaces.store') }}" method="POST" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			<input type="hidden" value="{{ $current_user->id }}" name="user_id">

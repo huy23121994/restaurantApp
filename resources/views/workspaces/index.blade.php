@@ -11,10 +11,10 @@
 		<div class="list-workspaces">
 			@foreach($workspaces as $workspace)
 				<div class="list-workspaces-item">
-					<div class="item-body"><a href=""><img src="{{ $workspace->avatar }}" class="full_width"></a></div>
+					<div class="item-body"><a href="{{ route('workspaces.show',[$workspace->url]) }}"><img src="{{ $workspace->avatar }}" class="full_width"></a></div>
 					<div class="item-footer m_t_5">
 						<div class="pull-left">
-							<strong><a href="">{{ $workspace->name }}</a></strong><br>
+							<strong><a href="{{ route('workspaces.show',[$workspace->url]) }}">{{ $workspace->name }}</a></strong><br>
 						</div>
 						<div class="text-right">
 							<a href="{{ route('workspaces.show',[$workspace->url]) }}"><button class="btn btn-default btn-sm">Edit</button></a>

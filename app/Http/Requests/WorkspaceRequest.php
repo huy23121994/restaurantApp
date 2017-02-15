@@ -23,11 +23,16 @@ class WorkspaceRequest extends FormRequest
      */
     public function rules()
     {
-        // return [
-        //     'url' => 'required|max:25|unique:workspaces,url,'.$user->id,
-        //     'fullname' => 'required|max:25|min:6',
-        //     'email' => 'required|email|max:25|unique:users,email,'.$user->id,
-        //     'avatar' => 'image|max:1000',
-        // ];
+        $workspace = \App\WorkSpace::where('url',$this->route('workspace'))->first();
+        $except_id = '';
+        if ($workspace) {
+            $except_id = $workspace->id;
+        }
+        return [
+            'url' => 'required|max:25|unique:workspaces,url,'.$except_id,
+            'name' => 'required|max:25|min:6',
+            'description' => 'max:200',
+            'avatar' => 'image|max:1000',
+        ];
     }
 }

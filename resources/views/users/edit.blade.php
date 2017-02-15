@@ -90,7 +90,7 @@
 				</div><!-- /.modal -->
 
 			</div>
-			<button type="submit" class="btn btn-primary">Update infomations</button>
+			<button type="submit" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Updating..." class="btn btn-primary">Update infomations</button>
 		</form>
 		<hr>
 		<form action="">
