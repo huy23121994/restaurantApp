@@ -52,7 +52,7 @@
 			    </label>
 			    <input type="file" id="avatar" data-img=".img-preview img" class="need_preview" name="avatar" accept="image/*" >
 			</div>
-			<button type="submit" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Updating..."  class="btn btn-primary">Update Workspace</button>
+			<button type="submit" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Updating..." class="btn btn-primary">Update Workspace</button>
 		</form>
 	</div>
 @endsection

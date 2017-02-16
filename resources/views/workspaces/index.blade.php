@@ -7,6 +7,7 @@
 			<a href="{{ route('workspaces.create') }}">
 				<button class="btn btn-primary pull-left"><i class="fa fa-plus-circle"></i> Create new workspace</button>
 			</a>
+			<div class="clearfix"></div>
 		</div>
 		<div class="list-workspaces">
 			@foreach($workspaces as $workspace)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\WorkspaceRequest;
 use App\Workspace;
+use Validator;
 
 class WorkspaceController extends Controller
 {
@@ -95,7 +96,7 @@ class WorkspaceController extends Controller
         if ($workspace) {
             $workspace->name =  $request->name;
             $workspace->description =  $request->description;
-            $workspace->url =  $request->url;
+            $workspace->url =  str_slug($request->url);
             if ($request->hasFile('avatar')) {
                 $result = save_image( $request->avatar, 'workspace_covers/', $request->url);
                 if ($result) {

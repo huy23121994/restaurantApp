@@ -9,8 +9,8 @@ class Workspace extends Model
     protected $fillable = [
         'name', 'description','url', 'avatar', 'user_id'
     ];
-    public function setUrlAttribute($value)
-    {
-        $this->attributes['url'] = str_slug($value);
-    }
+    // public function setUrlAttribute($value)
+    // {
+    //     $this->attributes['url'] = str_slug($value);
+    // }
 }

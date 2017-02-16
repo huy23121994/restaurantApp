@@ -16,8 +16,8 @@ $(document).ready(function() {
     readURL(this,$(this).data('img'));
   });
 
-  $(document).on('click','button[data-loading-text]', function () {
-    $(this).button('loading');
+  $(document).on('submit','form', function () {
+    $(this).find('button[data-loading-text]').button('loading');
   })
 
 })

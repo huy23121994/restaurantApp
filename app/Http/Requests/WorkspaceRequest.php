@@ -16,6 +16,15 @@ class WorkspaceRequest extends FormRequest
         return true;
     }
 
+    public function all()
+    {
+        $input = parent::all();
+
+        $input['url'] = str_slug($input['url']);
+
+        return $input;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,10 +33,12 @@ class WorkspaceRequest extends FormRequest
     public function rules()
     {
         $workspace = \App\WorkSpace::where('url',$this->route('workspace'))->first();
+
         $except_id = '';
         if ($workspace) {
             $except_id = $workspace->id;
         }
+        // dd($except_id);
         return [
             'url' => 'required|max:25|unique:workspaces,url,'.$except_id,
             'name' => 'required|max:25|min:6',
