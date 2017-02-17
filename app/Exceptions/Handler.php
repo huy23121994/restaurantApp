@@ -46,7 +46,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof NotFoundHttpException){
+        if ($exception instanceof \Illuminate\Auth\Access\AuthorizationException) {
+            return redirect('workspaces');
+        }
+        if( $exception instanceof NotFoundHttpException || $exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException ){
             if (Auth::check()) {
                 return response()->view('errors.404_user', [], 404);
             }

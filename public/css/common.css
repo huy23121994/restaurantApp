@@ -37,3 +37,6 @@ img{
 	display: -webkit-flex;
     display: flex;
 }
+.lighten{
+	opacity: 0.7;
+}

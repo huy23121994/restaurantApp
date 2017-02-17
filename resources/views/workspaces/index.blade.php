@@ -19,7 +19,7 @@
 						</div>
 						<div class="text-right">
 							<a href="{{ route('workspaces.show',[$workspace->url]) }}"><button class="btn btn-default btn-sm">Edit</button></a>
-							<button class="btn btn-success btn-sm">Open</button>
+							<a href="/{{ $workspace->url }}"><button class="btn btn-success btn-sm">Open</button></a>
 						</div>
 						<div class="clearfix"></div>
 					</div>

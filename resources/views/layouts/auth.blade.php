@@ -29,7 +29,7 @@
                     @else
                         <li>
                             <div title="Account Settings">
-                                <a href="/{{ $current_username }}/profile" class="circle">
+                                <a href="{{ route('profile.edit') }}" class="circle">
                                     <i class="fa fa-cogs"></i>
                                 </a>
                             </div>
@@ -48,7 +48,7 @@
                         </li>
                         <li>
                             <div>
-                                <a href="/{{ $current_username }}" class="circle">
+                                <a href="{{ route('workspaces.index') }}" class="circle">
                                     <img src="{{ $current_user->avatar }}" class="full_size" alt="">
                                 </a>
                             </div>
@@ -65,8 +65,8 @@
                 <div class="sidebar pull-left">
                     <div class="top">
                         <div class="text-center">
-                            <a href="/{{ $current_username }}/profile"><img src="{{ $current_user->avatar }}" alt="" width="75" height="75" class="img-rounded"></a>
-                            <a href="/{{ $current_username }}/profile">{{ $current_user->fullname }}</a>
+                            <a href="{{ route('workspaces.index') }}"><img src="{{ $current_user->avatar }}" alt="" width="75" height="75" class="img-rounded"></a>
+                            <a href="{{ route('workspaces.index') }}">{{ $current_user->fullname }}</a>
                         </div>
                     </div>
                     <ul class="menu">

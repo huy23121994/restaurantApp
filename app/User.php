@@ -17,6 +17,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function workspaces()
+    {
+        return $this->hasMany(Workspace::class);
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);

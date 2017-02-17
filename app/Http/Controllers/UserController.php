@@ -13,51 +13,42 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return redirect('/profile');
+        return redirect('/workspaces');
     }
 
     public function edit()
     {
         $user = Auth::user();
         $active_sidebar = 'active';
-        if ($user) {
-            return view('users.edit')->with('p',$active_sidebar);
-        }else{
-            abort(404);
-        }
+        return view('users.edit')->with('p',$active_sidebar);
     }
 
     public function update(UserRequest $request)
     {
         $user = Auth::user();
-        if ($user) {
-            $user->fullname = $request->fullname;
-            $user->phone = $request->phone;
-            $user->address = $request->address;
+        $user->fullname = $request->fullname;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
 
-            //Crop avatar
-            if ($request->avatar != '') {
-                $result = crop_image(
-                    $request->avatar ,
-                    'avatars/',
-                    $user->username,
-                    $request->crop_width,
-                    $request->crop_height,
-                    $request->crop_x,
-                    $request->crop_y
-                );
-                if ($result) {
-                    $user->avatar = $result;
-                }
-                
+        //Crop avatar
+        if ($request->avatar != '') {
+            $result = crop_image(
+                $request->avatar ,
+                'avatars/',
+                $user->username,
+                $request->crop_width,
+                $request->crop_height,
+                $request->crop_x,
+                $request->crop_y
+            );
+            if ($result) {
+                $user->avatar = $result;
             }
+            
+        }
 
-            if ($user->save()) {
-                return back()->with('status', 'Profile updated');
-            }
-
-        }else{
-            abort(404);
+        if ($user->save()) {
+            return back()->with('status', 'Profile updated');
         }
     }
 

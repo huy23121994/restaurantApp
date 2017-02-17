@@ -224,3 +224,24 @@
     top: 10px;
     z-index: 2;
 }
+.card{
+    border: 1px solid #e76d14;
+}
+.card header{
+    color: white;
+    border-radius: 0;
+    border-color: inherit;
+    background-color: #e76d14;
+    padding: 5px 20px;
+}
+.card header h4{
+    margin-bottom: 4px;
+    font-size: 17px;
+}
+.card section{
+    padding: 30px 20px;
+}
+button.orange{
+	background-color: #e76d14!important;
+	border-color: #e76d14!important;
+}

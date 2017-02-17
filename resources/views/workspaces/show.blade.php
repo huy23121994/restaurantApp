@@ -54,5 +54,42 @@
 			</div>
 			<button type="submit" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Updating..." class="btn btn-primary">Update Workspace</button>
 		</form>
+		<hr>
+		<div class="card">
+			<header>
+				<h4>Delete this workspace</h4>
+				<span class="lighten">This cannot be undone. </span>
+				<strong>Really.</strong>
+			</header>
+			<section>
+				<div class="pull-left">Are you sure?</div>
+				<div class="pull-right">
+					<button type="button" class="btn btn-primary orange" data-toggle="modal" data-target=".modal.confirm"><i class="fa fa-trash"></i> Delete workspace</button>
+				</div>
+				<div class="clearfix"></div>
+			</section>
+		</div>
+		<!-- MODAL -->
+		<div class="modal fade confirm" tabindex="-1" role="dialog">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+		       <div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        	<h4 class="modal-title" id="myModalLabel">Delete confirmation</h4>
+		      	</div>
+		      	<div class="modal-body">
+		      		<form class="hide" id="delete-ws" action="{{ route('workspaces.destroy',[$workspace->id]) }}" method="POST">
+		      			{{ csrf_field() }}
+						{{ method_field('DELETE') }}
+		      		</form>
+		        	<div class="text-center">
+		        		<button type="submit" class="btn btn-primary orange" onclick="$('form#delete-ws').submit()">Yes. I'm sure</button>
+		        		<button class="btn btn-default" data-dismiss="modal">Cancle</button>
+		        	</div>
+		      	</div>
+		    </div>
+		  </div>
+		</div>
+		<!-- END MODAL -->
 	</div>
 @endsection

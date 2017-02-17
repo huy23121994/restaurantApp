@@ -38,7 +38,6 @@ class WorkspaceRequest extends FormRequest
         if ($workspace) {
             $except_id = $workspace->id;
         }
-        // dd($except_id);
         return [
             'url' => 'required|max:25|unique:workspaces,url,'.$except_id,
             'name' => 'required|max:25|min:6',
