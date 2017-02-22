@@ -73,4 +73,15 @@ function initFunc(){
 			itemSelector: '.list-workspaces-item'
 		});
 	});
+
+	$('#add_admin').submit(function(e){
+		e.preventDefault();
+		$.post(
+			$(this).attr('action'),
+			$(this).serialize(),
+			function(data) {
+				console.log(data);
+			}
+		)
+	})
 }

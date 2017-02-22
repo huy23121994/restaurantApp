@@ -31,15 +31,15 @@
 @section('main')
 	<div class="container body">
 		<div class="main_container">
-			@include('app.sidebar')
+			@include('restaurant_app.sidebar')
 
-			@include('app.top')
+			@include('restaurant_app.top')
 
 			<div class="right_col" role="main">
 				@yield('content')
 			</div>
 
-			@include('app.footer')
+			@include('restaurant_app.footer')
 
 		</div>
 	</div>

@@ -6,7 +6,8 @@
 			<h3>{{ $workspace->name }}</h3>
 		</div>
 	</div>
-	<div class="main" id="show-workspace">
+	<div class="main pull-left" id="show-workspace">
+		<h4><u>Workspace information</u></h4>
 		@if (count($errors) > 0)
 		    <div class="alert alert-danger alert-dismissible fade in">
 		    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -92,4 +93,57 @@
 		</div>
 		<!-- END MODAL -->
 	</div>
+	<div id="workspace-admin" class="pull-left">
+		<h4 class="pull-left"><u>Admin in your workspace</u></h4>
+		<button type="button" class="btn btn-primary btn-xs pull-left m_t_5 m_l_5" data-toggle="modal" data-target=".modal.add_admin"> 
+			<i class="fa fa-plus"></i> Add new
+		</button>
+		<div class="clearfix"></div>
+		<!-- MODAL -->
+		<div class="modal fade add_admin" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		       <div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        	<h4 class="modal-title" id="myModalLabel">Add new admin</h4>
+		      	</div>
+		      	<div class="modal-body">
+					<form action="{{ route('workspaces.add_admin', [$workspace->id]) }}" method="POST" id="add_admin" form-ajax="true">
+						{{ csrf_field() }}
+						<div class="form-group">
+							<label for="">Username</label>
+							<input type="text" class="form-control" name="username" placeholder="Username for your workspace admin">
+						</div>
+						<div class="form-group">
+							<label for="">Password</label>
+							<input type="password" class="form-control" name="password" placeholder="password">
+						</div>
+					</form>
+		        	<div class="text-center">
+		        		<button type="submit" class="btn btn-primary" onclick="$('form#add_admin').submit()">Add new</button>
+		        		<button class="btn btn-default" data-dismiss="modal">Cancle</button>
+		        	</div>
+		      	</div>
+		    </div>
+		  </div>
+		</div>
+		<!-- END MODAL -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Username</th>
+					<th>Password</th>
+				</tr>
+			</thead>
+			@foreach($workspace->admins as $key => $admin)
+				<tr>
+					<td>{{ $key + 1 }}</td>
+					<td>{{ $admin->username }}</td>
+					<td>{{ $admin->password }}</td>
+				</tr>
+			@endforeach
+		</table>
+	</div>
+	<div class="clearfix"></div>
 @endsection

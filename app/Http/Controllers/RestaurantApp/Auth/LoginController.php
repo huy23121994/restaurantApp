@@ -5,7 +5,6 @@ namespace App\Http\Controllers\RestaurantApp\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Workspace;
-use Session;
 
 class LoginController extends Controller
 {
@@ -17,13 +16,10 @@ class LoginController extends Controller
 
     public function login(Request $request, $workspace_url)
     {
-        // $request->session()->put('admin','admin');
-        // session(['ok' => 'ok']);
-        // Session::flush();
-        // $request->session()->forget('ok');
+        session(['ws_admin' => 'admin']);
+        session()->forget('ok');
 
-        // dd($request->session()->has('ok'));
-        dd(Session::all());
+        dd(session()->all());
     }
 
     public function logout($workspace_url)

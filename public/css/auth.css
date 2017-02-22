@@ -245,3 +245,7 @@ button.orange{
 	background-color: #e76d14!important;
 	border-color: #e76d14!important;
 }
+#workspace-admin {
+  width:450px;
+  padding-top: 29px;
+}

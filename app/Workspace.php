@@ -14,4 +14,9 @@ class Workspace extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+    public function admins()
+    {
+    	return $this->hasMany('App\WorkspaceAdmin');
+    }
 }
