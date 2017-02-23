@@ -18,6 +18,7 @@
     @yield('add_css')
 
     <script src="/js/app.js" data-turbolinks-track="reload"></script>
+    {{-- <script src="/js/vue.js"></script> --}}
     <script src="/js/lib/turbolinks.v2.5.3.js"></script>
     <script src="/js/lib/nprogress.js"></script>
     <script src="/js/common.js"></script>

@@ -80,17 +80,4 @@ class WorkspaceController extends Controller
             return redirect('workspaces');
         }
     }
-
-    public function addAdmin(Request $request, Workspace $workspace)
-    {
-        $w_admin = new \App\WorkspaceAdmin;
-        $w_admin->username = $request->username;
-        $w_admin->password = $request->password;
-        $w_admin->workspace_id = $workspace->id;
-        if ( $w_admin->save() ) {
-            return 'success';
-        }else {
-            return false;
-        }
-    }
 }

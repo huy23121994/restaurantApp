@@ -8,7 +8,6 @@
 @section('top_js')
     <script src="/js/lib/passwordStrength.js"></script>
     <script src="/js/lib/cropper.min.js"></script>
-    <script src="/js/auth.js"></script>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
 @endsection
@@ -96,4 +95,8 @@
     @else
         @yield('content')
     @endif
+@endsection
+
+@section('bottom_js')
+    <script src="/js/auth.js"></script>
 @endsection

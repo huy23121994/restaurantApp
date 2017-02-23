@@ -16,14 +16,15 @@ function initFunc(){
         // }}
     );
 
-	setTimeout(function(){
-		$('.alert-success').alert('close');
-	},3000)
+	alert_dismiss('.alert-success',3000);
 
 	var $crop_avatar_modal = $('#crop_avatar_modal'),
 		$input = $('input[name="avatar"]'),
 		status = '';
 
+	/**
+	*	Crop Image
+	*/
 	$input.change(function(){
 		status = 'modified';
 		if ($input.val() == '') {
@@ -75,13 +76,43 @@ function initFunc(){
 	});
 
 	$('#add_admin').submit(function(e){
+		var $this = $(this);
 		e.preventDefault();
 		$.post(
-			$(this).attr('action'),
-			$(this).serialize(),
-			function(data) {
-				console.log(data);
-			}
-		)
+			$this.attr('action'),
+			$this.serialize()
+		).done(function(data){
+			$('.add_admin_errors').hide();	// hide error messages
+			$('.add_admin_success').show();	// show error messages
+			alert_dismiss('.add_admin_success',1000);
+			var counter = $('#list_admin tbody tr').last().find('td').first().text();	// get last row number
+			$('#list_admin tbody').append('<tr><td>'+ ++counter +'</td><td>'+ data.username +'</td><td>'+ data.password +'</td></tr>');
+			$this.find('button[type="submit"]').button('reset');	//reset button
+			$this[0].reset();	//reset Form
+		}).fail(function(xhr, status, error) {
+	        var err = JSON.parse(xhr.responseText);
+	        var $err_el = $('.add_admin_errors').find('ul.list_error');
+	        $err_el.html('');
+	        $.each(err,function(key, value){
+        		$err_el.append('<li>' + value + '</li>');
+	        	$('.add_admin_errors').show();
+	        })
+		    $this.find('button[type="submit"]').button('reset');
+	    });
+	})
+	modal_dismiss('.modal.add_admin');
+}
+
+function alert_dismiss(selector,time){
+	setTimeout(function(){
+		$(selector).hide();
+	},time)
+}
+function modal_dismiss(selector){
+	setTimeout(function(){
+		$(selector).modal('hide');
+	},1000);
+	$(selector).on('hidden.bs.modal', function (e) {
+	  	$(this).find('.alert[error]').hide();
 	})
 }

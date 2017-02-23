@@ -90,7 +90,8 @@
     background-color: #165a8e;
 }
 .auth .wrapper-right{
-	margin-left: 300px;
+	float: left;
+  width: calc(100% - 300px);
 }
 .auth .wrapper-right #content > .top{
 	height: 148px;
@@ -247,5 +248,7 @@ button.orange{
 }
 #workspace-admin {
   width:450px;
-  padding-top: 29px;
+}
+.tab-pane{
+  padding-top: 15px;
 }

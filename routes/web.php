@@ -15,7 +15,14 @@ Route::group(['middleware' => 'authenticated'],function(){
 	Route::get('profile', 'UserController@edit')->name('profile.edit');
 	Route::put('profile', 'UserController@update')->name('profile.update');
 
-	Route::post('workspaces/{workspace}/add_admin', 'WorkspaceController@addAdmin')->name('workspaces.add_admin');
+	Route::resource('workspaces/{workspace}/add_admin', 'WorkspaceAdminController', [
+		'only' => ['store','update','destroy'],
+		'names' => [
+			'store' => 'workspace_admin.store',
+			'update' => 'workspace_admin.update',
+			'destroy' => 'workspace_admin.destroy'
+		],
+	]);
 	Route::resource('workspaces', 'WorkspaceController', ['except' => ['edit']]);
 
 	Route::resource('employees', 'EmployeeController');
