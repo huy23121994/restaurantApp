@@ -99,9 +99,14 @@
 	border-bottom: 1px solid #dedede;
 	background-color: #ededed;
 	font-size: 12px;
+  position: relative;
 }
-.auth .wrapper-right #content > .top > .wr{
+.auth .wrapper-right #content > .top > .title{
 	margin: auto 0;
+}
+.auth .wrapper-right #content > .top > .ws_menu{
+  position: absolute;
+  bottom: -1px;
 }
 .auth .wrapper-right #content > .main{
 	padding: 29px 60px;
@@ -248,7 +253,4 @@ button.orange{
 }
 #workspace-admin {
   width:450px;
-}
-.tab-pane{
-  padding-top: 15px;
 }

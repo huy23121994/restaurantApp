@@ -100,19 +100,10 @@ function initFunc(){
 		    $this.find('button[type="submit"]').button('reset');
 	    });
 	})
-	modal_dismiss('.modal.add_admin');
 }
 
 function alert_dismiss(selector,time){
 	setTimeout(function(){
 		$(selector).hide();
 	},time)
-}
-function modal_dismiss(selector){
-	setTimeout(function(){
-		$(selector).modal('hide');
-	},1000);
-	$(selector).on('hidden.bs.modal', function (e) {
-	  	$(this).find('.alert[error]').hide();
-	})
 }

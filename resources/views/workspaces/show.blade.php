@@ -1,20 +1,10 @@
-@extends('layouts.auth')
+@extends('workspaces.layout')
 
-@section('content')
-	<div class="top flex">
-		<div class="wr">
-			<h3>{{ $workspace->name }}</h3>
-		</div>
-	</div>
+@section('workspace_title', $workspace->name)
 
-	<div class="main" id="show-workspace">
+@section('workspace_content')
 
-	<!-- Nav tabs -->
-  	<ul class="nav nav-tabs" role="tablist">
-    	<li role="presentation" class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-    	<li role="presentation"><a href="#ws_admin" data-toggle="tab">Workspace Admin</a></li>
-  	</ul>
-
+<div id="show-workspace">
   	<!-- Tab panes -->
   	<div class="tab-content">
     	<div role="tabpanel" class="tab-pane active" id="profile">
@@ -104,71 +94,10 @@
 			<!-- END MODAL -->
     	</div>
     	<div role="tabpanel" class="tab-pane" id="ws_admin">
-			<div id="workspace-admin">
-				<button type="button" class="btn btn-primary btn-xs pull-left m_t_5 m_l_5" data-toggle="modal" data-target=".modal.add_admin"> 
-					<i class="fa fa-plus"></i> Add new
-				</button>
-				<div class="clearfix"></div>
-				<!-- MODAL -->
-				<div class="modal fade add_admin" tabindex="-1" role="dialog">
-				  <div class="modal-dialog" role="document">
-				    <div class="modal-content">
-				       <div class="modal-header">
-				        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        	<h4 class="modal-title">Add new admin</h4>
-				      	</div>
-				      	<div class="modal-body">
-				      		<div class="alert alert-danger alert-dismissible add_admin_errors" error style="display:none">
-							  	<button type="button" class="close" onclick="$('.add_admin_errors').hide()"><span>&times;</span></button>
-							  	<strong>Error!</strong>
-							  	<ul class="list_error"></ul>
-							</div>
-							<div class="alert alert-success alert-dismissible add_admin_success" style="display:none">
-						    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-						        <strong>Success!</strong>
-						    </div>
-							<form action="{{ route('workspace_admin.store', [$workspace->id]) }}" method="POST" id="add_admin" form-ajax="true">
-								{{ csrf_field() }}
-								<div class="form-group">
-									<label for="">Username</label>
-									<input type="text" class="form-control" name="username" placeholder="Username for your workspace admin">
-								</div>
-								<div class="form-group">
-									<label for="">Password</label>
-									<input type="password" class="form-control" name="password" placeholder="password">
-								</div>
-					        	<div class="text-center">
-					        		<button type="submit" class="btn btn-primary" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Processing...">Add new</button>
-					        		<button class="btn btn-default" data-dismiss="modal">Cancle</button>
-					        	</div>
-							</form>
-				      	</div>
-				    </div>
-				  </div>
-				</div>
-				<!-- END MODAL -->
-				<table class="table" id="list_admin">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Username</th>
-							<th>Password</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($workspace->admins as $key => $admin)
-							<tr>
-								<td>{{ $key + 1 }}</td>
-								<td>{{ $admin->username }}</td>
-								<td>{{ $admin->password }}</td>
-							</tr>
-						@endforeach
-					</tbody>
-				</table>
-			</div>
+			@include('workspace_admins.index')
     	</div>
   	</div>
 		
-	</div>
+</div>
 	<div class="clearfix"></div>
 @endsection
