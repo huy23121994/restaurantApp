@@ -12,10 +12,10 @@
 		    </div>
 		@endif
 	  	<div>
-		  	<input type="text" class="form-control" name="" required="required" autofocus>
+		  	<input type="text" class="form-control" name="username" required="required" autofocus>
 	  	</div>
 	  	<div>
-	  		<input type="password" class="form-control" name="" required="required">
+	  		<input type="password" class="form-control" name="password" required="required">
 	  	</div>
 	  	{{-- <div class="checkbox text-left">
 	  		<label>

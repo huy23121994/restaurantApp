@@ -28,8 +28,3 @@
 		</div>
 	</div>
 @endsection
-
-@section('bottom_js')
-	<script type="text/javascript">
-	</script>
-@endsection

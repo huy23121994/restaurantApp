@@ -75,31 +75,6 @@ function initFunc(){
 		});
 	});
 
-	$('#add_admin').submit(function(e){
-		var $this = $(this);
-		e.preventDefault();
-		$.post(
-			$this.attr('action'),
-			$this.serialize()
-		).done(function(data){
-			$('.add_admin_errors').hide();	// hide error messages
-			$('.add_admin_success').show();	// show error messages
-			alert_dismiss('.add_admin_success',1000);
-			var counter = $('#list_admin tbody tr').last().find('td').first().text();	// get last row number
-			$('#list_admin tbody').append('<tr><td>'+ ++counter +'</td><td>'+ data.username +'</td><td>'+ data.password +'</td></tr>');
-			$this.find('button[type="submit"]').button('reset');	//reset button
-			$this[0].reset();	//reset Form
-		}).fail(function(xhr, status, error) {
-	        var err = JSON.parse(xhr.responseText);
-	        var $err_el = $('.add_admin_errors').find('ul.list_error');
-	        $err_el.html('');
-	        $.each(err,function(key, value){
-        		$err_el.append('<li>' + value + '</li>');
-	        	$('.add_admin_errors').show();
-	        })
-		    $this.find('button[type="submit"]').button('reset');
-	    });
-	})
 }
 
 function alert_dismiss(selector,time){
@@ -107,3 +82,29 @@ function alert_dismiss(selector,time){
 		$(selector).hide();
 	},time)
 }
+
+$('#add_admin').on('submit',function(e){
+	var $this = $(this);
+	e.preventDefault();
+	$.post(
+		$this.attr('action'),
+		$this.serialize()
+	).done(function(data){
+		$('.add_admin_errors').hide();	// hide error messages
+		$('.add_admin_success').show();	// show error messages
+		alert_dismiss('.add_admin_success',3000);
+		var counter = $('#list_admin tbody tr').last().find('td').first().text();	// get last row number
+		$('#list_admin tbody').append('<tr><td>'+ ++counter +'</td><td>'+ data.username +'</td><td>'+ data.password +'</td></tr>');
+		$this.find('button[type="submit"]').button('reset');	//reset button
+		$this[0].reset();	//reset Form
+	}).fail(function(xhr, status, error) {
+        var err = JSON.parse(xhr.responseText);
+        var $err_el = $('.add_admin_errors').find('ul.list_error');
+        $err_el.html('');
+        $.each(err,function(key, value){
+    		$err_el.append('<li>' + value + '</li>');
+        	$('.add_admin_errors').show();
+        })
+	    $this.find('button[type="submit"]').button('reset');
+    });
+})

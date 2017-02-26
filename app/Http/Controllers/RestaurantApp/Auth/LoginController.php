@@ -5,26 +5,35 @@ namespace App\Http\Controllers\RestaurantApp\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Workspace;
+use App\WorkspaceAdmin;
 
 class LoginController extends Controller
 {
-    public function showLoginForm($workspace_url)
+    public function showLoginForm(Request $request)
     {
-    	$workspace = Workspace::where('url',$workspace_url)->firstOrFail();
-    	return view('restaurant_app.auth.login', compact('workspace'));
+    	return view('restaurant_app.auth.login',['workspace' => $request->workspace]);
     }
 
-    public function login(Request $request, $workspace_url)
+    public function login(Request $request)
     {
-        session(['ws_admin' => 'admin']);
-        session()->forget('ok');
+        $user = WorkspaceAdmin::where('username', $request->username)->first();
+        if ($user) {
+            if ($user->password == $request->password) {
+                session([$request->workspace->url.'-'.'admin' => $user]);
+                return redirect($request->workspace->url.'/employees');
+            }else{
+                return 'Mật khẩu không đúng';
+            }
+        }else{
+            return 'Không tồn tại tài khoản này';
+        }
+    }
 
+    public function logout(Request $request, $workspace)
+    {
+        // session()->forget($request->workspace->url.'-'.'admin');
+        // session()->flush();
         dd(session()->all());
-    }
-
-    public function logout($workspace_url)
-    {
-    	$workspace = Workspace::where('url',$workspace_url)->firstOrFail();
-    	return view('restaurant_app.auth.login');
+    	return redirect( $request->workspace->url . '/login');
     }
 }

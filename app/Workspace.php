@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\WorkspaceAdmin;
 
 class Workspace extends Model
 {
@@ -19,4 +20,5 @@ class Workspace extends Model
     {
     	return $this->hasMany('App\WorkspaceAdmin');
     }
+
 }

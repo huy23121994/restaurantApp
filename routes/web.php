@@ -2,11 +2,14 @@
 
 Auth::routes();
 
-Route::group(['namespace' => 'RestaurantApp'], function () {
+Route::group(['namespace' => 'RestaurantApp','middleware' => 'check_workspace'], function () {
 	Route::group(['namespace' => 'Auth'], function () {
 	    Route::get('{workspace}/login','LoginController@showLoginForm')->name('workspace.login');
 	    Route::post('{workspace}/login','LoginController@login');
-	    Route::post('{workspace}/logout','LoginController@logout')->name('workspace.logout');
+	    Route::get('{workspace}/logout','LoginController@logout')->name('workspace.logout');
+	});
+	Route::group(['middleware' => 'check_workspace_login'],function(){
+		Route::resource('{workspace}/employees', 'EmployeeController');
 	});
 });
 
@@ -17,6 +20,7 @@ Route::group(['middleware' => 'authenticated'],function(){
 
 	Route::resource('workspaces/{workspace}/add_admin', 'WorkspaceAdminController', [
 		'only' => ['store','update','destroy'],
+		'parameters' => ['add_admin' => 'admin'],
 		'names' => [
 			'store' => 'workspace_admin.store',
 			'update' => 'workspace_admin.update',
@@ -24,6 +28,4 @@ Route::group(['middleware' => 'authenticated'],function(){
 		],
 	]);
 	Route::resource('workspaces', 'WorkspaceController', ['except' => ['edit']]);
-
-	Route::resource('employees', 'EmployeeController');
 });

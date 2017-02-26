@@ -47,5 +47,6 @@
 
 @section('bottom_js')
 	<script src="/js/template.js"></script>
+	<script src="/js/restaurant.js"></script>
   	<script src="/js/common.js"></script>
 @endsection

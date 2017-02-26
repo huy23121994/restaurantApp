@@ -23,9 +23,15 @@ class WorkspaceAdminRequest extends FormRequest
      */
     public function rules()
     {
+        $workspace = \App\WorkspaceAdmin::where('username',$this->route('admin'))->first();
+
+        $except_id = '';
+        if ($workspace) {
+            $except_id = $workspace->id;
+        }
         return [
-            'username' => 'required',
-            'password' => 'required',
+            'username' => 'required|min:5|unique:workspace_admins,username'.$except_id,
+            'password' => 'required|min:5',
         ];
     }
 }
