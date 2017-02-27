@@ -9,31 +9,40 @@ use App\WorkspaceAdmin;
 
 class LoginController extends Controller
 {
-    public function showLoginForm(Request $request)
+    public function showLoginForm()
     {
-    	return view('restaurant_app.auth.login',['workspace' => $request->workspace]);
+        $workspace = session()->get('workspace');
+        if ( !Workspace::checkLogin() ) {
+        	return view('restaurant_app.auth.login',['workspace' => $workspace]);
+        }else{
+            return redirect()->route('ws_dashboard', [$workspace->url]);
+        }
     }
 
     public function login(Request $request)
     {
-        $user = WorkspaceAdmin::where('username', $request->username)->first();
-        if ($user) {
-            if ($user->password == $request->password) {
-                session([$request->workspace->url.'-'.'admin' => $user]);
-                return redirect($request->workspace->url.'/employees');
+        $workspace = session()->get('workspace');
+        if (!Workspace::checkLogin()) {
+            $user = WorkspaceAdmin::where('username', $request->username)->first();
+            if ( $user && $user->workspace_id == $workspace->id ) {
+                if ($user->password == $request->password) {
+                    session([$workspace->url.'-admin' => $user]);
+                    return redirect($workspace->url.'/employees');
+                }else{
+                    return back()->with('errors','Mật khẩu không đúng');
+                }
             }else{
-                return 'Mật khẩu không đúng';
+                return back()->with('errors','Không tồn tại tài khoản này');
             }
         }else{
-            return 'Không tồn tại tài khoản này';
+            return redirect()->route('ws_dashboard', [$workspace->url]);
         }
     }
 
     public function logout(Request $request, $workspace)
     {
-        // session()->forget($request->workspace->url.'-'.'admin');
-        // session()->flush();
-        dd(session()->all());
-    	return redirect( $request->workspace->url . '/login');
+        $workspace = session()->get('workspace');
+        session()->forget($workspace->url.'-admin');
+    	return redirect( $workspace->url . '/login');
     }
 }

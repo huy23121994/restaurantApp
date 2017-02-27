@@ -55,6 +55,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'authenticated' => \App\Http\Middleware\AuthenticatedMiddleware::class,
         'check_workspace' => \App\Http\Middleware\CheckWorkspace::class,
-        'check_workspace_login' => \App\Http\Middleware\CheckWorkspaceLogin::class,
+        'workspace_logged' => \App\Http\Middleware\CheckWorkspaceLogin::class,
     ];
 }

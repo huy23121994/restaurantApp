@@ -4,15 +4,15 @@
 	<form action="/{{ $workspace->url }}/login" method="POST">
 		{{ csrf_field() }}
 	  	<h1>{{ $workspace->name }}</h1>
-		@if(false) 
+		@if(session()->has('errors')) 
 		    <div class="text-left">
 		        <ul>
-		        	<li><%= flash[:danger] %></li>
+		        	<li>{{ session()->get('errors') }}</li>
 		        </ul>
 		    </div>
 		@endif
 	  	<div>
-		  	<input type="text" class="form-control" name="username" required="required" autofocus>
+		  	<input type="text" class="form-control" name="username" required="required" value="{{old('username')}}" autofocus>
 	  	</div>
 	  	<div>
 	  		<input type="password" class="form-control" name="password" required="required">

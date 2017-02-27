@@ -15,6 +15,9 @@ class CheckWorkspaceLogin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (\App\Workspace::checkLogin()) {
+            return $next($request);
+        }
+        return redirect(session()->get('workspace')->url.'/login')->with('errors','Please Login!');
     }
 }

@@ -2,17 +2,6 @@
 
 Auth::routes();
 
-Route::group(['namespace' => 'RestaurantApp','middleware' => 'check_workspace'], function () {
-	Route::group(['namespace' => 'Auth'], function () {
-	    Route::get('{workspace}/login','LoginController@showLoginForm')->name('workspace.login');
-	    Route::post('{workspace}/login','LoginController@login');
-	    Route::get('{workspace}/logout','LoginController@logout')->name('workspace.logout');
-	});
-	Route::group(['middleware' => 'check_workspace_login'],function(){
-		Route::resource('{workspace}/employees', 'EmployeeController');
-	});
-});
-
 Route::group(['middleware' => 'authenticated'],function(){
 	Route::get('/', 'UserController@index');
 	Route::get('profile', 'UserController@edit')->name('profile.edit');
@@ -28,4 +17,17 @@ Route::group(['middleware' => 'authenticated'],function(){
 		],
 	]);
 	Route::resource('workspaces', 'WorkspaceController', ['except' => ['edit']]);
+});
+
+Route::group(['namespace' => 'RestaurantApp','middleware' => 'check_workspace','prefix' => '{workspace}'], function () {
+	Route::group(['namespace' => 'Auth'], function () {
+	    Route::get('login','LoginController@showLoginForm')->name('workspace.login');
+	    Route::post('login','LoginController@login');
+	    Route::post('logout','LoginController@logout')->name('workspace.logout');
+	});
+	Route::group(['middleware' => 'workspace_logged'],function(){
+		Route::get('/', 'DashboardController@index');
+		Route::get('dashboard', 'DashboardController@index')->name('ws_dashboard');
+		Route::resource('employees', 'EmployeeController');
+	});
 });

@@ -41,7 +41,7 @@
 				    <div class="input-group">
 					  <span class="input-group-addon">{{ url('/') }}/</span>
 					  <input type="text" class="form-control" id="url" placeholder="url" name="url" value="{{ $workspace->url }}">
-					  <div class="text-primary access-link"><a href="{{ url('/'.$workspace->url) }}">Access <i class="fa fa-external-link"></i></a></div>
+					  <div class="text-primary access-link"><a href="{{ url('/'.$workspace->url) }}" data-no-turbolink>Access <i class="fa fa-external-link"></i></a></div>
 					</div>
 				</div>
 				<div class="form-group">

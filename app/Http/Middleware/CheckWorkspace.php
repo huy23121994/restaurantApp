@@ -16,7 +16,7 @@ class CheckWorkspace
     public function handle($request, Closure $next)
     {
         $workspace = \App\Workspace::where('url', $request->route()->workspace )->firstOrFail();
-        $request->workspace = $workspace;
+        session(['workspace' => $workspace]);
         return $next($request);
     }
 }

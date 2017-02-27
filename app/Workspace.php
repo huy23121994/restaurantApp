@@ -21,4 +21,11 @@ class Workspace extends Model
     	return $this->hasMany('App\WorkspaceAdmin');
     }
 
+    public static function checkLogin()
+    {
+        $workspace = session()->get('workspace');
+        if ( session()->has($workspace->url.'-admin') ) {
+            return true;
+        }
+    }
 }
