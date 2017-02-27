@@ -7,6 +7,19 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Install
+Require before installing: Composer, Server Requirements for Laravel 5.3
+- Step 1: Clone or download this repository
+- Step 2: $ composer install
+- Step 3: $ php artisan migrate
+- Step 4: $ php artisan db:seed --class=UserTableSeeder
+- Step 5: $ php artisan storage:link
+- Step 6: And run with $ php artisan serve
+
+You can login with account: 
+- Email: huytb.contact@gmail.com
+- Password: 123456
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
