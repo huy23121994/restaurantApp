@@ -20,6 +20,8 @@ class CreateWorkspaceAdminTable extends Migration
             $table->integer('role')->default(1);
             $table->integer('workspace_id');
             $table->timestamps();
+
+            $table->unique(['username', 'workspace_id']);
         });
     }
 

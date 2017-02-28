@@ -23,8 +23,8 @@ class LoginController extends Controller
     {
         $workspace = session()->get('workspace');
         if (!Workspace::checkLogin()) {
-            $user = WorkspaceAdmin::where('username', $request->username)->first();
-            if ( $user && $user->workspace_id == $workspace->id ) {
+            $user = WorkspaceAdmin::where('username', $request->username)->where('workspace_id', $workspace->id)->first();
+            if ($user) {
                 if ($user->password == $request->password) {
                     session([$workspace->url.'-admin' => $user]);
                     return redirect($workspace->url.'/employees');

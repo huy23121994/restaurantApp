@@ -83,7 +83,7 @@ function alert_dismiss(selector,time){
 	},time)
 }
 
-$('#add_admin').on('submit',function(e){
+$(document).on('submit','#add_admin',function(e){
 	var $this = $(this);
 	e.preventDefault();
 	$.post(
@@ -106,5 +106,6 @@ $('#add_admin').on('submit',function(e){
         	$('.add_admin_errors').show();
         })
 	    $this.find('button[type="submit"]').button('reset');
+	    $this.find('input[name="password"]').val('');
     });
 })
