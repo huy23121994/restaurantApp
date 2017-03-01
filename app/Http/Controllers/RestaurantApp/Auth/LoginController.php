@@ -4,14 +4,14 @@ namespace App\Http\Controllers\RestaurantApp\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Workspace;
-use App\WorkspaceAdmin;
+use App\Models\Workspace;
+use App\Models\WorkspaceAdmin;
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
-        $workspace = session()->get('workspace');
+        $workspace = $request->workspace;
         if ( !Workspace::checkLogin() ) {
         	return view('restaurant_app.auth.login',['workspace' => $workspace]);
         }else{
@@ -21,7 +21,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $workspace = session()->get('workspace');
+        $workspace = $request->workspace;
         if (!Workspace::checkLogin()) {
             $user = WorkspaceAdmin::where('username', $request->username)->where('workspace_id', $workspace->id)->first();
             if ($user) {
@@ -41,7 +41,7 @@ class LoginController extends Controller
 
     public function logout(Request $request, $workspace)
     {
-        $workspace = session()->get('workspace');
+        $workspace = $request->workspace;
         session()->forget($workspace->url.'-admin');
     	return redirect( $workspace->url . '/login');
     }

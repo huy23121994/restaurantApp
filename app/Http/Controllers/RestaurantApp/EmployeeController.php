@@ -4,7 +4,7 @@ namespace App\Http\Controllers\RestaurantApp;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Employee;
+use App\Models\Employee;
 use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
@@ -14,7 +14,7 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $employees = Employee::get_all();
         return view('restaurant_app.employees.index', compact('employees'));

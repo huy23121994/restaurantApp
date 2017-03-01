@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\Workspace;
 
 class CheckWorkspaceLogin
 {
@@ -15,7 +16,7 @@ class CheckWorkspaceLogin
      */
     public function handle($request, Closure $next)
     {
-        if (\App\Workspace::checkLogin()) {
+        if (Workspace::checkLogin()) {
             return $next($request);
         }
         return redirect(session()->get('workspace')->url.'/login')->with('errors','Please Login!');

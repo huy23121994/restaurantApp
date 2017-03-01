@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\WorkspaceAdminRequest;
-use App\Workspace;
+use App\Models\Workspace;
+use App\Models\WorkspaceAdmin;
 
 class WorkspaceAdminController extends Controller
 {
     public function store(WorkspaceAdminRequest $request, Workspace $workspace)
     {
-        $w_admin = new \App\WorkspaceAdmin;
+        $w_admin = new WorkspaceAdmin;
         $w_admin->username = $request->username;
         $w_admin->password = $request->password;
         $w_admin->workspace_id = $workspace->id;

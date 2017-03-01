@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\WorkspaceAdmin;
 
 class WorkspaceAdminRequest extends FormRequest
 {
@@ -23,11 +24,11 @@ class WorkspaceAdminRequest extends FormRequest
      */
     public function rules()
     {
-        $workspace_admin = \App\WorkspaceAdmin::where('username',$this->route('admin'))->first();
+        $workspace_admin = WorkspaceAdmin::where('username',$this->route('admin'))->first();
         $workspace_id = $this->route('workspace')->id;
         $except_id = '';
         if ($workspace_admin) {
-            $except_id = $workspace->id;
+            $except_id = $workspace_admin->id;
         }
         return [
             'username' => 'required|min:5|unique:workspace_admins,username,NULL,'.$except_id.',workspace_id,'.$workspace_id,

@@ -1,9 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\WorkspaceAdmin;
 
 class Workspace extends Model
 {
@@ -13,12 +12,12 @@ class Workspace extends Model
 
     public function user()
     {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo(User::class);
     }
 
     public function admins()
     {
-    	return $this->hasMany('App\WorkspaceAdmin');
+    	return $this->hasMany(WorkspaceAdmin::class);
     }
 
     public static function checkLogin()

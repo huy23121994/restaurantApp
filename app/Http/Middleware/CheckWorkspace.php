@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\Workspace;
 
 class CheckWorkspace
 {
@@ -15,8 +16,9 @@ class CheckWorkspace
      */
     public function handle($request, Closure $next)
     {
-        $workspace = \App\Workspace::where('url', $request->route()->workspace )->firstOrFail();
+        $workspace = Workspace::where('url', $request->route()->workspace )->firstOrFail();
         session(['workspace' => $workspace]);
+        $request->workspace = $workspace;
         return $next($request);
     }
 }

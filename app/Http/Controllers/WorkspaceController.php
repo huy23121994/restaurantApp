@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\WorkspaceRequest;
-use App\Workspace;
+use App\Models\Workspace;
 use Auth;
 
 class WorkspaceController extends Controller

@@ -32,7 +32,7 @@ class WorkspaceRequest extends FormRequest
      */
     public function rules()
     {
-        $workspace = \App\Workspace::where('url',$this->route('workspace'))->first();
+        $workspace = \App\Models\Workspace::where('url',$this->route('workspace'))->first();
 
         $except_id = '';
         if ($workspace) {
