@@ -27,7 +27,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('app.employees.create');
+        return view('restaurant_app.employees.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($id);
         if ($employee) {
-            return view('app.employees.show', compact('employee'));
+            return view('restaurant_app.employees.show', compact('employee'));
         }else{
             abort('404_user');
         }
@@ -77,7 +77,7 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee = Employee::find($id);
-        return view('app.employees.edit', compact('employee'));
+        return view('restaurant_app.employees.edit', compact('employee'));
     }
 
     /**

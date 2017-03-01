@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-      <a href="<%= root_url %>" class="site_title text-center" data-no-turbolink><i class="fa fa-paw"></i> <span>Munia</span></a>
+      <a href="<%= root_url %>" class="site_title text-center" data-no-turbolink><i class="fa fa-paw"></i> <span>Yum Yum</span></a>
     </div>
 
     <div class="clearfix"></div>
@@ -25,8 +25,8 @@
           <li data="dashboard"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Tổng quan </a></li>
           <li data="employees"><a><i class="fa fa-user"></i> Nhân viên <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{ url('/employees') }}">Danh sách nhân viên</a></li>
-              <li><a href="{{ url('/employees/create') }}">Thêm nhân viên</a></li>
+              <li><a href="{{ route('employees.index', [session()->get('workspace')->url]) }}">Danh sách nhân viên</a></li>
+              <li><a href="{{ route('employees.create', [session()->get('workspace')->url]) }}">Thêm nhân viên</a></li>
               <li><a href="/admin/tags">Lịch làm việc</a></li>
             </ul>
           </li>

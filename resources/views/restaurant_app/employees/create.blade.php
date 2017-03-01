@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('restaurant_app.layouts.app')
 
 @section('content')
 <div class="row">
@@ -13,7 +13,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-        	@include('app.employees.form_new')
+        	@include('restaurant_app.employees.form_new')
 		  	</div>
       </div>
     </div>
