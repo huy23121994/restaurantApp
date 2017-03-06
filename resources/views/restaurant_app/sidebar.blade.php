@@ -23,11 +23,10 @@
       <div class="menu_section">
         <ul class="nav side-menu">
           <li data="dashboard"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Tổng quan </a></li>
-          <li data="employees"><a><i class="fa fa-user"></i> Nhân viên <span class="fa fa-chevron-down"></span></a>
+          <li data="restaurants"><a><i class="fa fa-user"></i> Chuỗi nhà hàng <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{ route('employees.index', [session()->get('workspace')->url]) }}">Danh sách nhân viên</a></li>
-              <li><a href="{{ route('employees.create', [session()->get('workspace')->url]) }}">Thêm nhân viên</a></li>
-              <li><a href="/admin/tags">Lịch làm việc</a></li>
+              <li><a href="{{ route('restaurants.index', [session('workspace')->url]) }}">Danh sách nhà hàng</a></li>
+              <li><a href="{{ route('restaurants.create', [session('workspace')->url]) }}">Thêm mới</a></li>
             </ul>
           </li>
           <li data="users"><a><i class="fa fa-user"></i> Đặt chỗ <span class="fa fa-chevron-down"></span></a>

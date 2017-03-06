@@ -28,6 +28,7 @@ Route::group(['namespace' => 'RestaurantApp','middleware' => 'check_workspace','
 	Route::group(['middleware' => 'workspace_logged'],function(){
 		Route::get('/', 'DashboardController@index');
 		Route::get('dashboard', 'DashboardController@index')->name('ws_dashboard');
+		Route::resource('restaurants', 'RestaurantController');
 		Route::resource('employees', 'EmployeeController');
 	});
 });

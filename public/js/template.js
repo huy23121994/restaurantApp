@@ -85,8 +85,8 @@ $(document).ready(function() {
             setContentHeight();
         });
     }
-    if (CURRENT_URL.search('users') != -1) {
-        $SIDEBAR_MENU.find('li[data="users"]').addClass('active').find('ul').slideDown(150,function() {
+    if (CURRENT_URL.search('restaurants') != -1) {
+        $SIDEBAR_MENU.find('li[data="restaurants"]').addClass('active').find('ul').slideDown(150,function() {
             setContentHeight();
         });
     }

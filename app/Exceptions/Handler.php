@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
         }
         if( $exception instanceof NotFoundHttpException || $exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException ){
             if (Auth::check()) {
-                return response()->view('errors.404_user', [], 404);
+                return response()->view('errors.404', [], 404);
             }
         }
         return parent::render($request, $exception);

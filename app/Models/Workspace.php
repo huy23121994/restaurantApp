@@ -20,6 +20,11 @@ class Workspace extends Model
     	return $this->hasMany(WorkspaceAdmin::class);
     }
 
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
+
     public static function checkLogin()
     {
         $workspace = session()->get('workspace');

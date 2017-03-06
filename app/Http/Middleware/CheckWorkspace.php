@@ -18,7 +18,6 @@ class CheckWorkspace
     {
         $workspace = Workspace::where('url', $request->route()->workspace )->firstOrFail();
         session(['workspace' => $workspace]);
-        $request->workspace = $workspace;
         return $next($request);
     }
 }

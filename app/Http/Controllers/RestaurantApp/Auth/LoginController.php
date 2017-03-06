@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function showLoginForm(Request $request)
     {
-        $workspace = $request->workspace;
+        $workspace = session('workspace');
         if ( !Workspace::checkLogin() ) {
         	return view('restaurant_app.auth.login',['workspace' => $workspace]);
         }else{
@@ -21,7 +21,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $workspace = $request->workspace;
+        $workspace = session('workspace');
         if (!Workspace::checkLogin()) {
             $user = WorkspaceAdmin::where('username', $request->username)->where('workspace_id', $workspace->id)->first();
             if ($user) {
@@ -41,7 +41,7 @@ class LoginController extends Controller
 
     public function logout(Request $request, $workspace)
     {
-        $workspace = $request->workspace;
+        $workspace = session('workspace');
         session()->forget($workspace->url.'-admin');
     	return redirect( $workspace->url . '/login');
     }
