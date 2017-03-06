@@ -31,12 +31,12 @@ class WorkspaceController extends Controller
         $workspace->url =  $request->url;
         $workspace->user_id =  $request->user_id;
         if ($request->hasFile('avatar')) {
-            $result = save_image( $request->avatar, 'workspace_covers/', $request->url);
+            $result = save_image( $request->avatar, $this->workspace_avatar_storage, $request->url);
             if ($result) {
                 $workspace->avatar = $result;
             }
         }else{
-            $workspace->avatar =  '/img/cover_default.jpg';
+            $workspace->avatar =  $this->workspace_avatar_default_url;
         }
         $workspace->save();
 
@@ -62,7 +62,7 @@ class WorkspaceController extends Controller
         $workspace->description =  $request->description;
         $workspace->url =  $request->url;
         if ($request->hasFile('avatar')) {
-            $result = save_image( $request->avatar, 'workspace_covers/', $request->url);
+            $result = save_image( $request->avatar, $this->workspace_avatar_storage, $request->url);
             if ($result) {
                 $workspace->avatar = $result;
             }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Auth;
 use App\Http\Requests\UserRequest;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -33,13 +32,13 @@ class UserController extends Controller
         //Crop avatar
         if ($request->avatar != '') {
             $result = crop_image(
-                $request->avatar ,
-                'avatars/',
+                $request->avatar , //file
+                $this->user_avatar_storage, //directory
                 $user->username,
-                $request->crop_width,
-                $request->crop_height,
-                $request->crop_x,
-                $request->crop_y
+                $request->crop_width,   //width
+                $request->crop_height,  //height
+                $request->crop_x,   // x position
+                $request->crop_y    // y position
             );
             if ($result) {
                 $user->avatar = $result;

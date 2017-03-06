@@ -25,7 +25,7 @@ function crop_image($image, $directiory, $name, $crop_width, $crop_height, $crop
 
 function save_image($image, $directiory, $name) {
     $filename  = $name . '.' . $image->getClientOriginalExtension();
-    $save_result = $image->storeAs('public/workspace_covers', $filename);
+    $save_result = $image->storeAs('public/'.$directiory, $filename);
     if ($save_result) {
         return Storage::url($directiory . $filename);;
     }

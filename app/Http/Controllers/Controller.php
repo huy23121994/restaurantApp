@@ -12,4 +12,10 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $restaurant_app_view_location = 'restaurant_app';
+
+    protected 
+    	$user_avatar_default_url = '/img/user.png',
+    	$user_avatar_storage = 'user_avatars/',
+    	$workspace_avatar_default_url = '/img/workspace_avatar_default.jpg',
+    	$workspace_avatar_storage = 'workspace_avatars/';
 }
