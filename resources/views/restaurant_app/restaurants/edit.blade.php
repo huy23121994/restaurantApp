@@ -28,9 +28,9 @@
 				  	</div>
 				  	<div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}">
 				    	<label for="avatar">Ảnh đại diện<br>
-				    		<img src="{{ $restaurant->avatar }}" width="200">
+				    		<img src="{{ $restaurant->avatar }}" class="avatar_preview" width="200">
 				    	</label>
-				    	<input type="file" name="avatar" id="avatar">
+				    	<input type="file" name="avatar" id="avatar" data-img=".avatar_preview" class="need_preview" accept="image/*">
 				    	@if($errors->has('avatar'))
 				    		<span class="help-block">{{ $errors->first('avatar') }}</span>
 				    	@endif

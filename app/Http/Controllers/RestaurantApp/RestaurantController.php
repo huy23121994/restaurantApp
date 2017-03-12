@@ -40,13 +40,20 @@ class RestaurantController extends Controller
     public function store(RestaurantRequest $request)
     {
         $workspace = session('workspace');
-        $restaurant = Restaurant::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'location' => $request->location,
-            'workspace_id' => $workspace->id,
-        ]);
-        if ($restaurant) {
+        $restaurant = new Restaurant;
+        $restaurant->name = $request->name;
+        $restaurant->description = $request->description;
+        $restaurant->location = $request->location;
+        $restaurant->workspace_id = $workspace->id;
+        if ($request->hasFile('avatar')) {
+            $result = save_image( $request->avatar, $this->restaurant_avatar_storage, $request->url);
+            if ($result) {
+                $restaurant->avatar = $result;
+            }
+        }else{
+            $restaurant->avatar =  $this->restaurant_avatar_default_url;
+        }
+        if ($restaurant->save()) {
             return redirect()->route('restaurants.show',[
                 'workspace' => $workspace->url,
                 'restaurant' => $restaurant->id,
@@ -72,9 +79,10 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($workspace, $restaurant_id)
     {
-        //
+        $restaurant = Restaurant::findOrFail($restaurant_id);
+        return view($this->restaurant_app_view_location.'.restaurants.edit', compact('restaurant'));
     }
 
     /**
@@ -84,9 +92,24 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RestaurantRequest $request, $workspace, $id)
     {
-        //
+        $restaurant = Restaurant::findOrFail($id);
+        $restaurant->name = $request->name;
+        $restaurant->description = $request->description;
+        $restaurant->location = $request->location;
+        if ($request->hasFile('avatar')) {
+            $result = save_image( $request->avatar, $this->restaurant_avatar_storage, $restaurant->id);
+            if ($result) {
+                $restaurant->avatar = $result;
+            }
+        }
+        if ($restaurant->save()) {
+            return redirect()->route('restaurants.show',[
+                'workspace' => session('workspace')->url,
+                'restaurant' => $restaurant->id,
+            ]);
+        }
     }
 
     /**

@@ -18,7 +18,7 @@ class CreateRestaurantTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('location')->nullable();
-            $table->string('avatar')->default('/img/restaurant_default.jpg');
+            $table->string('avatar')->nullable();
             $table->integer('workspace_id');
             $table->timestamps();
         });

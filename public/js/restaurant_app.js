@@ -51,10 +51,5 @@ $(document).ready(function() {
   });
   $(".select2_multiple").select2();
 
-  // SlimScroll
-  $('.slim').slimscroll({
-    alwaysVisible: true,
-    height: '300px'
-  })
 
 })

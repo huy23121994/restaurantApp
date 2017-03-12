@@ -68,7 +68,7 @@ class RegisterController extends Controller
             'fullname' => $data['fullname'],
             'email' => $data['email'],
             'password' => $data['password'],
-            'avatar' => $this->user_avatar_default_url;
+            'avatar' => $this->user_avatar_default_url,
         ]);
     }
 }

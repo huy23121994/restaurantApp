@@ -23,16 +23,18 @@ class LoginController extends Controller
     {
         $workspace = session('workspace');
         if (!Workspace::checkLogin()) {
-            $user = WorkspaceAdmin::where('username', $request->username)->where('workspace_id', $workspace->id)->first();
+            $user = WorkspaceAdmin::where('username', $request->username)->where('workspace_id', $workspace->id)->firstOrFail();
             if ($user) {
                 if ($user->password == $request->password) {
                     session([$workspace->url.'-admin' => $user]);
                     return redirect($workspace->url.'/employees');
                 }else{
-                    return back()->with('errors','Mật khẩu không đúng');
+                    return back()->with('errors','Mật khẩu không đúng')->withInput(
+                        $request->except('password')
+                    );
                 }
             }else{
-                return back()->with('errors','Không tồn tại tài khoản này');
+                return back()->with('errors','Không tồn tại tài khoản "'.$request->username.'"');
             }
         }else{
             return redirect()->route('ws_dashboard', [$workspace->url]);

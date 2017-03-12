@@ -3,8 +3,8 @@
 @section('body_class','login')
 
 @section('add_css')
-	<link rel="stylesheet" type="text/css" href="/css/app.css">
-	<link rel="stylesheet" type="text/css" href="/css/custom.css">
+	<link rel="stylesheet" type="text/css" href="/css/theme_dashboard.css">
+	<link rel="stylesheet" type="text/css" href="/css/restaurant_app.css">
 @endsection
 
 @section('main')
@@ -27,6 +27,6 @@
 @endsection
 
 @section('bottom_js')
-	<script src="/js/template.js"></script>
-  	<script src="/js/common.js"></script>
+	<script src="/js/theme_dashboard.js"></script>
+  	<script src="/js/restaurant_app.js"></script>
 @endsection

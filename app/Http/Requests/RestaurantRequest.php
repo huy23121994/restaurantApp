@@ -24,7 +24,17 @@ class RestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
+            'location' => 'required',
+            'avatar' => 'image'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Không được bỏ trống trường này',
+            'image' => 'Dữ liệu phải là ảnh'
         ];
     }
 }

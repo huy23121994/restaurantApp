@@ -7,7 +7,7 @@
 		@if(session()->has('errors')) 
 		    <div class="text-left">
 		        <ul>
-		        	<li>{{ session()->get('errors') }}</li>
+		        	<li class="text-danger">* {{ session()->get('errors') }}</li>
 		        </ul>
 		    </div>
 		@endif

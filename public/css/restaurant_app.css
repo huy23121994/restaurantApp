@@ -1,21 +1,3 @@
-li{
-	list-style: none;
-}
-.m_t_10{
-	margin-top: 10px;
-}
-.m_l_10{
-	margin-left: 10px;
-}
-.m_b_10{
-	margin-bottom: 10px;
-}
-.m_t_5{
-	margin-top: 5px;
-}
-.panel_toolbox{
-	min-width: inherit;
-}
 #datatable tr.selected{
 	background-color: #10c7a4;
     color: #fff;

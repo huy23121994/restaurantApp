@@ -8,8 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="/css/lib/pnotify.css">
 	<link rel="stylesheet" type="text/css" href="/css/lib/pnotify.buttons.css">
     <link href="/css/lib/green.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/css/app.css">
-	<link rel="stylesheet" type="text/css" href="/css/custom.css">
+	<link rel="stylesheet" type="text/css" href="/css/theme_dashboard.css">
+	<link rel="stylesheet" type="text/css" href="/css/restaurant_app.css">
 @endsection
 
 @section('top_js')
@@ -46,6 +46,6 @@
 @endsection
 
 @section('bottom_js')
-	<script src="/js/template.js"></script>
-	<script src="/js/restaurant.js"></script>
+	<script src="/js/theme_dashboard.js"></script>
+	<script src="/js/restaurant_app.js"></script>
 @endsection
