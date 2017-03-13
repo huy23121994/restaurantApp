@@ -1,9 +1,15 @@
 @extends('layouts.auth')
 
 @section('content')
-	<div class="top <?php if(url()->current()==route('workspaces.create')) echo 'flex' ?>">
+	<div class="top {{ url()->current() == route('workspaces.create') ? 'flex' : '' }}">
 		<div class="title">
-			<h3>@yield('workspace_title')</h3>
+			<h3>@yield('workspace_title')
+				@if( url()->current() != route('workspaces.create') )
+					<small class="text-primary">
+						<a href="{{ url('/'.$workspace->url) }}" target="blank">Access <i class="fa fa-external-link"></i></a>
+					</small>
+				@endif
+			</h3>
 		</div>
 		@if( url()->current() != route('workspaces.create'))
 			<div class="ws_menu">
