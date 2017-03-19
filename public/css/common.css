@@ -8,8 +8,14 @@ img{
 	max-width: 100%;
 	max-height: 100%;
 }
+.m_10{
+	margin: 10px;
+}
 .m_t_0{
 	margin-top: 0px;
+}
+.m_b_0{
+	margin-bottom: 0px;
 }
 .m_t_10{
 	margin-top: 10px;

@@ -1,5 +1,8 @@
 <form method="POST" action="{{ url('/employees') }}" data-parsley-validate>
 	{{ csrf_field() }}
+	@if( isset($restaurant) )
+		<input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
+	@endif
 	<div class="row">
 		<div class="col-sm-4 col-xs-12">
 		  <div class="form-group">

@@ -63,3 +63,20 @@ ul.bar_tabs > li.active{
 #general_info .list_info>.row:last-child{
   border-bottom: none;
 }
+.nav-tabs .dropdown-menu{
+    display: none;
+    margin: 0px -1px;
+}
+ul.bar_tabs .dropdown-menu li a{
+	border: none;
+    background-color: #fff;
+}
+ul.bar_tabs .dropdown-menu li a:hover{
+    background-color: #f5f7fa;
+}
+ul.bar_tabs > li:hover .dropdown-menu{
+	display: block;
+}
+ul.bar_tabs > li.active .dropdown-menu{
+	border-left: 2px solid #ddd;
+}

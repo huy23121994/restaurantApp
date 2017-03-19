@@ -32,6 +32,6 @@ class CreateWorkspaceAdminTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workspace_admin');
+        Schema::dropIfExists('workspace_admins');
     }
 }

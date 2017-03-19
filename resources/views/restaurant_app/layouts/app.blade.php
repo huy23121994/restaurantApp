@@ -36,7 +36,11 @@
 			@include('restaurant_app.top')
 
 			<div class="right_col" role="main">
-				@yield('content')
+				<div class="row">
+					<div class="col-xs-12">
+						@yield('content')
+					</div>
+				</div>
 			</div>
 
 			@include('restaurant_app.footer')

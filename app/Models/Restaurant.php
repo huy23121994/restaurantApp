@@ -9,4 +9,9 @@ class Restaurant extends Model
      protected $fillable = [
         'name', 'description', 'location', 'workspace_id'
     ];
+
+    public function employees()
+    {
+    	return $this->hasMany(Employee::class);
+    }
 }

@@ -82,7 +82,10 @@ class RestaurantController extends Controller
     public function edit($workspace, $restaurant_id)
     {
         $restaurant = Restaurant::findOrFail($restaurant_id);
-        return view($this->restaurant_app_view_location.'.restaurants.edit', compact('restaurant'));
+        return view($this->restaurant_app_view_location.'.restaurants.edit', [
+                'restaurant' => $restaurant,
+                'info_active' => 'Restaurant information tab active',
+            ]);
     }
 
     /**
@@ -118,8 +121,12 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($workspace, $id)
     {
-        //
+        $restaurant = Restaurant::findOrFail($id);
+        if ($restaurant->delete()) {
+            return redirect()->route('restaurants.index',[session('workspace')->url]);
+        }
     }
+
 }

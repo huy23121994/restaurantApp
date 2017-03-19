@@ -5,37 +5,22 @@ namespace App\Http\Controllers\RestaurantApp;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
+use App\Models\Restaurant;
 use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $employees = Employee::get_all();
         return view('restaurant_app.employees.index', compact('employees'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('restaurant_app.employees.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(EmployeeRequest $request)
     {
         $employee = Employee::create([
@@ -52,12 +37,6 @@ class EmployeeController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $employee = Employee::find($id);
@@ -68,38 +47,59 @@ class EmployeeController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $employee = Employee::find($id);
         return view('restaurant_app.employees.edit', compact('employee'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
     }
+
+    /**
+     * Display a listing of the employee in each restaurant.
+     *
+     * @param  string  $workspace, int $restaurant_id
+     * @return \Illuminate\Http\Response
+     */
+    public function index_in_restaurant($workspace, $restaurant_id)
+    {
+        $restaurant = Restaurant::findOrFail($restaurant_id);
+        $employees = $restaurant->employees;
+        return view($this->restaurant_app_view_location.'.restaurants.employees.index',[
+                'restaurant' => $restaurant,
+                'employees' => $employees,
+                'employee_active' => 'Restaurant Employee tab active',
+            ]);
+    }
+
+    public function edit_in_restaurant($workspace, $restaurant_id, $id)
+    {
+        $restaurant = Restaurant::findOrFail($restaurant_id);
+        $employees = $restaurant->employees;
+        return view($this->restaurant_app_view_location.'.restaurants.employees.edit',[
+                'restaurant' => $restaurant,
+                'employees' => $employees,
+                'employee_active' => 'Restaurant Employee tab active',
+            ]);
+    }
+
+    public function create_in_restaurant($workspace, $restaurant_id)
+    {
+        $restaurant = Restaurant::findOrFail($restaurant_id);
+        $employees = $restaurant->employees;
+        return view($this->restaurant_app_view_location.'.restaurants.employees.create',[
+                'restaurant' => $restaurant,
+                'employees' => $employees,
+                'employee_active' => 'Restaurant Employee tab active',
+            ]);
+    }
+
 }
