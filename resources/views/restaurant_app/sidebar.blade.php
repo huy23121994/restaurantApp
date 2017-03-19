@@ -12,13 +12,14 @@
           <li data="dashboard"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Tổng quan </a></li>
           <li data="restaurants"><a><i class="fa fa-sitemap"></i> Chuỗi nhà hàng <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{ route('restaurants.index', [session('workspace')->url]) }}">Danh sách nhà hàng</a></li>
-              <li><a href="{{ route('restaurants.create', [session('workspace')->url]) }}">Thêm mới</a></li>
+              <li><a href="{{ route('restaurants.index', [getWorkspaceUrl()]) }}">Danh sách nhà hàng</a></li>
+              <li><a href="{{ route('restaurants.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
             </ul>
           </li>
-          <li data="users"><a><i class="fa fa-user"></i> Đặt chỗ <span class="fa fa-chevron-down"></span></a>
+          <li data="employees"><a><i class="fa fa-users"></i> Nhân viên<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="/admin/users">Danh sách bàn</a></li>
+              <li><a href="{{ route('employees.index', [getWorkspaceUrl()]) }}">Danh sách nhân viên</a></li>
+              <li><a href="{{ route('employees.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
             </ul>
           </li>
         </ul>

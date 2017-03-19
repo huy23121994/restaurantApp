@@ -31,3 +31,17 @@ function save_image($image, $directiory, $name) {
     }
     return false;
 }
+
+function getWorkspace(){
+    if (session()->has('workspace')) {
+        return session('workspace');
+    }
+    return null;
+}
+function getWorkspaceUrl()
+{
+    if (session()->has('workspace')) {
+        return session('workspace')->url;
+    }
+    return null;
+}

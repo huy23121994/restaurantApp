@@ -25,7 +25,6 @@ class EmployeeRequest extends FormRequest
     {
         return [
             'fullname' => 'required',
-            'email' => 'required'
         ];
     }
 }

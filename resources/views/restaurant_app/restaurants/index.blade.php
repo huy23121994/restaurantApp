@@ -3,7 +3,7 @@
 @section('content')
 	<div>
 		<h3 class="pull-left">Danh sách nhà hàng</h3>
-		<a href="{{ route('restaurants.create',[session('workspace')->url]) }}" class="pull-left btn btn-success btn-xs m_10">+ Thêm mới</a>
+		<a href="{{ route('restaurants.create',[getWorkspaceUrl()]) }}" class="pull-left btn btn-success btn-xs m_10">+ Thêm mới</a>
 		<div class="clearfix"></div>
 	</div>
 	@foreach($restaurants as $restaurant)
@@ -22,8 +22,8 @@
 						<p>Quan ly: Tran Thi Hong Nhung</p>
 					</div>
 					<div class="col-xs-12">
-						<a href="{{ route('restaurants.show',[session('workspace')->url,$restaurant->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Chi tiết</a></a>
-						<a href="{{ route('restaurants.edit',[session('workspace')->url,$restaurant->id]) }}" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Chỉnh sửa</a>
+						<a href="{{ route('restaurants.show',[getWorkspaceUrl(),$restaurant->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Chi tiết</a></a>
+						<a href="{{ route('restaurants.edit',[getWorkspaceUrl(),$restaurant->id]) }}" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Chỉnh sửa</a>
 					</div>
 					<div class="clearfix"></div>
 				</div>

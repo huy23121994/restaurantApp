@@ -80,17 +80,6 @@ $(document).ready(function() {
         setContentHeight();
     }).parent().addClass('active');
 
-    if (CURRENT_URL.search('employees') != -1) {
-        $SIDEBAR_MENU.find('li[data="employees"]').addClass('active').find('ul').slideDown(150,function() {
-            setContentHeight();
-        });
-    }
-    if (CURRENT_URL.search('restaurants') != -1) {
-        $SIDEBAR_MENU.find('li[data="restaurants"]').addClass('active').find('ul').slideDown(150,function() {
-            setContentHeight();
-        });
-    }
-
     // recompute content when resizing
     $(window).smartresize(function(){  
         setContentHeight();

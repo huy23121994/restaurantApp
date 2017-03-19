@@ -1,7 +1,7 @@
 @extends('restaurant_app.restaurants.layout')
 
 @section('restaurant_content')
-	<form action="{{ route('restaurants.update',['workspace' => session('workspace')->url, 'restaurant' => $restaurant->id]) }}" method="POST" enctype="multipart/form-data">
+	<form action="{{ route('restaurants.update',['workspace' => getWorkspaceUrl(), 'restaurant' => $restaurant->id]) }}" method="POST" enctype="multipart/form-data">
 	  	{{ csrf_field() }}
 	  	{{ method_field('PUT') }}
 	  	<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">

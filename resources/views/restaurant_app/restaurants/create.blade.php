@@ -7,7 +7,7 @@
             <div class="clearfix"></div>
         </div>
 	  	<div class="x_content">
-			<form action="{{ route('restaurants.store',['workspace'=>session('workspace')->url]) }}" enctype="multipart/form-data" method="POST">
+			<form action="{{ route('restaurants.store',[getWorkspaceUrl()]) }}" enctype="multipart/form-data" method="POST">
 			  	{{ csrf_field() }}
 			  	<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
 			    	<label>Tên nhà hàng</label>

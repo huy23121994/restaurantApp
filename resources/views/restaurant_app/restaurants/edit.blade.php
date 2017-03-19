@@ -3,7 +3,7 @@
 @section('restaurant_content')
 	<div class="row">
 		<div class="col-sm-6">
-			<form action="{{ route('restaurants.update',['workspace' => session('workspace')->url, 'restaurant' => $restaurant->id]) }}" method="POST" enctype="multipart/form-data">
+			<form action="{{ route('restaurants.update',['workspace' => getWorkspaceUrl(), 'restaurant' => $restaurant->id]) }}" method="POST" enctype="multipart/form-data">
 			  	{{ csrf_field() }}
 			  	{{ method_field('PUT') }}
 			  	<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
@@ -46,7 +46,7 @@
 			        	<h4 class="modal-title">Delete confirmation</h4>
 			      	</div>
 			      	<div class="modal-body">
-			      		<form class="hide" id="delete-ws" action="{{ route('restaurants.destroy',[session('workspace')->url, $restaurant->id]) }}" method="POST">
+			      		<form class="hide" id="delete-ws" action="{{ route('restaurants.destroy',[getWorkspaceUrl(), $restaurant->id]) }}" method="POST">
 			      			{{ csrf_field() }}
 							{{ method_field('DELETE') }}
 			      		</form>

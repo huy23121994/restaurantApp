@@ -1,12 +1,8 @@
-<form method="POST" action="{{ url('/employees') }}" data-parsley-validate>
+<form method="POST" action="{{ route('employees.store',[getWorkspaceUrl()]) }}" data-parsley-validate>
 	{{ csrf_field() }}
-	@if( isset($restaurant) )
-		<input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
-	@endif
 	<div class="row">
 		<div class="col-sm-4 col-xs-12">
 		  <div class="form-group">
-		    <label>Ảnh đại diện</label>
 		    <div class="text-center m_t_10">
 		    	<label for="avatar"><img src="/img/user.png" class="img-thumbnail employee_avatar" width="180" height="180"></label>
 		    </div>
