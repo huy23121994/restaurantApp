@@ -19,17 +19,23 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('123456'),
         ]);
         DB::table('workspaces')->insert([
-            'name' => 'huy23121994',
+            'name' => 'Nhà hàng YoYo',
             'description' => 'Nhà hàng YoYo',
             'url' => 'nha-hang-yoyo',
             'user_id' => 1,
             'avatar' => '/img/workspace_avatar_default.jpg',
+        ]);
+        DB::table('workspace_admins')->insert([
+            'username' => 'admin',
+            'password' => encrypt('admin'),
+            'workspace_id' => 1,
         ]);
         DB::table('restaurants')->insert([
             'name' => 'YoYo Giải Phóng',
             'description' => 'Nhà hàng YoYo',
             'location' => '69 Giải Phóng',
             'avatar' => '/img/restaurant_avatar_default.jpg',
+            'workspace_id' => '1',
         ]);
     }
 }
