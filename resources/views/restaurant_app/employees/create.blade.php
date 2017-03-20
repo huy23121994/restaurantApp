@@ -9,7 +9,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-        	@include('restaurant_app.employees.form_new')
+        	@include('restaurant_app.employees.form_new', ['action'=> route('employees.store',[getWorkspaceUrl()]) ])
 		  	</div>
       </div>
     </div>

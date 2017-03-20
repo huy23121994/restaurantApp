@@ -9,11 +9,11 @@
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <img src="/img/user.png" alt="">
-            John Connor
+            {{ getWorkspaceAdmin()->username }}
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
-            <li><a href="#"> Profile</a></li>
+            {{-- <li><a href="#"> Profile</a></li> --}}
             <li><a href="#" onclick="
                     event.preventDefault();
                     document.getElementById('logout-form').submit();">

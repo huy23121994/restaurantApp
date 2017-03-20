@@ -22,7 +22,9 @@ class Employee extends Model
 
     public function setBirthdayAttribute($date)
     {
-        $this->attributes['birthday'] = Carbon::createFromFormat('d/m/Y', $date);
+        if ($date != '') {
+            $this->attributes['birthday'] = Carbon::createFromFormat('d/m/Y', $date);
+        }
     }
     public function getBirthdayAttribute($date)
     {

@@ -32,9 +32,9 @@
         		<tbody>
         			@foreach($employees as $employee)
 		        		<tr>
-		        			<td>{{ url('/employees/'.$employee->id) }}</td>
+		        			<td>{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}</td>
 		        			<td class="has_img"><img src="/img/user.png" height="40"></td>
-		        			<td><a href="{{ url('/employees/'.$employee->id) }}">
+		        			<td><a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}">
 		        				<u class="text-success">{{ $employee->fullname }}</u>
 		        			</a></td>
 		        			<td>{{ $employee->get_age() }}</td>

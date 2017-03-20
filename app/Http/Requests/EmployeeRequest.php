@@ -24,7 +24,8 @@ class EmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'fullname' => 'required',
+            'fullname' => 'required|min:5',
+            'email' => 'email',
         ];
     }
 }

@@ -3,9 +3,6 @@
 **/
 
 $(document).ready(function() {
-  // active sidebar menu
-  CURRENT_URL_MASTER = CURRENT_URL.split("/")[4];
-  $SIDEBAR_MENU.find('li[data="'+ CURRENT_URL_MASTER +'"]').addClass('active').find('ul').slideDown();
   
   // Datatable
   var table = $('#datatable').DataTable({

@@ -52,9 +52,9 @@ ul.bar_tabs > li.active{
   /*max-height: calc(100vh - 195px);*/
 }
 
-#general_info i{
-	color: #1abb9c;
-  margin-right: 10px;
+#general_info .list_info > .row i{
+	width: 10px;
+  	margin-right: 10px;
 }
 #general_info .list_info>.row{
   margin-bottom: 20px;

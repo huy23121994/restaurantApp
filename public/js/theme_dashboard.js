@@ -79,6 +79,12 @@ $(document).ready(function() {
     }).parent('li').addClass('current-page').parents('ul').slideDown(150,function() {
         setContentHeight();
     }).parent().addClass('active');
+    
+    // active sidebar menu
+    CURRENT_URL_MASTER = CURRENT_URL.split("/")[4];
+    $SIDEBAR_MENU.find('li[data="'+ CURRENT_URL_MASTER +'"]').addClass('active').find('ul').slideDown(150, function(){
+    setContentHeight();
+    });
 
     // recompute content when resizing
     $(window).smartresize(function(){  

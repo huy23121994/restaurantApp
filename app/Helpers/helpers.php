@@ -1,5 +1,12 @@
 <?php
 
+/*
+*   $image : input request file image
+*   $directiory : string - directory of storage by root 'storage/app/public/'
+*   $crop_width, $crop_height, $crop_x, $crop_y : int
+*   => return file of directory or false
+*/
+
 function crop_image($image, $directiory, $name, $crop_width, $crop_height, $crop_x, $crop_y){
 	$local_storage = 'app/public/' . $directiory;
     if ( !File::exists(storage_path($local_storage) ) ) {
@@ -23,6 +30,11 @@ function crop_image($image, $directiory, $name, $crop_width, $crop_height, $crop
     return false;
 }
 
+/*
+*   $image : input request file image
+*   $directiory : string - directory of storage by root 'storage/app/public/'
+*   => return file of directory or false
+*/
 function save_image($image, $directiory, $name) {
     $filename  = $name . '.' . $image->getClientOriginalExtension();
     $save_result = $image->storeAs('public/'.$directiory, $filename);
@@ -32,6 +44,9 @@ function save_image($image, $directiory, $name) {
     return false;
 }
 
+/*
+*   => return current workspace instance
+*/
 function getWorkspace(){
     if (session()->has('workspace')) {
         return session('workspace');
@@ -44,4 +59,9 @@ function getWorkspaceUrl()
         return session('workspace')->url;
     }
     return null;
+}
+
+function getWorkspaceAdmin(){
+    $key = getWorkspaceUrl().'-admin';
+    return session($key);
 }

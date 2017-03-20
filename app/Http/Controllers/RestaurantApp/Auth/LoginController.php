@@ -29,9 +29,8 @@ class LoginController extends Controller
                     session([$workspace->url.'-admin' => $user]);
                     return redirect($workspace->url.'/employees');
                 }else{
-                    return back()->with('errors','Mật khẩu không đúng')->withInput(
-                        $request->except('password')
-                    );
+                    return back()->with('errors','Mật khẩu không đúng')
+                        ->withInput( $request->except('password'));
                 }
             }else{
                 return back()->with('errors','Không tồn tại tài khoản "'.$request->username.'"');

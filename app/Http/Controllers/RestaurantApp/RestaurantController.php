@@ -84,7 +84,7 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::findOrFail($restaurant_id);
         return view($this->restaurant_app_view_location.'.restaurants.edit', [
                 'restaurant' => $restaurant,
-                'info_active' => 'Restaurant information tab active',
+                'menu_active' => 'info',
             ]);
     }
 

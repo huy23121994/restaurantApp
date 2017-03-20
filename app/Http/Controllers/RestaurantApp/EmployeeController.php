@@ -18,49 +18,55 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('restaurant_app.employees.create');
+        $restaurants = Restaurant::all();
+        return view('restaurant_app.employees.create', ['restaurants' => $restaurants]);
     }
 
     public function store(EmployeeRequest $request)
     {
-        $employee = Employee::create([
-            'avatar' => $request->avatar,
-            'fullname' => $request->fullname,
-            'phone' => $request->phone,
-            'birthday' => $request->birthday,
-            'address' => $request->address,
-            'gender' => $request->gender,
-        ]);
+        $employee = Employee::create($request->all());
         if($employee){
-            return redirect('/employees');
-        }
-
-    }
-
-    public function show($id)
-    {
-        $employee = Employee::find($id);
-        if ($employee) {
-            return view('restaurant_app.employees.show', compact('employee'));
+            return redirect()->route('employees.show',[ getWorkspaceUrl(), $employee->id ])->withInput();
         }else{
-            abort('404_user');
+            return back();
+        }
+
+    }
+
+    public function show($workspace, $id)
+    {
+        $employee = Employee::findOrFail($id);
+        return view('restaurant_app.employees.show', [
+            'employee' => $employee,
+            'menu_active' => 'basic_info',
+        ]);
+    }
+
+    public function edit($workspace,$id)
+    {
+        $employee = Employee::findOrFail($id);
+        return view('restaurant_app.employees.edit',  [
+            'employee' => $employee,
+            'menu_active' => 'basic_info',
+        ]);
+    }
+
+    public function update(EmployeeRequest $request,$workspace, $id)
+    {
+        $employee = Employee::findOrFail($id);
+        if( $employee->update($request->all()) ){
+            return redirect()->route('employees.show',[ getWorkspaceUrl(), $employee->id ]);
+        }else{
+            return back();
         }
     }
 
-    public function edit($id)
+    public function destroy($workspace, $id)
     {
-        $employee = Employee::find($id);
-        return view('restaurant_app.employees.edit', compact('employee'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+        $employee = Employee::findOrFail($id);
+        if ($employee->delete()) {
+            return redirect()->route('employees.index',[getWorkspaceUrl()]);
+        }
     }
 
     /**
@@ -76,7 +82,7 @@ class EmployeeController extends Controller
         return view($this->restaurant_app_view_location.'.restaurants.employees.index',[
                 'restaurant' => $restaurant,
                 'employees' => $employees,
-                'employee_active' => 'Restaurant Employee tab active',
+                'menu_active' => 'employees',
             ]);
     }
 
@@ -87,7 +93,7 @@ class EmployeeController extends Controller
         return view($this->restaurant_app_view_location.'.restaurants.employees.edit',[
                 'restaurant' => $restaurant,
                 'employees' => $employees,
-                'employee_active' => 'Restaurant Employee tab active',
+                'menu_active' => 'employees',
             ]);
     }
 
@@ -98,7 +104,7 @@ class EmployeeController extends Controller
         return view($this->restaurant_app_view_location.'.restaurants.employees.create',[
                 'restaurant' => $restaurant,
                 'employees' => $employees,
-                'employee_active' => 'Restaurant Employee tab active',
+                'menu_active' => 'employees',
             ]);
     }
 
