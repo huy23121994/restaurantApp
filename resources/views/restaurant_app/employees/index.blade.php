@@ -9,17 +9,13 @@
           <div class="x_button_helper">
           	<a href="{{ route('employees.create',[session('workspace')->url]) }}" class="btn btn-primary btn-xs m_l_10"><i class="fa fa-plus"></i> Thêm mới</a>
           </div>
-          <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-          </ul>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-        	<table id="datatable" class="table table-striped table-bordered">
+        	<table class="table table-striped">
         		<thead>
 	        		<tr>
-	        			<th>url</th>
+	        			<th class="hide">url</th>
 	        			<th width="40">Avatar</th>
 	        			<th>Họ tên</th>
 	        			<th width="40">Tuổi</th>
@@ -32,8 +28,12 @@
         		<tbody>
         			@foreach($employees as $employee)
 		        		<tr>
-		        			<td>{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}</td>
-		        			<td class="has_img"><img src="/img/user.png" height="40"></td>
+		        			<td class="hide">{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}</td>
+		        			<td class="has_img">
+                    <a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}">
+                      <img src="{{ $employee->avatar }}" height="40">
+                    </a>
+                  </td>
 		        			<td><a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}">
 		        				<u class="text-success">{{ $employee->fullname }}</u>
 		        			</a></td>
@@ -45,7 +45,7 @@
 		        		</tr>
 	        		@endforeach
         		</tbody>
-			</table>
+			    </table>
         </div>
       </div>
     </div>

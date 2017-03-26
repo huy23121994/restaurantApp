@@ -8,11 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $fillable = [
-        'fullname', 'email', 'phone', 'birthday', 'avatar','gender'
+        'fullname', 'email', 'phone', 'birthday', 'avatar','gender', 'address'
     ];
 
-    public static function get_all() {
-        return self::all();
+    public static function get_all_from_workspace() {
+        return getWorkspace()->employees;
+    }
+
+    public function works()
+    {
+        return $this->hasMany(Work::class);
     }
 
     public function get_age() {

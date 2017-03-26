@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Employee;
 
 class Restaurant extends Model
 {
@@ -12,6 +13,7 @@ class Restaurant extends Model
 
     public function employees()
     {
-    	return $this->hasMany(Employee::class);
+    	// $employees = Employee::distinct()->get();
+    	return $this->belongsToMany(Employee::class, 'works');
     }
 }

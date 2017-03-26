@@ -52,6 +52,9 @@ img{
 	display: -webkit-flex;
     display: flex;
 }
+.flex .center{
+	margin: auto;
+}
 .lighten{
 	opacity: 0.7;
 }

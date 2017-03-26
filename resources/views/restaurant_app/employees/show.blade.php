@@ -1,12 +1,12 @@
 @extends('restaurant_app.employees.layout')
 
 @section('employee_content')
-  	<div class="tab-content p_t_20">
-  		<div role="tabpanel" class="tab-pane fade active in" id="general_info">
+  	<div class="p_t_20">
+  		<div role="tabpanel" class="tab-pane" id="general_info">
 	      	<div class="row">
 				<div class="col-sm-4 col-xs-12">
 				    <div class="text-center m_t_10">
-				    	<label for="avatar"><img src="/img/user.png" class="img-thumbnail employee_avatar" width="180" height="180"></label>
+				    	<label for="avatar"><img src="{{ $employee->avatar }}" class="img-thumbnail employee_avatar" width="180" height="180"></label>
 				    </div>
 				</div>
 				<div class="col-sm-8 col-xs-12 list_info">
@@ -47,9 +47,6 @@
 				</div>
 				@include('restaurant_app.partials.modal_delete_confirm',['action'=>route('employees.destroy',[getWorkspaceUrl(), $employee->id])])
 			</div>
-  		</div>
-  		<div role="tabpanel" class="tab-pane fade" id="work_info">
-	        @include('restaurant_app.employees.form_work')
   		</div>
   	</div>
 @endsection

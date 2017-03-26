@@ -12,12 +12,12 @@
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
 	vertical-align: middle;
 }
-table td.has_img{
+/*table td.has_img{
 	display: flex;
 }
 table td.has_img img{
 	margin: auto;
-}
+}*/
 .x_button_helper{
 	float: left;
 	margin-left: 10px;
@@ -66,6 +66,7 @@ ul.bar_tabs > li.active{
 .nav-tabs .dropdown-menu{
     display: none;
     margin: 0px -1px;
+    width: calc(100% + 1px);
 }
 ul.bar_tabs .dropdown-menu li a{
 	border: none;

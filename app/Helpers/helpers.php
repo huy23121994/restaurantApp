@@ -25,7 +25,7 @@ function crop_image($image, $directiory, $name, $crop_width, $crop_height, $crop
     $save_result = $img->save( storage_path($local_storage . $filename) );
 
     if ($save_result) {
-    	return Storage::url($directiory . $filename);;
+    	return Storage::url($directiory . $filename);
     }
     return false;
 }

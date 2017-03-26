@@ -34,7 +34,7 @@ class UserController extends Controller
             $result = crop_image(
                 $request->avatar , //file
                 $this->user_avatar_storage, //directory
-                $user->username,
+                $user->username,    // set file name
                 $request->crop_width,   //width
                 $request->crop_height,  //height
                 $request->crop_x,   // x position

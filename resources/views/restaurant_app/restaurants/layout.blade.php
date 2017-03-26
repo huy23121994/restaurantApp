@@ -11,15 +11,11 @@
                 <li class="{{ isset($overview_active)? 'active' : '' }}">
                 	<a href="#tab_content1"><i class="fa fa-tachometer"></i> Tổng quan</a>
                 </li>
-                <li class="{{ ($menu_active == 'employees')? 'active' : '' }} dropdown">
+                <li class="{{ ($menu_active == 'employees')? 'active' : '' }}">
                 	<a href="{{ route('res.employees.index',[getWorkspaceUrl(),$restaurant->id]) }}">
                         <i class="fa fa-users"></i> Nhân viên
                         <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dLabel">
-                        <li><a href="{{ route('res.employees.index',[getWorkspaceUrl(),$restaurant->id]) }}">Danh sách nhân viên</a></li>
-                        <li><a href="{{ route('res.employees.create',[getWorkspaceUrl(),$restaurant->id]) }}">Thêm mới</a></li>
-                    </ul>
                 </li>
                 <li class="{{ isset($food_active)? 'active' : '' }}">
                 	<a href="#tab_content2"><i class="fa fa-cutlery"></i> Món ăn</a>

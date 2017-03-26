@@ -1,4 +1,4 @@
-<form method="POST" action="{{ $action }}">
+<form method="POST" action="{{ $action }}" enctype="multipart/form-data">
 	{{ csrf_field() }}
 	@if(isset($employee))
 		{{ method_field('PUT') }}
@@ -7,9 +7,14 @@
 		<div class="col-sm-4 col-xs-12">
 		  <div class="form-group">
 		    <div class="text-center m_t_10">
-		    	<label for="avatar"><img src="/img/user.png" class="img-thumbnail employee_avatar" width="180" height="180"></label>
+		    	<label for="avatar">
+		    		<div class="img-preview" style="width: 180px; height: 180px; overflow: hidden;">
+				    	<img src="{{ isset($employee) ? $employee->avatar : '/img/user.png' }}" class="img-thumbnail" width="180" height="180">
+			    	</div>
+		    	</label>
 		    </div>
-		    <input type="file" id="avatar" name="avatar" data-img=".employee_avatar" class="m_t_10 need_preview">
+		    <input type="file" id="avatar" name="avatar" data-img=".avatar_preview" class="m_t_10 need_preview">
+		    {!! $errors->has('avatar') ? '<p class="m_t_5 text-danger">* '. $errors->first('avatar') .'</p>' : '' !!}
 		  </div>
 		</div>
 		<div class="col-sm-8 col-xs-12">
@@ -75,4 +80,6 @@
 		  </div>
 		</div>
 	</div>
+
+	@include('restaurant_app.partials.modal_crop_image')
 </form>

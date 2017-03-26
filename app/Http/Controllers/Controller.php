@@ -19,5 +19,7 @@ class Controller extends BaseController
     	$workspace_avatar_default_url = '/img/workspace_avatar_default.jpg',
     	$workspace_avatar_storage = 'workspace_avatars/',
     	$restaurant_avatar_default_url = '/img/restaurant_avatar_default.jpg',
-    	$restaurant_avatar_storage = 'restaurant_avatars/';
+    	$restaurant_avatar_storage = 'restaurant_avatars/',
+    	$employee_avatar_default_url = '/img/employee_avatar_default.jpg',
+    	$employee_avatar_storage = 'employee_avatars/';
 }

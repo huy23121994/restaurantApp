@@ -12,7 +12,7 @@ class EmployeeController extends Controller
 {
     public function index(Request $request)
     {
-        $employees = Employee::get_all();
+        $employees = Employee::get_all_from_workspace();
         return view('restaurant_app.employees.index', compact('employees'));
     }
 
@@ -24,9 +24,35 @@ class EmployeeController extends Controller
 
     public function store(EmployeeRequest $request)
     {
-        $employee = Employee::create($request->all());
-        if($employee){
-            return redirect()->route('employees.show',[ getWorkspaceUrl(), $employee->id ])->withInput();
+        $employee = new Employee;
+        $employee->workspace_id = getWorkspace()->id;
+        $employee->fullname = $request->fullname;
+        $employee->email = $request->email;
+        $employee->phone = $request->phone;
+        $employee->birthday = $request->birthday;
+        $employee->avatar = $request->avatar;
+        $employee->gender = $request->gender;
+        $employee->address = $request->address;
+
+        //Crop avatar
+        if ($request->avatar != '') {
+            $result = crop_image(
+                $request->avatar , //file
+                $this->employee_avatar_storage, //directory
+                $employee->id,
+                $request->crop_width,   //width
+                $request->crop_height,  //height
+                $request->crop_x,   // x position
+                $request->crop_y    // y position
+            );
+            if ($result) {
+                $employee->avatar = $result;
+            }
+        }else {
+            $employee->avatar = $this->user_avatar_default_url;
+        }
+        if($employee->save()){
+            return redirect()->route('employees.show',[ getWorkspaceUrl(), $employee->id ]);
         }else{
             return back();
         }
@@ -54,7 +80,29 @@ class EmployeeController extends Controller
     public function update(EmployeeRequest $request,$workspace, $id)
     {
         $employee = Employee::findOrFail($id);
-        if( $employee->update($request->all()) ){
+        $employee->fullname = $request->fullname;
+        $employee->email = $request->email;
+        $employee->phone = $request->phone;
+        $employee->birthday = $request->birthday;
+        $employee->gender = $request->gender;
+        $employee->address = $request->address;
+
+        //Crop avatar
+        if ($request->avatar != '') {
+            $result = crop_image(
+                $request->avatar , //file
+                $this->employee_avatar_storage, //directory
+                $employee->id,
+                $request->crop_width,   //width
+                $request->crop_height,  //height
+                $request->crop_x,   // x position
+                $request->crop_y    // y position
+            );
+            if ($result) {
+                $employee->avatar = $result;
+            }
+        }
+        if( $employee->save() ){
             return redirect()->route('employees.show',[ getWorkspaceUrl(), $employee->id ]);
         }else{
             return back();
@@ -78,7 +126,7 @@ class EmployeeController extends Controller
     public function index_in_restaurant($workspace, $restaurant_id)
     {
         $restaurant = Restaurant::findOrFail($restaurant_id);
-        $employees = $restaurant->employees;
+        $employees = $restaurant->employees->unique();
         return view($this->restaurant_app_view_location.'.restaurants.employees.index',[
                 'restaurant' => $restaurant,
                 'employees' => $employees,

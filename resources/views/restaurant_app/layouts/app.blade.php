@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/lib/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/lib/pnotify.css">
 	<link rel="stylesheet" type="text/css" href="/css/lib/pnotify.buttons.css">
+	<link rel="stylesheet" href="/css/lib/cropper.css">
     <link href="/css/lib/green.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/css/theme_dashboard.css">
 	<link rel="stylesheet" type="text/css" href="/css/restaurant_app.css">
@@ -21,6 +22,7 @@
 	<script src="/js/lib/pnotify.js"></script>
 	<script src="/js/lib/pnotify.buttons.js"></script>
     <script src="/js/lib/icheck.min.js"></script>
+    <script src="/js/lib/cropper.min.js"></script>
 	<!-- bootstrap-daterangepicker -->
   	<script src="/js/lib/moment.min.js"></script>
   	<script src="/js/lib/daterangepicker.js"></script>
