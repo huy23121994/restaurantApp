@@ -17,6 +17,7 @@ class CreateEmployeesTable extends Migration
             $table->increments('id');
             $table->integer('workspace_id');
             $table->string('fullname');
+            $table->string('people_id')->nullable();
             $table->dateTime('birthday')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();

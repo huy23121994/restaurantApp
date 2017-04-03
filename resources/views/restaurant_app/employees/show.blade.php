@@ -23,6 +23,10 @@
 					    <div class="col-sm-9">{{ $employee->phone }}</div>
 					</div>
 					<div class="row">
+					    <label class="col-sm-3"><i class="fa fa-id-card-o text-success"></i> Số CMND</label>
+					    <div class="col-sm-9">{{ $employee->people_id }}</div>
+					</div>
+					<div class="row">
 					    <label class="col-sm-3"><i class="fa fa-birthday-cake text-success"></i> Ngày sinh</label>
 					    <div class="col-sm-9">{{ $employee->birthday }}</div>
 					</div>

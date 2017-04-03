@@ -25,6 +25,8 @@ class WorkRequest extends FormRequest
     {
         return [
             'restaurant_id' => 'required',
+            'start_date' => 'date_format:d/m/Y',
+            'end_date' => 'date_format:d/m/Y|after:start_date',
         ];
     }
 }

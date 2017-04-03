@@ -14,7 +14,7 @@
     <link href="/css/bootstrap.v3.3.7.css" rel="stylesheet">
     <link href="/css/lib/nprogress.css" rel="stylesheet">
     <link href="/css/common.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
     @yield('add_css')
 
     <script src="/js/app.js" data-turbolinks-track="reload"></script>

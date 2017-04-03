@@ -32,6 +32,11 @@
 		    <label for="phone">Số điện thoại</label>
 		    <input type="text" class="form-control" id="phone" name="phone" placeholder="0123456789" value="{{ isset($employee) ? $employee->phone : old('phone') }}">
 		  </div>
+		  <div class="form-group">
+		    <label for="people_id">Số CMND</label>
+		    <input type="text" class="form-control" id="people_id" name="people_id" value="{{ isset($employee) ? $employee->people_id : old('people_id') }}">
+		    {!! $errors->has('people_id') ? '<p class="m_t_5 text-danger">* '. $errors->first('people_id') .'</p>' : '' !!}
+		  </div>
 	    <div class="form-group">
 		    <label for="birthday">Ngày sinh</label>
 	        <div class="controls">

@@ -32,12 +32,15 @@ $(document).ready(function() {
   } );
 
   // Datepicker
-  $('.daterangepicker').daterangepicker({
-    format: 'DD/MM/YYYY',
+  $('.daterangepicker').each(function(){
+    $(this).daterangepicker({
+      format: 'DD/MM/YYYY',
 
-    singleDatePicker: true,
-    calender_style: "picker_1"
-  }).inputmask('dd/mm/yyyy');
+      singleDatePicker: true,
+      calender_style: "picker_1"
+    }).inputmask('dd/mm/yyyy');
+  })
+  
 
   // Select2
   $(".select2_single").select2({

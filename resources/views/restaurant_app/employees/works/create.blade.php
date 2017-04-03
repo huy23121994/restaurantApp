@@ -40,6 +40,7 @@
 				            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
 				            <span id="inputSuccess2Status" class="sr-only">(success)</span>
 				          </div>
+				          {!! $errors->has('end_date') ? '<p class="m_t_5 text-danger">* '. $errors->first('end_date') .'</p>' : '' !!}
 				        </div>
 			      	</div>
 		      	</div>
