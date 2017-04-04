@@ -48,9 +48,6 @@ ul.bar_tabs > li.active{
 	     width: auto; 
 	}
 }
-.modal-body{
-  /*max-height: calc(100vh - 195px);*/
-}
 
 #general_info .list_info > .row i{
 	width: 10px;
@@ -80,4 +77,13 @@ ul.bar_tabs > li:hover .dropdown-menu{
 }
 ul.bar_tabs > li.active .dropdown-menu{
 	border-left: 2px solid #ddd;
+}
+.list-action{
+	margin-left: 23px;
+}
+.list-action li{
+	display: inline-block;
+}
+blockquote .small, blockquote footer, blockquote small{
+	line-height: 2.6;
 }

@@ -57,7 +57,7 @@
 		    	<label>
 			      <input type="radio" name="gender" class="flat" value="1" 
 			      	@if(isset($employee))
-			      		@if( $employee->gender == 1)
+			      		@if( $employee->gender == 'Nam')
 			      			checked
 			      		@endif
 			      	@elseif(old('gender') == 1)
@@ -70,7 +70,7 @@
 		    	<label>
 			      <input type="radio" name="gender" class="flat" value="0"
 			      	@if(isset($employee))
-			      		@if( $employee->gender == 0)
+			      		@if( $employee->gender == 'Nữ')
 			      			checked
 			      		@endif
 			      	@elseif(old('gender') == 0 && old('gender') != NULL)

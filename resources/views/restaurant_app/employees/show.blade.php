@@ -40,7 +40,7 @@
 					</div>
 					<div class="row">
 					    <label class="col-sm-3"><i class="fa fa-venus-mars text-success"></i> Giới tính</label>
-					    <div class="col-sm-9">{{ $employee->gender ? 'Nam' : 'Nữ' }}</div>
+					    <div class="col-sm-9">{{ $employee->gender }}</div>
 					</div>
 					<div class="row">
 					    <div class="col-sm-9 col-sm-offset-3">

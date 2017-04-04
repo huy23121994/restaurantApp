@@ -23,18 +23,24 @@ class Work extends Model
     {
         if ($date != '') {
             $this->attributes['end_date'] = Carbon::createFromFormat('d/m/Y', $date);
+        }else{
+            $this->attributes['end_date'] = NULL;
         }
     }
 
     public function getStartDateAttribute($date)
     {
-        $start_date = Carbon::parse($date);
-        return $start_date->day . ' / ' . $start_date->month . ' / ' . $start_date->year;
+        if ($date != NULL) {
+            $start_date = Carbon::parse($date);
+            return $start_date->day . ' / ' . $start_date->month . ' / ' . $start_date->year;
+        }
     }
 
     public function getEndDateAttribute($date)
     {
-        $end_date = Carbon::parse($date);
-        return $end_date->day . ' / ' . $end_date->month . ' / ' . $end_date->year;
+        if ($date != NULL) {
+            $end_date = Carbon::parse($date);
+            return $end_date->day . ' / ' . $end_date->month . ' / ' . $end_date->year;
+        }
     }
 }

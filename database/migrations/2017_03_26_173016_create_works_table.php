@@ -20,6 +20,7 @@ class CreateWorksTable extends Migration
             $table->integer('employee_id');
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

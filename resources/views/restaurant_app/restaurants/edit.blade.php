@@ -34,7 +34,7 @@
 			    	@endif
 			  	</div>
 			  	<button type="submit" class="btn btn-success">Cập nhật</button>
-			  	<button type="button" class="btn btn-danger pull-right" data-toggle="modal" aria-pressed="true" data-target=".modal.confirm"><i class="fa fa-trash"></i> Delete restaurant</button>
+			  	<button type="button" class="btn btn-danger pull-right" data-toggle="modal" aria-pressed="true" data-target=".modal#delete_confirm"><i class="fa fa-trash"></i> Delete restaurant</button>
 			</form>
 
 			@include('restaurant_app.partials.modal_delete_confirm',['action'=>route('restaurants.destroy',[getWorkspaceUrl(), $restaurant->id])])

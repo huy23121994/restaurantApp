@@ -40,4 +40,11 @@ class Employee extends Model
     {
         return ucfirst($value);
     }
+    public function getGenderAttribute($value)
+    {
+        if ($value == 1) {
+            return 'Nam';
+        }
+        return 'Nữ';
+    }
 }

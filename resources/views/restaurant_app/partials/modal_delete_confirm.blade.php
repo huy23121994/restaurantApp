@@ -1,6 +1,6 @@
 
 <!-- DELETE MODAL -->
-<div class="modal fade confirm" tabindex="-1" role="dialog">
+<div class="modal fade {{ isset($delete_id)? $delete_id : '' }}" tabindex="-1" role="dialog" id="delete_confirm">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
        <div class="modal-header">
