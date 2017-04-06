@@ -32,7 +32,7 @@ class Work extends Model
     {
         if ($date != NULL) {
             $start_date = Carbon::parse($date);
-            return $start_date->day . ' / ' . $start_date->month . ' / ' . $start_date->year;
+            return $start_date->day . '/' . $start_date->month . '/' . $start_date->year;
         }
     }
 
@@ -40,7 +40,7 @@ class Work extends Model
     {
         if ($date != NULL) {
             $end_date = Carbon::parse($date);
-            return $end_date->day . ' / ' . $end_date->month . ' / ' . $end_date->year;
+            return $end_date->day . '/' . $end_date->month . '/' . $end_date->year;
         }
     }
 }

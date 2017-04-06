@@ -26,17 +26,19 @@
 					<th>Địa điểm</th>
 					<th>Ngày bắt đầu</th>
 					<th>Ngày thôi việc</th>
+					<th>Trạng thái</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach($works as $key => $work)
-					<tr>
+					<tr class="{{ $work->status ? 'active' : '' }}">
 						<td></td>
 						<td><a href="{{ route('restaurants.edit',[getWorkspaceUrl(),$work->restaurant->id]) }}" class="text-primary">{{ $work->restaurant->name }}</a></td>
 						<td>{{ $work->restaurant->location }}</td>
 						<td>{{ $work->start_date }}</td>
 						<td>{{ $work->end_date }}</td>
+						<td>{!! $work->status ? '<button class="btn btn-primary btn-xs">Đang làm việc</button>' : '<button class="btn btn-default btn-xs">Kết thúc</button>' !!}</td>
 						<td>
 							<a href="{{ route('works.show',[getWorkspaceUrl(),$employee->id, $work->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
 							<a href="{{ route('works.edit',[getWorkspaceUrl(),$employee->id, $work->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>

@@ -127,31 +127,17 @@ class EmployeeController extends Controller
      */
     public function index_in_restaurant($workspace, $restaurant_id)
     {
-        $restaurant = Restaurant::findOrFail($restaurant_id);
+        $restaurant = Restaurant::with('employees.works')->findOrFail($restaurant_id);
         $employees = $restaurant->employees->unique();
+        foreach ($employees as $key => $employee) {
+            $works = $employee->works->where('status',0);
+            foreach ($works as $key => $work) {
+                $works = $works->forget($key);
+            }
+            dd($works);
+        }
+        dd($employees);
         return view($this->restaurant_app_view_location.'.restaurants.employees.index',[
-                'restaurant' => $restaurant,
-                'employees' => $employees,
-                'menu_active' => 'employees',
-            ]);
-    }
-
-    public function edit_in_restaurant($workspace, $restaurant_id, $id)
-    {
-        $restaurant = Restaurant::findOrFail($restaurant_id);
-        $employees = $restaurant->employees;
-        return view($this->restaurant_app_view_location.'.restaurants.employees.edit',[
-                'restaurant' => $restaurant,
-                'employees' => $employees,
-                'menu_active' => 'employees',
-            ]);
-    }
-
-    public function create_in_restaurant($workspace, $restaurant_id)
-    {
-        $restaurant = Restaurant::findOrFail($restaurant_id);
-        $employees = $restaurant->employees;
-        return view($this->restaurant_app_view_location.'.restaurants.employees.create',[
                 'restaurant' => $restaurant,
                 'employees' => $employees,
                 'menu_active' => 'employees',

@@ -20,8 +20,13 @@ class Employee extends Model
         return $this->hasMany(Work::class);
     }
 
+    public function work_active()
+    {
+        return $this->hasOne(Work::class)->where('status',1);
+    }
+
     public function get_age() {
-        $birthday =  Carbon::createFromFormat('d / m / Y', $this->birthday);
+        $birthday =  Carbon::createFromFormat('d/m/Y', $this->birthday);
         return $birthday->age;
     }
 
@@ -34,7 +39,7 @@ class Employee extends Model
     public function getBirthdayAttribute($date)
     {
         $birthday = Carbon::parse($date);
-        return $birthday->day . ' / ' . $birthday->month . ' / ' . $birthday->year;
+        return $birthday->day . '/' . $birthday->month . '/' . $birthday->year;
     }
     public function getFullnameAttribute($value)
     {

@@ -59,6 +59,7 @@
 			      > Đang làm việc
 			    </label>
 		    </div>
+	        {!! $errors->has('status') ? '<p class="text-danger">* '. $errors->first('status') .'</p>' : '' !!}
 		</div>
 		@if(isset($work))
 			<button type="submit" class="btn btn-success m_t_10" data-loading-text="<i class='fa fa-refresh fa-spin fa-fw'></i> Đang xử lý ..." >Cập nhật</button>

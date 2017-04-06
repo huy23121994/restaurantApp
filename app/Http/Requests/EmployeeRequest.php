@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use App\Models\Employee;
 use App\Models\Workspace;
 
@@ -25,19 +26,16 @@ class EmployeeRequest extends FormRequest
      */
     public function rules()
     {
-        $workspace = Workspace::where('url',$this->route('workspace'))->first();
-        $workspace_id = $workspace->id;
-        $except_id = '';
-        if($this->route('employee')){
-            $employee = Employee::where('id',$this->route('employee'))->first();
-            $except_id = $employee->id;
-        }
+        $except_id = $this->route('employee');
         return [
             'fullname' => 'required|min:5',
             'email' => 'email',
             'avatar' => 'image',
-            'people_id' => 'unique:employees,people_id,'.$except_id,
-            'people_id' => 'unique:employees,people_id,NULL,'.$except_id.',workspace_id,'.$workspace_id,
+            'people_id' => Rule::unique('employees')->ignore($except_id)->where(function ($query) {
+                $workspace = Workspace::where('url',$this->route('workspace'))->first();
+                $workspace_id = $workspace->id;
+                $query->where('workspace_id', $workspace_id);
+            }),
         ];
     }
 }

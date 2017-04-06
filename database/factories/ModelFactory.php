@@ -12,13 +12,16 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
-
+$factory->define(App\Models\Employee::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'workspace_id' => rand(1,2),
+        'fullname' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'phone' => $faker->e164PhoneNumber,
+        'people_id' => mt_rand(100000000,1000000000),
+        'birthday' => $faker->date('d/m/Y', 'now'),
+        'avatar' => '/img/user.png',
+        'gender' => rand(0,1),
+        'address' => $faker->address,
     ];
 });

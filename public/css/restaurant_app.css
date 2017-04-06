@@ -2,14 +2,19 @@
 	background-color: #10c7a4;
     color: #fff;
 }
-#datatable tbody tr:not(.selected):hover{
+#datatable tbody tr:not(.selected):hover,.table#datatable>tbody>tr.active>td{
 	background-color: #eaf9f6;
 }
 .dataTables_info .select-info{
 	margin-left: 15px;
 	font-weight: bold;
 }
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+.table>tbody>tr>td, 
+.table>tbody>tr>th, 
+.table>tfoot>tr>td, 
+.table>tfoot>tr>th, 
+.table>thead>tr>td, 
+.table>thead>tr>th{
 	vertical-align: middle;
 }
 /*table td.has_img{
@@ -24,7 +29,6 @@ table td.has_img img{
 }
 .form-group .checkbox{
 	display: inline-block;
-	margin-left: 15px;
 }
 .form-control-feedback.left{
 	left: 0;
