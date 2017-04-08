@@ -7,7 +7,7 @@
         <div class="x_title">
           <h2>Danh sách nhân viên</h2>
           <div class="x_button_helper">
-          	<a href="{{ route('employees.create',[session('workspace')->url]) }}" class="btn btn-primary btn-xs m_l_10"><i class="fa fa-plus"></i> Thêm mới</a>
+          	<a href="{{ route('employees.create',[session('workspace')->url]) }}" class="btn btn-primary btn-xs m_l_10"><i class="fa fa-user-plus"></i> Thêm mới</a>
           </div>
           <div class="clearfix"></div>
         </div>

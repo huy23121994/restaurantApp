@@ -32,30 +32,16 @@ class UserTableSeeder extends Seeder
             'user_id' => 1,
             'avatar' => '/img/workspace_avatar_default.jpg',
         ]);
-        DB::table('workspace_admins')->insert([
-            'username' => 'admin',
-            'password' => encrypt('admin'),
-            'workspace_id' => 1,
-        ]);
-        DB::table('workspace_admins')->insert([
-            'username' => 'admin',
-            'password' => encrypt('admin'),
-            'workspace_id' => 2,
-        ]);
-        DB::table('restaurants')->insert([
-            'name' => 'YoYo Giải Phóng',
-            'description' => 'Nhà hàng YoYo',
-            'location' => '69 Giải Phóng',
-            'avatar' => '/img/restaurant_avatar_default.jpg',
-            'workspace_id' => '1',
-        ]);
-        DB::table('restaurants')->insert([
-            'name' => 'YoYo Long Biên',
-            'description' => 'Nhà hàng YoYo',
-            'location' => '96 Long Biên',
-            'avatar' => '/img/restaurant_avatar_default.jpg',
-            'workspace_id' => '1',
-        ]);
-        factory(App\Models\Employee::class, 40)->create();
+        
+        for($i=1; $i<3; $i++){
+            DB::table('workspace_admins')->insert([
+                'username' => 'admin',
+                'password' => encrypt('admin'),
+                'workspace_id' => $i,
+            ]);
+        }
+        
+        factory(App\Models\Restaurant::class, 4)->create();
+        factory(App\Models\Employee::class, 5)->create();
     }
 }

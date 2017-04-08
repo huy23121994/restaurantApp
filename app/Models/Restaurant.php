@@ -16,4 +16,9 @@ class Restaurant extends Model
     	// $employees = Employee::distinct()->get();
     	return $this->belongsToMany(Employee::class, 'works');
     }
+    
+    public function employees_working()
+    {
+    	return $this->belongsToMany(Employee::class, 'works')->wherePivot('status', 1);
+    }
 }

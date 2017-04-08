@@ -46,7 +46,7 @@ class RestaurantController extends Controller
         $restaurant->location = $request->location;
         $restaurant->workspace_id = $workspace->id;
         if ($request->hasFile('avatar')) {
-            $result = save_image( $request->avatar, $this->restaurant_avatar_storage, $request->url);
+            $result = save_image( $request->avatar, $this->restaurant_avatar_storage, uniqid());
             if ($result) {
                 $restaurant->avatar = $result;
             }
@@ -108,7 +108,7 @@ class RestaurantController extends Controller
             }
         }
         if ($restaurant->save()) {
-            return redirect()->route('restaurants.show',[
+            return redirect()->route('restaurants.edit',[
                 'workspace' => session('workspace')->url,
                 'restaurant' => $restaurant->id,
             ]);

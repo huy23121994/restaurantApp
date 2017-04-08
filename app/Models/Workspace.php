@@ -29,7 +29,12 @@ class Workspace extends Model
     {
         return $this->hasMany(Employee::class);
     }
-
+    
+    public function foods()
+    {
+        return $this->hasMany(Food::class);
+    }
+    
     public static function checkLogin()
     {
         $workspace = session()->get('workspace');

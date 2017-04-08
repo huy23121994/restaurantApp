@@ -12,6 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
 $factory->define(App\Models\Employee::class, function (Faker\Generator $faker) {
     return [
         'workspace_id' => rand(1,2),
@@ -23,5 +24,16 @@ $factory->define(App\Models\Employee::class, function (Faker\Generator $faker) {
         'avatar' => '/img/user.png',
         'gender' => rand(0,1),
         'address' => $faker->address,
+    ];
+});
+
+$factory->define(App\Models\Restaurant::class, function (Faker\Generator $faker) {
+    $streetName = $faker->streetName;
+    return [
+        'name' => 'Nhà hàng ' . $streetName,
+        'description' => 'Nhà hàng ' . $streetName,
+        'location' => $streetName,
+        'avatar' => '/img/restaurant_avatar_default.jpg',
+        'workspace_id' => rand(1,2),
     ];
 });

@@ -40,7 +40,7 @@ class EmployeeController extends Controller
             $result = crop_image(
                 $request->avatar , //file
                 $this->employee_avatar_storage, //directory
-                $employee->id,
+                uniqid(),   // file name
                 $request->crop_width,   //width
                 $request->crop_height,  //height
                 $request->crop_x,   // x position
@@ -127,19 +127,10 @@ class EmployeeController extends Controller
      */
     public function index_in_restaurant($workspace, $restaurant_id)
     {
-        $restaurant = Restaurant::with('employees.works')->findOrFail($restaurant_id);
-        $employees = $restaurant->employees->unique();
-        foreach ($employees as $key => $employee) {
-            $works = $employee->works->where('status',0);
-            foreach ($works as $key => $work) {
-                $works = $works->forget($key);
-            }
-            dd($works);
-        }
-        dd($employees);
+        $restaurant = Restaurant::with('employees_working')->findOrFail($restaurant_id);
         return view($this->restaurant_app_view_location.'.restaurants.employees.index',[
                 'restaurant' => $restaurant,
-                'employees' => $employees,
+                'employees' => $restaurant->employees_working,
                 'menu_active' => 'employees',
             ]);
     }

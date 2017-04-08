@@ -8,36 +8,44 @@
 		</div>
 		<div class="clearfix"></div>
 	</div>
-	<table class="table table-striped">
+	<table class="table table-striped" id="datatable">
 		<thead>
     		<tr>
     			<th class="hide">url</th>
     			<th width="40">Avatar</th>
-    			<th>Họ tên</th>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
     			<th width="40">Tuổi</th>
     			<th>Số điện thoại</th>
     			<th>Email</th>
+                <th>Số CMND</th>
+    			<th>Giới tính</th>
     			<th>Ngày bắt đầu</th>
-    			<th>Trạng thái</th>
-    		</tr>
+    			<th>Action</th>
 		</thead>
 		<tbody>
 			@foreach($employees as $employee)
-        		<tr>
+	    		<tr>
         			<td class="hide">{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}</td>
         			<td class="has_img">
-            			<a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}">
-              				<img src="{{ $employee->avatar }}" height="40">
-            			</a>
-         			</td>
+	                    <a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}">
+	                      <img src="{{ $employee->avatar }}" height="40">
+	                    </a>
+					</td>
         			<td><a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}">
-        				<u class="text-success">{{ $employee->fullname }}</u>
+        				<u class="text-primary">{{ $employee->fullname }}</u>
         			</a></td>
-        			<td>{{ $employee->get_age() }}</td>
+					<td>{{ $employee->birthday }}</td>
+					<td>{{ $employee->get_age() }}</td>
         			<td>{{ $employee->phone }}</td>
         			<td>{{ $employee->email }}</td>
-        			<td></td>
-        			<td><button class="btn btn-primary btn-xs">Đang làm việc</button></td>
+        			<td>{{ $employee->people_id }}</td>
+        			<td>{{ $employee->gender }}</td>
+        			<td>{{ $employee->work_active->start_date }}</td>
+                  	<td>
+                    	<a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
+                    	<a href="{{ route('employees.edit',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
+                  	</td>
         		</tr>
     		@endforeach
 		</tbody>

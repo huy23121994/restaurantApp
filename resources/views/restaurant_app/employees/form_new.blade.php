@@ -82,6 +82,7 @@
 		</div>
 		<div class="form-group">
 		  	<button type="submit" class="btn btn-success">{{ isset($employee) ? 'Cập nhật' : 'Đăng ký' }}</button>
+		  	<a href="{{ isset($employee) ? route('employees.show', [getWorkspaceUrl(), $employee->id]) : route('employees.index', [getWorkspaceUrl()]) }}" class="btn btn-danger"><i class="fa fa-ban"></i> Hủy</a>
 		  </div>
 		</div>
 	</div>
