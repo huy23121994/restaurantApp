@@ -65,3 +65,7 @@ function getWorkspaceAdmin(){
     $key = getWorkspaceUrl().'-admin';
     return session($key);
 }
+
+function currentRouteName(){
+    return Route::currentRouteName();
+}

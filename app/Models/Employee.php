@@ -11,6 +11,11 @@ class Employee extends Model
         'fullname', 'email', 'phone', 'birthday', 'avatar','gender', 'address'
     ];
 
+    public function workspace()
+    {
+        return $this->belongsTo(Workspace::class);
+    }
+
     public static function get_all_from_workspace() {
         return getWorkspace()->employees;
     }

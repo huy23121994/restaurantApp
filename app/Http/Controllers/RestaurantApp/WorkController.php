@@ -11,6 +11,11 @@ use App\Models\Restaurant;
 
 class WorkController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('workspace_access');
+    }
+    
     public function index($workspace, $employee_id)
     {
         $employee = Employee::with('works.restaurant')->findOrFail($employee_id);
@@ -50,7 +55,7 @@ class WorkController extends Controller
         if ( $work->save() ) {
             return redirect()->route('works.show',[
                 'workspace' => $workspace->url,
-                'employee_id' => $employee_id,
+                'employee' => $employee_id,
                 'work' => $work->id
             ]);
         }
@@ -98,7 +103,7 @@ class WorkController extends Controller
         if ( $work->save() ) {
             return redirect()->route('works.show',[
                 'workspace' => $workspace->url,
-                'employee_id' => $employee_id,
+                'employee' => $employee_id,
                 'work' => $work->id
             ]);
         }
@@ -110,7 +115,7 @@ class WorkController extends Controller
         if ($work->delete()) {
             return redirect()->route('works.index',[
                 'workspace' => getWorkspace()->url,
-                'employee_id' => $employee_id
+                'employee' => $employee_id
             ]);
         }
     }

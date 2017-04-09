@@ -31,8 +31,8 @@ class WorkRequest extends FormRequest
             'start_date' => 'date_format:d/m/Y',
             'end_date' => 'date_format:d/m/Y|after:start_date',
             'status' => Rule::unique('works')->ignore($work_id)->where(function ($query) {
-                if($this->route('employee_id')){
-                    $employee = Employee::findOrFail($this->route('employee_id'));
+                if($this->route('employee')){
+                    $employee = Employee::findOrFail($this->route('employee'));
                     $employee_id = '';
                     if ($employee->work_active) {
                         $employee_id = $employee->id;

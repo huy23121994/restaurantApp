@@ -11,9 +11,13 @@ class Restaurant extends Model
         'name', 'description', 'location', 'workspace_id'
     ];
 
+    public function workspace()
+    {
+        return $this->belongsTo(Workspace::class);
+    }
+
     public function employees()
     {
-    	// $employees = Employee::distinct()->get();
     	return $this->belongsToMany(Employee::class, 'works');
     }
     

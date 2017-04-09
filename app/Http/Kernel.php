@@ -56,5 +56,6 @@ class Kernel extends HttpKernel
         'authenticated' => \App\Http\Middleware\AuthenticatedMiddleware::class,
         'check_workspace' => \App\Http\Middleware\CheckWorkspace::class,
         'workspace_logged' => \App\Http\Middleware\CheckWorkspaceLogin::class,
+        'workspace_access' => \App\Http\Middleware\WorkspaceAccess::class,
     ];
 }

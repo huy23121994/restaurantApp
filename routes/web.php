@@ -31,7 +31,7 @@ Route::group(['namespace' => 'RestaurantApp','middleware' => 'check_workspace','
 		Route::resource('restaurants', 'RestaurantController');
 		Route::get('restaurants/{id}/employees', 'EmployeeController@index_in_restaurant')->name('res.employees.index');
 		Route::resource('employees', 'EmployeeController');
-		Route::resource('employees/{employee_id}/works', 'WorkController');
+		Route::resource('employees/{employee}/works', 'WorkController');
 		Route::resource('foods', 'FoodController');
 	});
 });

@@ -18,6 +18,13 @@ class UserTableSeeder extends Seeder
             'avatar' => '/img/user.png',
             'password' => bcrypt('123456'),
         ]);
+        DB::table('users')->insert([
+            'username' => 'user',
+            'fullname' => 'Test User',
+            'email' => 'test.user@example.com',
+            'avatar' => '/img/user.png',
+            'password' => bcrypt('123456'),
+        ]);
         DB::table('workspaces')->insert([
             'name' => 'Nhà hàng YoYo',
             'description' => 'Nhà hàng YoYo',

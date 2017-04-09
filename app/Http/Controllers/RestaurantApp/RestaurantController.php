@@ -10,6 +10,11 @@ use App\Http\Requests\RestaurantRequest;
 
 class RestaurantController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('workspace_access', ['except' => ['index','create','store']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *

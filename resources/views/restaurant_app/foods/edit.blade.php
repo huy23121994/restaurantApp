@@ -5,12 +5,12 @@
     <div class="col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2>Thêm món ăn mới</h2>
+          <h2>Cập nhật món ăn {{ $food->name . '-' . $food->food_id}}</h2>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
         	<div class="col-xs-12 col-sm-6">
-        		@include('restaurant_app.foods.form_new', ['action' => route('foods.store',[getWorkspaceUrl()])] )
+        		@include('restaurant_app.foods.form_new', ['action' => route('foods.update',[getWorkspaceUrl(), $food->id])] )
 			</div>
 	  	</div>
       </div>

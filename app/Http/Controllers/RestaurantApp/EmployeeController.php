@@ -10,6 +10,11 @@ use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('workspace_access', ['except' => ['index','create','store']]);
+    }
+    
     public function index(Request $request)
     {
         $employees = Employee::get_all_from_workspace();
