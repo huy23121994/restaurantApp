@@ -46,6 +46,7 @@
 		        			<td>{{ $employee->people_id }}</td>
 		        			<td>{{ $employee->gender }}</td>
                   <td>
+                    <a href="{{ route('works.index',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-info btn-xs" title="Xem công việc của {{ $employee->fullname }}"><i class="fa fa-briefcase"></i></a>
                     <a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
                     <a href="{{ route('employees.edit',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
                     <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_confirm.{{ $employee->id }}" title="Xóa"><i class="fa fa-trash"></i></button>

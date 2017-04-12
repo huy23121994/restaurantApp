@@ -14,11 +14,12 @@
                 <li class="{{ ($menu_active == 'employees')? 'active' : '' }}">
                 	<a href="{{ route('res.employees.index',[getWorkspaceUrl(),$restaurant->id]) }}">
                         <i class="fa fa-users"></i> Nhân viên
-                        <span class="caret"></span>
                     </a>
                 </li>
-                <li class="{{ isset($food_active)? 'active' : '' }}">
-                	<a href="#tab_content2"><i class="fa fa-cutlery"></i> Món ăn</a>
+                <li class="{{ ($menu_active == 'foods')? 'active' : '' }}">
+                	<a href="{{ route('res.foods.index',[getWorkspaceUrl(),$restaurant->id]) }}">
+                        <i class="fa fa-cutlery"></i> Món ăn
+                    </a>
                 </li>
                 <li class="{{ ($menu_active == 'info')? 'active' : '' }}">
                 	<a href="{{ route('restaurants.edit',[getWorkspaceUrl(),$restaurant->id]) }}">

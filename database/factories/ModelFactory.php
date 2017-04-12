@@ -32,7 +32,7 @@ $factory->define(App\Models\Restaurant::class, function (Faker\Generator $faker)
     return [
         'name' => 'Nhà hàng ' . $streetName,
         'description' => 'Nhà hàng ' . $streetName,
-        'location' => $streetName,
+        'location' => "Số " . rand(1,1000) . " $streetName",
         'avatar' => '/img/restaurant_avatar_default.jpg',
         'workspace_id' => rand(1,2),
     ];

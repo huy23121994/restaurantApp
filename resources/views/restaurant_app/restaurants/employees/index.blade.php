@@ -1,13 +1,14 @@
 @extends('restaurant_app.restaurants.layout')
 
 @section('restaurant_content')
-	<div class="flex">
+	{{-- <div class="flex">
 		<h5 style="margin: 0 0 0 20px;" class="pull-left flex"><u class="center">Danh sách nhân viên</u></h5>
 		<div class="x_button_helper">
 		  	<a href="http://restaurant.dev/nha-hang-yoyo/employees/create" class="btn btn-primary btn-xs m_l_10"><i class="fa fa-plus"></i> Thêm mới</a>
 		</div>
 		<div class="clearfix"></div>
-	</div>
+	</div> --}}
+    <br>
 	<table class="table table-striped" id="datatable">
 		<thead>
     		<tr>

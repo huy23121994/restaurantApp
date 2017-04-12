@@ -45,7 +45,7 @@
 					<div class="row">
 					    <div class="col-sm-9 col-sm-offset-3">
 						    <a href="{{ route('employees.edit',[getWorkspaceUrl(),$employee->id]) }}" class="btn btn-success"><i class="fa fa-edit"></i> Chỉnh sửa</a>
-						    <button type="button" class="btn btn-danger" data-toggle="modal" aria-pressed="true" data-target=".modal.confirm"><i class="fa fa-trash"></i> Xóa</button>
+						    <button type="button" class="btn btn-danger" data-toggle="modal" aria-pressed="true" data-target="#delete_confirm"><i class="fa fa-trash"></i> Xóa</button>
 					    </div>
 					</div>
 				</div>

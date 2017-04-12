@@ -30,8 +30,9 @@
     	@endif
   	</div>
   	@if( currentRouteName() == 'foods.create')
-	  	<button type="submit" class="btn btn-success">Đăng ký</button>
+	  	<button type="submit" class="btn btn-success" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Processing...">Đăng ký</button>
   	@else
-	  	<button type="submit" class="btn btn-success">Cập nhật</button>
+      <button type="submit" class="btn btn-success" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Processing...">Cập nhật</button>
+      <a href="{{ route('foods.show',[getWorkspaceUrl(),$food->id]) }}" class="btn btn-danger"><i class="fa fa-ban"></i> Hủy</a>
   	@endif
 </form>

@@ -21,7 +21,6 @@ class CreateFoodsTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('avatar')->nullable();
-            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

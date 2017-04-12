@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\FoodRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Food;
+use App\Models\Restaurant;
 
 class FoodController extends Controller
 {
@@ -42,7 +43,14 @@ class FoodController extends Controller
         }else{
             $food->avatar =  $this->food_avatar_default_url;
         }
+        \DB::beginTransaction();
         if ($food->save()) {
+            $result = Restaurant::addFoodToAll($food);
+            if (!$result) {
+                \DB::rollBack();
+            }else{
+                \DB::commit();
+            }
             return redirect()->route('foods.show',[
                 'workspace' => getWorkspaceUrl(),
                 'food' => $food->id,
@@ -90,6 +98,25 @@ class FoodController extends Controller
         if ($food->delete()) {
             return redirect()->route('foods.index',[getWorkspaceUrl()]);
         }
+    }
+
+    public function updateStatus(Request $request,$workspace, $restaurant, $food)
+    {
+        $food = Food::findOrFail($food);
+        $update = $food->restaurants()->updateExistingPivot($restaurant, ['status' => !$request->status]);
+        if ($update) {
+            return 1;
+        }
+    }
+
+    public function index_in_restaurant($workspace, $restaurant)
+    {
+        $restaurant = Restaurant::findOrFail($restaurant);
+        return view($this->restaurant_app_view_location.'.restaurants.foods.index',[
+                'restaurant' => $restaurant,
+                'foods' => $restaurant->foods,
+                'menu_active' => 'foods',
+            ]);
     }
     
 }

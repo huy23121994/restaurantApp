@@ -63,7 +63,7 @@
 		</div>
 		@if(isset($work))
 			<button type="submit" class="btn btn-success m_t_10" data-loading-text="<i class='fa fa-refresh fa-spin fa-fw'></i> Đang xử lý ..." >Cập nhật</button>
-			<a href="{{ route('works.show',[getWorkspaceUrl(),$employee->id, $work->id]) }}" class="btn btn-danger m_t_10">Hủy</a>
+			<a href="{{ route('works.show',[getWorkspaceUrl(),$employee->id, $work->id]) }}" class="btn btn-danger m_t_10"><i class="fa fa-ban"></i> Hủy</a>
 		@else
 			<button type="submit" class="btn btn-success m_t_10">Đăng ký</button>
 		@endif

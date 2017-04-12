@@ -54,4 +54,5 @@
 @section('bottom_js')
 	<script src="/js/theme_dashboard.js"></script>
 	<script src="/js/restaurant_app.js"></script>
+	<script src="/js/restaurant_ajax.js"></script>
 @endsection

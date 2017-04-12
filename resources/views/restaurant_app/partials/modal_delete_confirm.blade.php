@@ -7,16 +7,16 @@
         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         	<h4 class="modal-title">Delete confirmation</h4>
       	</div>
-      	<div class="modal-body">
-      		<form class="hide" id="delete-ws" action="{{ $action }}" method="POST">
-      			{{ csrf_field() }}
-				{{ method_field('DELETE') }}
-      		</form>
-        	<div class="text-center">
-        		<button type="submit" class="btn btn-danger" onclick="$('form#delete-ws').submit()">Yes. I'm sure</button>
-        		<button class="btn btn-default" data-dismiss="modal">Cancle</button>
+        <form id="delete-ws" action="{{ $action }}" method="POST">
+        	<div class="modal-body">
+        			{{ csrf_field() }}
+  				    {{ method_field('DELETE') }}
+          	<div class="text-center">
+          		<button type="submit" class="btn btn-danger" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Deleting...">Yes. I'm sure</button>
+          		<button class="btn btn-default" data-dismiss="modal">Cancle</button>
+          	</div>
         	</div>
-      	</div>
+        </form>
     </div>
   </div>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class FoodRequest extends FormRequest
 {
@@ -23,11 +24,12 @@ class FoodRequest extends FormRequest
      */
     public function rules()
     {
-        
+        $workspace = \App\Models\Workspace::where('url',$this->route('workspace'))->first();
+        $workspace_id = $workspace->id;
         return [
             'name' => 'required',
-            'food_id' => 'required|unique:foods,food_id,'.$this->route('food'),
-            'avatar' => 'image'
+            'avatar' => 'image',
+            'food_id' => 'required|unique:foods,NULL,'.$this->route('food').',id,workspace_id,'.$workspace_id,
         ];
     }
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Employee;
+use App\Models\Food;
 
 class Restaurant extends Model
 {
@@ -19,6 +20,25 @@ class Restaurant extends Model
     public function employees()
     {
     	return $this->belongsToMany(Employee::class, 'works');
+    }
+
+    public function foods()
+    {
+        return $this->belongsToMany(Food::class)->withPivot('status');
+    }
+
+    public static function addFoodToAll(Food $food)
+    {
+        $restaurants = getWorkspace()->restaurants;
+        foreach ($restaurants as $restaurant) {
+            $result = \DB::table('food_restaurant')->insert([
+                'food_id' => $food->id,
+                'restaurant_id' => $restaurant->id,
+                'status' => 1
+            ]);
+            if(!$result){ break; }
+        }
+        return $result;
     }
     
     public function employees_working()

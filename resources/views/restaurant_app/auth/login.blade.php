@@ -23,7 +23,7 @@
 	  		</label>
 	  	</div> --}}
 	  	<div class="text-center">
-		    <button type="submit" class="btn btn-success">Login</button>
+		    <button type="submit" class="btn btn-success" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Logging...">Login</button>
 	  	</div>
 	</form>
 

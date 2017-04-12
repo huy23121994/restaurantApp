@@ -10,4 +10,14 @@ class Food extends Model
     {
     	return $this->belongsTo(Workspace::class);
     }
+
+    public function restaurants()
+    {
+    	return $this->belongsToMany(Restaurant::class,'food_restaurant');
+    }
+
+    public function getFoodIdAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }
