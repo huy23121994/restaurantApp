@@ -59,7 +59,7 @@ class RestaurantController extends Controller
             $restaurant->avatar =  $this->restaurant_avatar_default_url;
         }
         if ($restaurant->save()) {
-            return redirect()->route('restaurants.show',[
+            return redirect()->route('restaurants.edit',[
                 'workspace' => $workspace->url,
                 'restaurant' => $restaurant->id,
             ]);

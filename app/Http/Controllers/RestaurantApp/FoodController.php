@@ -7,7 +7,7 @@ use App\Http\Requests\FoodRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Food;
 use App\Models\Restaurant;
-// use App\Events\UpdateFoodStatus;
+use App\Events\UpdateFoodStatus;
 
 class FoodController extends Controller
 {
@@ -49,6 +49,7 @@ class FoodController extends Controller
             $result = Restaurant::addFoodToAll($food);
             if (!$result) {
                 \DB::rollBack();
+                return back()->with('notice', 'Bạn cần phải tạo ít nhất một nhà hàng trước khi tạo món ăn!');
             }else{
                 \DB::commit();
             }
@@ -110,7 +111,7 @@ class FoodController extends Controller
         $update = $food->restaurants()->updateExistingPivot($restaurant, ['status' => $status]);
         if ($update) {
             $data = collect(['status' => $status , 'food_id' => $food->id])->toJson();
-            // event(new UpdateFoodStatus($data));
+            event(new UpdateFoodStatus($data));
             
             return $data;
         }

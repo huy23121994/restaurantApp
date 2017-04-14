@@ -30,6 +30,8 @@ class Restaurant extends Model
     public static function addFoodToAll(Food $food)
     {
         $restaurants = getWorkspace()->restaurants;
+        if($restaurants->count() == 0) return 0;
+        
         foreach ($restaurants as $restaurant) {
             $result = \DB::table('food_restaurant')->insert([
                 'food_id' => $food->id,

@@ -12,15 +12,12 @@
 				_token : $('#token').html(),
 			},
 			function(data){
-				console.log(JSON.parse(data));
 				data = JSON.parse(data);
 				status = data.status;
 				if(status){
 					$button.removeClass('btn-default').addClass('btn-primary').html('Đang còn').removeAttr('disabled');
-					// $(this).html('Đang còn');
 				}else{
 					$button.addClass('btn-default').removeClass('btn-primary').html('Đã hết').removeAttr('disabled');
-					// $(this).html('Hết hàng');
 				}
 				$data_td.attr('data-status', status);
 			}

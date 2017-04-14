@@ -22,6 +22,7 @@
     <script src="/js/lib/turbolinks.v2.5.3.js"></script>
     <script src="/js/lib/nprogress.js"></script>
     <script src="/js/common.js"></script>
+    <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),

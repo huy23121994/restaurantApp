@@ -1,4 +1,6 @@
-
+@if(session('notice'))
+  <p class="text-danger">{{ session('notice') }}</p>
+@endif
 <form action="{{ $action }}" enctype="multipart/form-data" method="POST">
   	{{ csrf_field() }}
   	{{ isset($food) ? method_field('PUT') : ''}}

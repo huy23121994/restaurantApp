@@ -118,11 +118,13 @@ $(document).ready(function() {
   //Bind a function to a Event (the full Laravel class)
   channel.bind('App\\Events\\UpdateFoodStatus', changeStatus);
 
-  function addMessage(data) {
-    if(data.message){
-      $('#demo').removeClass('btn-primary').addClass('btn-danger').html('Vl');
+  function changeStatus(data) {
+    data = JSON.parse(data.data);
+    if(data.status){
+      $('.food_'+ data.food_id).find('button').removeClass('btn-default').addClass('btn-primary').html('Đang còn');
     }else{
-      $('#demo').removeClass('btn-danger').addClass('btn-primary').html('Ngon');
+      $('.food_'+ data.food_id).find('button').addClass('btn-default').removeClass('btn-primary').html('Đã hết');
     }
+    $('.food_'+ data.food_id).attr('data-status', data.status);
   }
 })
