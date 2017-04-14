@@ -7,6 +7,7 @@ use App\Http\Requests\FoodRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Food;
 use App\Models\Restaurant;
+// use App\Events\UpdateFoodStatus;
 
 class FoodController extends Controller
 {
@@ -103,9 +104,15 @@ class FoodController extends Controller
     public function updateStatus(Request $request,$workspace, $restaurant, $food)
     {
         $food = Food::findOrFail($food);
-        $update = $food->restaurants()->updateExistingPivot($restaurant, ['status' => !$request->status]);
+        $status = $request->status;
+        $status = !$status ? 1 : 0;
+        
+        $update = $food->restaurants()->updateExistingPivot($restaurant, ['status' => $status]);
         if ($update) {
-            return 1;
+            $data = collect(['status' => $status , 'food_id' => $food->id])->toJson();
+            // event(new UpdateFoodStatus($data));
+            
+            return $data;
         }
     }
 

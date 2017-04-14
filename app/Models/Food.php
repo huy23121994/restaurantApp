@@ -13,7 +13,7 @@ class Food extends Model
 
     public function restaurants()
     {
-    	return $this->belongsToMany(Restaurant::class,'food_restaurant');
+    	return $this->belongsToMany(Restaurant::class,'food_restaurant')->withPivot('status');
     }
 
     public function getFoodIdAttribute($value)

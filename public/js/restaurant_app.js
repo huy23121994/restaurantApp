@@ -108,4 +108,21 @@ $(document).ready(function() {
     };
   })
 
+  var pusher = new Pusher('5385981d70862989265f', {
+      cluster: 'eu',
+      encrypted: true
+  });
+
+  var channel = pusher.subscribe('tbhuy');
+
+  //Bind a function to a Event (the full Laravel class)
+  channel.bind('App\\Events\\UpdateFoodStatus', changeStatus);
+
+  function addMessage(data) {
+    if(data.message){
+      $('#demo').removeClass('btn-primary').addClass('btn-danger').html('Vl');
+    }else{
+      $('#demo').removeClass('btn-danger').addClass('btn-primary').html('Ngon');
+    }
+  }
 })
