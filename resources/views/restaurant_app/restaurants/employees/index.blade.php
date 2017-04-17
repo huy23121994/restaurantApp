@@ -22,7 +22,6 @@
                 <th>Số CMND</th>
     			<th>Giới tính</th>
     			<th>Ngày bắt đầu</th>
-    			<th>Action</th>
 		</thead>
 		<tbody>
 			@foreach($employees as $employee)
@@ -43,10 +42,6 @@
         			<td>{{ $employee->people_id }}</td>
         			<td>{{ $employee->gender }}</td>
         			<td>{{ $employee->work_active->start_date }}</td>
-                  	<td>
-                    	<a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
-                    	<a href="{{ route('employees.edit',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
-                  	</td>
         		</tr>
     		@endforeach
 		</tbody>

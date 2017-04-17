@@ -55,7 +55,9 @@ $(document).ready(function() {
     placeholder: "Chọn thứ",
     allowClear: true
   });
-  $(".select2_multiple").select2();
+  $(".select2_multiple").select2({
+    allowClear: true
+  });
 
   /**
   * Crop Image
@@ -108,6 +110,9 @@ $(document).ready(function() {
     };
   })
 
+  /*
+  * Realtime update foodstatus
+  */
   var pusher = new Pusher('5385981d70862989265f', {
       cluster: 'eu',
       encrypted: true
@@ -121,10 +126,100 @@ $(document).ready(function() {
   function changeStatus(data) {
     data = JSON.parse(data.data);
     if(data.status){
-      $('.food_'+ data.food_id).find('button').removeClass('btn-default').addClass('btn-primary').html('Đang còn');
+      $('.food_'+ data.food_id).find('button').removeClass('btn-default').addClass('btn-primary').html('Đang còn').removeAttr('disabled');
     }else{
-      $('.food_'+ data.food_id).find('button').addClass('btn-default').removeClass('btn-primary').html('Đã hết');
+      $('.food_'+ data.food_id).find('button').addClass('btn-default').removeClass('btn-primary').html('Đã hết').removeAttr('disabled');
     }
     $('.food_'+ data.food_id).attr('data-status', data.status);
   }
+  // END realtime update food status
+
+
+  $('#copy_food_select').click(function(){
+    var $list = $('.list_food_select'),
+        list_option = $list.find('div.field').find('select').html(),
+        html = '<div class="row m_t_10 field"><div class="col-xs-9"><select class="select2_single form-control" tabindex="-1" style="width:100%" data-placeholder="Chọn mã món ăn">'+list_option+'</select></div><div class="col-xs-2"><input type="number" name="number" class="form-control" value="1" min="1"></div><div class="col-xs-1"><button type="button" id="remove_food_select" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></div></div></div>';
+    $list.append(html);
+    var $last_el = $list.find('div.field').last(),
+        $select_el = $last_el.find('select');
+    removeFoodSeleted($select_el);
+    $select_el.val([]).select2({
+      allowClear: true
+    });
+  })
+
+  $('body').on('click', '#remove_food_select', function(){
+    $(this).parents('.field').remove();
+    setFoods();
+  })
+
+  $('.select2').click(function(){
+    $(this).siblings('select').focus();
+  })
+
+  $('.list_food_select .field').each(function(){
+    var $select = $(this).find('select'),
+        $input = $(this).find('input');
+    $('body').on('change',$select, function(){
+      setFoods();
+    })
+    $('body').on('change',$input, function(){
+      setFoods();
+    })
+  })
+
+  // $('body').on('change','.list_food_select .field select', function(){
+  //   $(this).each(function(){
+  //     setFoods();
+  //     // var prev_val = $(this).val();
+  //     // $(this).change(function(){
+  //     //   var option_val = $(this).val();
+  //     //   if (option_val) {
+  //     //     console.log('remove');
+  //     //     $('.list_food_select select').not(this).each(function(){
+  //     //       $(this).find('option[value="'+option_val+'"]').remove().end().select2({
+  //     //         allowClear: true
+  //     //       });
+  //     //     });
+  //     //   }else{
+  //     //     // console.log('add');
+  //     //     // $('.list_food_select select').not(this).each(function(){
+  //     //     //   $(this).append('option[value="'+prev_val+'"]').end().select2({
+  //     //     //     allowClear: true
+  //     //     //   });
+  //     //     // });
+  //     //   }
+  //     //   // console.log(prev_val + ' - ' + option_val);
+  //     // // })
+  //   })
+  // })
+
+
 })
+
+function removeFoodSeleted(selector){
+  // $('.list_food_select > .field').each(function(){
+  //   var option_val = $(this).find('select').find(':selected').val();
+  //   if (option_val) {
+  //     selector.find('option[value='+option_val+']').remove();
+  //   }
+  // })
+}
+
+function setFoods(){
+  $('#foods').html('');
+  $('.list_food_select > .field').each(function(){
+    var option_val = $(this).find('select').find(':selected').val(),
+        number_val = $(this).find('input[name="number"]').val();
+    if (option_val) {
+      var val = option_val + "|" + number_val;
+      $('#foods').append('<option value="'+ val +'" selected></option>');
+    }
+  })
+  var data = [];
+  $("#foods option").each(function(){
+    var val = $(this).attr('value');
+    data.push(val);
+  })
+  $("#foods").val(data);
+}

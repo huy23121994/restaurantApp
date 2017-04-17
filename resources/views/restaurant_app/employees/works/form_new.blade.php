@@ -6,7 +6,7 @@
 	@endif
 	<div class="col-xs-12">
 		<div class="form-group">
-		    <label for="department">Nơi làm việc</label>
+		    <label>Nơi làm việc</label>
 		    <select class="select2_single form-control" tabindex="-1" name="restaurant_id" style="width:100%">
                 <option></option>
                 @foreach($restaurants as $restaurant)

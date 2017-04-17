@@ -49,6 +49,6 @@ class UserTableSeeder extends Seeder
         }
         
         factory(App\Models\Restaurant::class, 4)->create();
-        factory(App\Models\Employee::class, 5)->create();
+        factory(App\Models\Employee::class, 6)->create();
     }
 }

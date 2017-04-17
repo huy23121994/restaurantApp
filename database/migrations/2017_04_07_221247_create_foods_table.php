@@ -22,6 +22,8 @@ class CreateFoodsTable extends Migration
             $table->string('description')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
+
+            $table->unique(['food_id', 'workspace_id']);
         });
     }
 

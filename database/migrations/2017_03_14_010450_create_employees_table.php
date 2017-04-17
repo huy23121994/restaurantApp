@@ -25,6 +25,8 @@ class CreateEmployeesTable extends Migration
             $table->string('avatar')->nullable();
             $table->boolean('gender')->nullable();
             $table->timestamps();
+
+            $table->unique(['people_id', 'workspace_id']);
         });
     }
 

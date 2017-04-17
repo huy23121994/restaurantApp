@@ -28,6 +28,12 @@
               <li><a href="{{ route('foods.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
             </ul>
           </li>
+          <li data="orders"><a><i class="fa fa-sticky-note-o"></i> Đơn hàng<span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="{{ route('orders.index', [getWorkspaceUrl()]) }}">Danh sách đơn hàng</a></li>
+              <li><a href="{{ route('orders.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
 

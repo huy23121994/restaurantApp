@@ -35,6 +35,11 @@ class Workspace extends Model
         return $this->hasMany(Food::class);
     }
     
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public static function checkLogin()
     {
         $workspace = session()->get('workspace');

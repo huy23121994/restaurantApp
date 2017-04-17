@@ -12,9 +12,10 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-        	<table class="table table-striped">
+        	<table class="table table-striped" id="datatable">
         		<thead>
 	        		<tr>
+                <th>STT</th>
 	        			<th class="hide">url</th>
 	        			<th width="40">Avatar</th>
                 <th>Họ tên</th>
@@ -30,6 +31,7 @@
         		<tbody>
         			@foreach($employees as $employee)
 		        		<tr>
+                  <td></td>
 		        			<td class="hide">{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}</td>
 		        			<td class="has_img">
                     <a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}">

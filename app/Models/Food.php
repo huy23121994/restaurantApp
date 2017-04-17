@@ -16,6 +16,11 @@ class Food extends Model
     	return $this->belongsToMany(Restaurant::class,'food_restaurant')->withPivot('status');
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_food');
+    }
+
     public function getFoodIdAttribute($value)
     {
         return ucfirst($value);

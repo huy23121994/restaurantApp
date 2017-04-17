@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class FoodRequest extends FormRequest
+class OrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,18 +26,10 @@ class FoodRequest extends FormRequest
         $workspace = \App\Models\Workspace::where('url',$this->route('workspace'))->first();
         $workspace_id = $workspace->id;
         return [
-            'name' => 'required',
-            'avatar' => 'image',
-            // unique food_id,workspace_id
-            'food_id' => 'required|unique:foods,NULL,'.$this->route('food').',id,workspace_id,'.$workspace_id,
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'required' => 'Không được bỏ trống trường này',
-            'image' => 'Dữ liệu phải là ảnh'
+            'order_id' => 'required|unique:orders,NULL,'.$this->route('order').',id,workspace_id,'.$workspace_id,
+            'customer' => 'required',
+            'address' => 'required',
+            'foods' => 'required'
         ];
     }
 }

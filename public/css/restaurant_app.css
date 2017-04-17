@@ -91,3 +91,8 @@ ul.bar_tabs > li.active .dropdown-menu{
 blockquote .small, blockquote footer, blockquote small{
 	line-height: 2.6;
 }
+.list_food_select button i.fa-trash{
+	margin-top: 5px;
+    height: 26px;
+    font-size: 19px;
+}
