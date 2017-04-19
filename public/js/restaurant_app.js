@@ -149,61 +149,74 @@ $(document).ready(function() {
   })
 
   $('body').on('click', '#remove_food_select', function(){
-    $(this).parents('.field').remove();
+  	var $field = $(this).parents('.field'),
+  		delete_val = $field.find('select').val(),
+  		delete_html = $field.find('select').find(':selected').html();
+  	if (delete_val) {
+  		$('.list_food_select .field select')
+        .append('<option value="'+ delete_val +'">'+ delete_html +'</option>')
+        .select2({
+          allowClear: true
+        });
+  	}
+    $field.remove();
     setFoods();
   })
 
-  $('.select2').click(function(){
+  $('body').on('click','.select2',function(){
     $(this).siblings('select').focus();
+  })
+  $('body').on('select2:unselecting','select',function(){
+    $(this).focus();
+  })
+
+  var prev_val = '',
+      prev_html = '';
+  $('body').on('focus','.list_food_select .field select',function(){
+    prev_val = $(this).val();
+    prev_html = $(this).find(':selected').html();
+  })
+
+  $('body').on('change','.list_food_select .field select',function(){
+    var val = $(this).val();
+    $(this).addClass('just');
+    if (val) {
+      // remove selected value in another select element except this
+      $('.list_food_select .field select').not('.just')
+        .find('option[value="'+ val +'"]').remove()
+        .select2({
+          allowClear: true
+        });
+    }
+    if (prev_val) {
+      // add option which has pre_val to another select element except this
+      $('.list_food_select .field select').not('.just')
+        .append('<option value="'+ prev_val +'">'+ prev_html +'</option>')
+        .select2({
+          allowClear: true
+        });
+    }
+    $('.just').removeClass('just');
+    prev_val = val;
+    prev_html = $(this).find(':selected').html();
+	setFoods();
   })
 
   $('.list_food_select .field').each(function(){
-    var $select = $(this).find('select'),
-        $input = $(this).find('input');
-    $('body').on('change',$select, function(){
-      setFoods();
-    })
+    var $input = $(this).find('input');
     $('body').on('change',$input, function(){
       setFoods();
     })
   })
-
-  // $('body').on('change','.list_food_select .field select', function(){
-  //   $(this).each(function(){
-  //     setFoods();
-  //     // var prev_val = $(this).val();
-  //     // $(this).change(function(){
-  //     //   var option_val = $(this).val();
-  //     //   if (option_val) {
-  //     //     console.log('remove');
-  //     //     $('.list_food_select select').not(this).each(function(){
-  //     //       $(this).find('option[value="'+option_val+'"]').remove().end().select2({
-  //     //         allowClear: true
-  //     //       });
-  //     //     });
-  //     //   }else{
-  //     //     // console.log('add');
-  //     //     // $('.list_food_select select').not(this).each(function(){
-  //     //     //   $(this).append('option[value="'+prev_val+'"]').end().select2({
-  //     //     //     allowClear: true
-  //     //     //   });
-  //     //     // });
-  //     //   }
-  //     //   // console.log(prev_val + ' - ' + option_val);
-  //     // // })
-  //   })
-  // })
-
-
 })
 
 function removeFoodSeleted(selector){
-  // $('.list_food_select > .field').each(function(){
-  //   var option_val = $(this).find('select').find(':selected').val();
-  //   if (option_val) {
-  //     selector.find('option[value='+option_val+']').remove();
-  //   }
-  // })
+  $('.list_food_select > .field').each(function(){
+    var option_val = $(this).find('select').find(':selected').val();
+    if (option_val) {
+      selector.find('option[value='+option_val+']').remove();
+    }
+  })
 }
 
 function setFoods(){
