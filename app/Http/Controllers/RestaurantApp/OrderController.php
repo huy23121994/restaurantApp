@@ -30,6 +30,7 @@ class OrderController extends Controller
     {
         return view($this->restaurant_app_view_location . '.orders.create', [
             'foods' => getWorkspace()->foods,
+            'restaurants' => getWorkspace()->restaurants,
         ]);
     }
 
@@ -47,11 +48,14 @@ class OrderController extends Controller
             'address' => $request->address,
             'description' => $request->description,
         ]);
+        \DB::beginTransaction();
         if (getWorkspace()->orders()->save($order)) {
             foreach ($request->foods as $key => $food) {
-                $food_data = explode('|', $food);
-                $order->foods()->attach($food_data[0], ['number' => $food_data[1]]);
+                $food_data = explodeData($food);
+                $result = $order->foods()->attach($food_data[0], ['number' => $food_data[1]]);
+                if ($result) \DB::rollBack();
             }
+            \DB::commit();
             return redirect()->route('orders.show',[getWorkspaceUrl(),$order->id]);
         }
     }
@@ -81,6 +85,7 @@ class OrderController extends Controller
         $order = Order::with('foods')->findOrFail($order_id);
         return view($this->restaurant_app_view_location . '.orders.edit', [
             'foods' => getWorkspace()->foods,
+            'restaurants' => getWorkspace()->restaurants,
             'order' => $order,
         ]);
     }
@@ -92,7 +97,7 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $workspace, Order $order)
+    public function update(OrderRequest $request, $workspace, Order $order)
     {
         $result = $order->update([
             'order_id' => $request->order_id,
@@ -103,7 +108,7 @@ class OrderController extends Controller
         if ($result) {
             $order->foods()->detach();
             foreach ($request->foods as $key => $food) {
-                $food_data = explode('|', $food);
+                $food_data = explodeData($food);
                 $order->foods()->attach($food_data[0], ['number' => $food_data[1]]);
             }
             return redirect()->route('orders.show',[getWorkspaceUrl(),$order->id]);

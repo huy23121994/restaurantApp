@@ -27,6 +27,11 @@ class Restaurant extends Model
         return $this->belongsToMany(Food::class)->withPivot('status');
     }
 
+    public function foods_active()
+    {
+        return $this->belongsToMany(Food::class)->wherePivot('status',1);
+    }
+
     public static function addFoodToAll(Food $food)
     {
         $restaurants = getWorkspace()->restaurants;

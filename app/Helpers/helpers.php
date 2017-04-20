@@ -69,3 +69,7 @@ function getWorkspaceAdmin(){
 function currentRouteName(){
     return Route::currentRouteName();
 }
+
+function explodeData($data){
+    return explode('|', $data);
+}

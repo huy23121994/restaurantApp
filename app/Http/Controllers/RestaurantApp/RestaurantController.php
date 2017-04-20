@@ -12,7 +12,7 @@ class RestaurantController extends Controller
 {
     function __construct()
     {
-        $this->middleware('workspace_access', ['except' => ['index','create','store']]);
+        $this->middleware('workspace_access', ['except' => ['index','create','store','checkRestaurantReady']]);
     }
     
     /**
@@ -132,6 +132,23 @@ class RestaurantController extends Controller
         if ($restaurant->delete()) {
             return redirect()->route('restaurants.index',[session('workspace')->url]);
         }
+    }
+
+    public function checkRestaurantReady(Request $request, $workspace)
+    {
+        $restaurants = getWorkspace()->restaurants;
+        $data = [];
+        foreach ($restaurants as $restaurant) {
+            $foods_active = $restaurant->foods_active->pluck('id')->toArray();
+            $food_data = $request->foods ? $request->foods : [] ;
+            if ( count(array_intersect($foods_active, $food_data)) == count($food_data) ) {
+                $status = 1;
+            }else{
+                $status = 0;
+            }
+            array_push($data, ['id' => $restaurant->id , 'status' => $status]);
+        }
+        return json_encode($data);
     }
 
 }

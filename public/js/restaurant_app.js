@@ -199,7 +199,7 @@ $(document).ready(function() {
     $('.just').removeClass('just');
     prev_val = val;
     prev_html = $(this).find(':selected').html();
-	setFoods();
+  	setFoods();
   })
 
   $('.list_food_select .field').each(function(){

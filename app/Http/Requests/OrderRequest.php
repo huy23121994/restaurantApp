@@ -25,8 +25,13 @@ class OrderRequest extends FormRequest
     {
         $workspace = \App\Models\Workspace::where('url',$this->route('workspace'))->first();
         $workspace_id = $workspace->id;
+        $order = $this->route('order');
+        $except = '';
+        if ($order) {
+            $except = $order->id;
+        }
         return [
-            'order_id' => 'required|unique:orders,NULL,'.$this->route('order').',id,workspace_id,'.$workspace_id,
+            'order_id' => 'required|unique:orders,NULL,'. $except .',id,workspace_id,'.$workspace_id,
             'customer' => 'required',
             'address' => 'required',
             'foods' => 'required'

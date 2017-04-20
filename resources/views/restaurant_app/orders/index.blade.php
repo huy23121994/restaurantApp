@@ -6,6 +6,9 @@
       <div class="x_panel">
         <div class="x_title">
           <h2>Danh sách đơn hàng</h2>
+          <div class="x_button_helper">
+            <a href="{{ route('orders.create',[getWorkspaceUrl()]) }}" class="btn btn-primary btn-xs m_l_10"><i class="fa fa-plus"></i> Thêm mới</a>
+          </div>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
