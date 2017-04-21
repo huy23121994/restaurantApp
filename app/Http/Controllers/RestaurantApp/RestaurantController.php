@@ -146,7 +146,10 @@ class RestaurantController extends Controller
             }else{
                 $status = 0;
             }
-            array_push($data, ['id' => $restaurant->id , 'status' => $status]);
+            $data[$restaurant->id] = ['status' => $status];
+            foreach ($restaurant->foods->whereIn('id', $food_data) as $food) {
+                $data[$restaurant->id]['foods'][$food->id] = ['name' => $food->name,'status' => $food->pivot->status ];
+            }
         }
         return json_encode($data);
     }

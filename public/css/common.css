@@ -14,6 +14,10 @@ img{
 .m_t_0{
 	margin-top: 0px;
 }
+.m_l_r_0{
+	margin-left: 0px!important;
+	margin-right: 0px!important;
+}
 .m_b_0{
 	margin-bottom: 0px;
 }
@@ -32,8 +36,17 @@ img{
 .m_l_5{
 	margin-left: 5px;
 }
+.p_b_10{
+	padding-bottom: 10px;
+}
+.p_l_0{
+	padding-left: 0!important;
+}
 .p_t_20{
 	padding-top: 20px;
+}
+.p_l_20{
+	padding-left: 20px;
 }
 .full_width{
 	width: 100%;
@@ -41,6 +54,12 @@ img{
 .full_size{
 	width: 100%;
 	height: 100%;
+}
+.cursor_pointer{
+	cursor: pointer;
+}
+.cursor_auto{
+	cursor: auto;
 }
 .white{
 	background-color: #fff;

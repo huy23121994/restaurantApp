@@ -96,3 +96,18 @@ blockquote .small, blockquote footer, blockquote small{
     height: 26px;
     font-size: 19px;
 }
+/*#order .restaurants .body .row{
+	cursor: pointer;
+}*/
+#order .restaurants .body > .row{
+	padding: 8px 0;
+}
+#order .restaurants .header{
+	border-bottom: 2px solid #ddd;
+}
+#order .restaurants .body>.row:not(:last-child){
+	border-bottom: 1px solid #ddd;
+}
+#order .restaurants .body>.row:nth-child(odd){
+	background-color: #f9f9f9;
+}
