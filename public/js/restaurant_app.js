@@ -48,9 +48,9 @@ $(document).ready(function() {
 
   // Select2
   $(".select2_single").select2({
-    placeholder: "Chọn một địa điểm",
     allowClear: true
   });
+
   $(".select2_single.weekdays").select2({
     placeholder: "Chọn thứ",
     allowClear: true
@@ -134,7 +134,9 @@ $(document).ready(function() {
   }
   // END realtime update food status
 
-
+  /*
+  * SELECT FOOD IN ORDERS ROUTE
+  */
   $('#copy_food_select').click(function(){
     var $list = $('.list_food_select'),
         list_option = $list.find('div.field').find('select').html(),
@@ -236,3 +238,7 @@ function setFoods(){
   })
   $("#foods").val(data);
 }
+
+  // END SELECT FOOD IN ORDERS ROUTE
+
+  

@@ -8,33 +8,45 @@
     <!-- sidebar menu -->
     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
       <div class="menu_section">
-        <ul class="nav side-menu">
-          <li data="dashboard"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Tổng quan </a></li>
-          <li data="restaurants"><a><i class="fa fa-sitemap"></i> Chuỗi nhà hàng <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <li><a href="{{ route('restaurants.index', [getWorkspaceUrl()]) }}">Danh sách nhà hàng</a></li>
-              <li><a href="{{ route('restaurants.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
-            </ul>
-          </li>
-          <li data="employees"><a><i class="fa fa-users"></i> Nhân viên<span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <li><a href="{{ route('employees.index', [getWorkspaceUrl()]) }}">Danh sách nhân viên</a></li>
-              <li><a href="{{ route('employees.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
-            </ul>
-          </li>
-          <li data="foods"><a><i class="fa fa-cutlery"></i> Món ăn<span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <li><a href="{{ route('foods.index', [getWorkspaceUrl()]) }}">Danh sách món ăn</a></li>
-              <li><a href="{{ route('foods.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
-            </ul>
-          </li>
-          <li data="orders"><a><i class="fa fa-sticky-note-o"></i> Đơn hàng<span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <li><a href="{{ route('orders.index', [getWorkspaceUrl()]) }}">Danh sách đơn hàng</a></li>
-              <li><a href="{{ route('orders.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
-            </ul>
-          </li>
-        </ul>
+        @if(!getWorkspaceAdmin()->restaurantAdmin())
+          <ul class="nav side-menu">
+            <li data="dashboard"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Tổng quan </a></li>
+            <li data="restaurants"><a><i class="fa fa-sitemap"></i> Chuỗi nhà hàng <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="{{ route('restaurants.index', [getWorkspaceUrl()]) }}">Danh sách nhà hàng</a></li>
+                <li><a href="{{ route('restaurants.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
+              </ul>
+            </li>
+            <li data="employees"><a><i class="fa fa-users"></i> Nhân viên<span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="{{ route('employees.index', [getWorkspaceUrl()]) }}">Danh sách nhân viên</a></li>
+                <li><a href="{{ route('employees.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
+              </ul>
+            </li>
+            <li data="foods"><a><i class="fa fa-cutlery"></i> Món ăn<span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="{{ route('foods.index', [getWorkspaceUrl()]) }}">Danh sách món ăn</a></li>
+                <li><a href="{{ route('foods.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
+              </ul>
+            </li>
+            <li data="orders"><a><i class="fa fa-sticky-note-o"></i> Đơn hàng<span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="{{ route('orders.index', [getWorkspaceUrl()]) }}">Danh sách đơn hàng</a></li>
+                <li><a href="{{ route('orders.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
+              </ul>
+            </li>
+            <li data="admins"><a><i class="fa fa-tachometer"></i> Tài khoản<span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="{{ route('admins.index', [getWorkspaceUrl()]) }}">Danh sách tài khoản</a></li>
+                <li><a href="{{ route('admins.create', [getWorkspaceUrl()]) }}">Thêm mới</a></li>
+              </ul>
+            </li>
+          </ul>
+        @else
+          <ul class="nav side-menu">
+            
+          </ul>
+        @endif
       </div>
 
     </div>

@@ -35,7 +35,7 @@ class Restaurant extends Model
     public static function addFoodToAll(Food $food)
     {
         $restaurants = getWorkspace()->restaurants;
-        if($restaurants->count() == 0) return 0;
+        if($restaurants->count() == 0) return 1;
         
         foreach ($restaurants as $restaurant) {
             $result = \DB::table('food_restaurant')->insert([
@@ -46,6 +46,13 @@ class Restaurant extends Model
             if(!$result){ break; }
         }
         return $result;
+    }
+
+    public static function addAllFood(Restaurant $restaurant){
+        $foods = getWorkspace()->foods;
+        foreach ($foods as $food) {
+            $result =  $restaurant->foods()->attach($food->id);
+        }
     }
     
     public function employees_working()

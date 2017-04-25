@@ -37,5 +37,6 @@ Route::group(['namespace' => 'RestaurantApp','middleware' => 'check_workspace','
 		Route::resource('employees/{employee}/works', 'WorkController');
 		Route::resource('foods', 'FoodController');
 		Route::resource('orders', 'OrderController');
+		Route::resource('admins', 'AdminController');
 	});
 });

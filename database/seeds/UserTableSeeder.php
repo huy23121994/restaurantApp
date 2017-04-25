@@ -47,6 +47,12 @@ class UserTableSeeder extends Seeder
                 'workspace_id' => $i,
             ]);
         }
+        $roles = ['Restaurant Admin', 'Global Amin', 'Super Admin'];
+        for ($i=0; $i < count($roles); $i++) { 
+             DB::table('restaurant_roles')->insert([
+                'name' => $roles[$i],
+            ]);
+        }
         
         factory(App\Models\Restaurant::class, 4)->create();
         factory(App\Models\Employee::class, 6)->create();

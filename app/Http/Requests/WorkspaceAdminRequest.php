@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\WorkspaceAdmin;
+use App\Models\Workspace;
 
 class WorkspaceAdminRequest extends FormRequest
 {
@@ -24,15 +25,22 @@ class WorkspaceAdminRequest extends FormRequest
      */
     public function rules()
     {
-        $workspace_admin = WorkspaceAdmin::where('username',$this->route('admin'))->first();
-        $workspace_id = $this->route('workspace')->id;
+        $workspace_admin = WorkspaceAdmin::findOrFail($this->route('admin'));
+        $workspace = Workspace::where('url',$this->route('workspace'))->first();
         $except_id = '';
         if ($workspace_admin) {
             $except_id = $workspace_admin->id;
         }
         return [
-            'username' => 'required|min:5|unique:workspace_admins,username,NULL,'.$except_id.',workspace_id,'.$workspace_id,
+            'username' => 'required|regex:/^\S*$/u|min:5|unique:workspace_admins,NULL,'.$except_id.',id,workspace_id,'.$workspace->id,
             'password' => 'required|min:5',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'regex' => 'Tên đăng nhập không bao gồm dấu cách trống',
         ];
     }
 }

@@ -33,19 +33,19 @@ $('#order #check_restaurant').click(function(){
 		data = JSON.parse(data);
 		$('.restaurant_id').removeClass('text-success').addClass('text-danger').html('<i class="fa fa-times"></i>');
 		$.each(data, function(id,restaurant){
+			var restaurant_id = id;
 			if (restaurant.status == 1) { 
 				$('.restaurant_id.' + id).removeClass('text-danger').addClass('text-success').html('<i class="fa fa-check"></i>');
 			}
-			$('.restaurants .foods').html('');
+			$('.restaurants .foods.' + id).html('');
 			$.each(restaurant.foods, function(id,food){
 				var html = '<li class="row m_l_r_0 p_b_10"><div class="col-xs-6">- '+food.name+food.status+'</div><div class="col-xs-2 col-xs-offset-2 text-center p_l_0">';
-				console.log(food.name , food.status);
 				if (food.status) {
 					html += '<i class="fa fa-check text-success"></i></div></li>';
 				}else{
 					html += '<i class="fa fa-times text-danger"></i></div></li>';
 				}
-				$('.restaurants .foods').append(html);
+				$('.restaurants .foods.' + restaurant_id).append(html);
 			})
 		});
 		$this.find('i').removeClass('fa-spin');

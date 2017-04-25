@@ -49,7 +49,7 @@ class FoodController extends Controller
             $result = Restaurant::addFoodToAll($food);
             if (!$result) {
                 \DB::rollBack();
-                return back()->with('notice', 'Bạn cần phải tạo ít nhất một nhà hàng trước khi tạo món ăn!');
+                // return back()->with('notice', 'Bạn cần phải tạo ít nhất một nhà hàng trước khi tạo món ăn!');
             }else{
                 \DB::commit();
             }

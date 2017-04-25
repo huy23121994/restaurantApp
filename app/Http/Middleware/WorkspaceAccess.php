@@ -24,6 +24,8 @@ class WorkspaceAccess
             $resource = \App\Models\Restaurant::findOrFail($route->restaurant);
         }elseif ($route->order) {
             $resource = \App\Models\Order::findOrFail($route->order);
+        }elseif ($route->admin) {
+            $resource = \App\Models\WorkspaceAdmin::findOrFail($route->admin);
         }
         if ($route->workspace == $resource->workspace->url) {
             return $next($request);

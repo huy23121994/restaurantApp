@@ -1,6 +1,6 @@
 
 <h4>Add new admin</h4>
-<form action="{{ route('workspace_admin.store', [$workspace->id]) }}" method="POST" id="add_admin" form-ajax="true">
+<form action="{{ route('workspace_admin.store', [$workspace->url]) }}" method="POST" id="add_admin" form-ajax="true">
 	<div class="alert alert-danger alert-dismissible add_admin_errors" error style="display:none">
 	  	<button type="button" class="close" onclick="$('.add_admin_errors').hide()"><span>&times;</span></button>
 	  	<strong>Error!</strong>

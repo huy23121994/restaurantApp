@@ -9,8 +9,9 @@ use App\Models\WorkspaceAdmin;
 
 class WorkspaceAdminController extends Controller
 {
-    public function store(WorkspaceAdminRequest $request, Workspace $workspace)
+    public function store(WorkspaceAdminRequest $request, $workspace_url)
     {
+        $workspace = Workspace::where('url', $workspace_url)->first();
         $w_admin = new WorkspaceAdmin;
         $w_admin->username = $request->username;
         $w_admin->password = $request->password;
