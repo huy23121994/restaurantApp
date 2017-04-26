@@ -6,9 +6,11 @@
       <div class="x_panel">
         <div class="x_title">
           <h2>Danh sách nhân viên</h2>
-          <div class="x_button_helper">
-          	<a href="{{ route('employees.create',[session('workspace')->url]) }}" class="btn btn-primary btn-xs m_l_10"><i class="fa fa-user-plus"></i> Thêm mới</a>
-          </div>
+          @if(!getWorkspaceAdmin()->restaurantAdmin())
+            <div class="x_button_helper">
+            	<a href="{{ route('employees.create',[session('workspace')->url]) }}" class="btn btn-primary btn-xs m_l_10"><i class="fa fa-user-plus"></i> Thêm mới</a>
+            </div>
+          @endif
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -48,11 +50,16 @@
 		        			<td>{{ $employee->people_id }}</td>
 		        			<td>{{ $employee->gender }}</td>
                   <td>
-                    <a href="{{ route('works.index',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-info btn-xs" title="Xem công việc của {{ $employee->fullname }}"><i class="fa fa-briefcase"></i></a>
-                    <a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
-                    <a href="{{ route('employees.edit',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
-                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_confirm.{{ $employee->id }}" title="Xóa"><i class="fa fa-trash"></i></button>
-                    @include('restaurant_app.partials.modal_delete_confirm',['action'=>route('employees.destroy',[getWorkspaceUrl(), $employee->id]) , 'delete_id' => $employee->id ])
+                    @if(!getWorkspaceAdmin()->restaurantAdmin())
+                      <a href="{{ route('works.index',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-info btn-xs" title="Xem công việc của {{ $employee->fullname }}"><i class="fa fa-briefcase"></i></a>
+                      <a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
+                      <a href="{{ route('employees.edit',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
+                      <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_confirm.{{ $employee->id }}" title="Xóa"><i class="fa fa-trash"></i></button>
+                      @include('restaurant_app.partials.modal_delete_confirm',['action'=>route('employees.destroy',[getWorkspaceUrl(), $employee->id]) , 'delete_id' => $employee->id ])
+                    @else
+                      <a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
+                      <a href="{{ route('employees.edit',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
+                    @endif
                   </td>
 		        		</tr>
 	        		@endforeach

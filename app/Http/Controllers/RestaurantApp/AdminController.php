@@ -14,6 +14,7 @@ class AdminController extends Controller
     function __construct()
     {
         $this->middleware('workspace_access', ['except' => ['index','create','store']]);
+        $this->middleware('check_restaurant_role');
     }
 
     public function index()
@@ -74,8 +75,9 @@ class AdminController extends Controller
         } 
     }
 
-    public function destroy($workspace, WorkspaceAdmin $admin)
+    public function destroy($workspace, $admin)
     {
+        $admin = WorkspaceAdmin::find($admin);
         $current_admin_id = session()->get(getWorkspaceUrl() . '-admin')->id;
         if ($current_admin_id != $admin->id) {
             $admin->delete();

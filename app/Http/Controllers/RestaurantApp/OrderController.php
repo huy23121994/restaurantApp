@@ -9,13 +9,17 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        $this->middleware('workspace_access', ['except' => ['index','create','store']]);
+        $this->middleware('check_restaurant_role', ['except' => ['index']]);
+    }
+    
     public function index()
     {
+        if (getWorkspaceAdmin()->restaurantAdmin()) {
+            
+        }
         return view($this->restaurant_app_view_location . '.orders.index',[
             'orders' => getWorkspace()->orders,
         ]);
@@ -127,4 +131,5 @@ class OrderController extends Controller
             return redirect()->route('orders.index',[getWorkspaceUrl()]);
         }
     }
+
 }

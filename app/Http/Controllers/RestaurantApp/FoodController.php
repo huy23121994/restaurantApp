@@ -14,6 +14,7 @@ class FoodController extends Controller
     function __construct()
     {
         $this->middleware('workspace_access', ['except' => ['index','create','store']]);
+        $this->middleware('check_restaurant_role');
     }
     
     public function index()

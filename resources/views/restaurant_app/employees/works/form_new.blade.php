@@ -7,7 +7,7 @@
 	<div class="col-xs-12">
 		<div class="form-group">
 		    <label>Nơi làm việc</label>
-		    <select class="select2_single form-control" tabindex="-1" name="restaurant_id" style="width:100%">
+		    <select class="select2_single form-control" tabindex="-1" name="restaurant_id" style="width:100%" data-placeholder="Chọn nơi làm việc">
                 <option></option>
                 @foreach($restaurants as $restaurant)
 	                <option value="{{ $restaurant->id }}" {{ isset($work) && $restaurant->id == $work->restaurant_id ? 'selected'  : '' }}>{{ $restaurant->location }}</option>

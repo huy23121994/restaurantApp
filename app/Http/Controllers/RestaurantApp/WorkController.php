@@ -14,6 +14,7 @@ class WorkController extends Controller
     function __construct()
     {
         $this->middleware('workspace_access');
+        $this->middleware('check_restaurant_role');
     }
     
     public function index($workspace, $employee_id)

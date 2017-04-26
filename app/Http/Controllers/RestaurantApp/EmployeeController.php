@@ -13,11 +13,19 @@ class EmployeeController extends Controller
     function __construct()
     {
         $this->middleware('workspace_access', ['except' => ['index','create','store']]);
+        $this->middleware('check_restaurant_role', ['except' => ['index', 'show', 'edit', 'update']]);
     }
     
     public function index(Request $request)
     {
-        $employees = Employee::get_all_from_workspace();
+        if (getWorkspaceAdmin()->restaurantAdmin()) {
+            $restaurant = getWorkspaceAdmin()->restaurant;
+            $restaurant = Restaurant::with('employees_working')->findOrFail($restaurant->id);
+            $employees = $restaurant->employees;
+            // dd($employees);
+        }else{
+            $employees = Employee::get_all_from_workspace();
+        }
         return view('restaurant_app.employees.index', compact('employees'));
     }
 
