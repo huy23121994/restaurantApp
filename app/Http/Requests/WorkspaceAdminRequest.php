@@ -25,10 +25,13 @@ class WorkspaceAdminRequest extends FormRequest
      */
     public function rules()
     {
-        $workspace_admin = WorkspaceAdmin::findOrFail($this->route('admin'));
+        $admin = $this->route('admin');
+        if ($admin) {
+            $workspace_admin = WorkspaceAdmin::findOrFail($admin);
+        }
         $workspace = Workspace::where('url',$this->route('workspace'))->first();
         $except_id = '';
-        if ($workspace_admin) {
+        if (isset($workspace_admin)) {
             $except_id = $workspace_admin->id;
         }
         return [

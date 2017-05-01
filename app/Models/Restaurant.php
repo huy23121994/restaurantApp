@@ -24,15 +24,19 @@ class Restaurant extends Model
 
     public function foods()
     {
-        return $this->belongsToMany(Food::class)->withPivot('status');
+        return $this->belongsToMany(Food::class)->withPivot('number');
     }
 
     public function foods_active()
     {
-        return $this->belongsToMany(Food::class)->wherePivot('status',1);
+        return $this->belongsToMany(Food::class)->wherePivot('number','>', 0)->withPivot('number');
     }
 
-    public static function addFoodToAll(Food $food)
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    public static function addFoodToAll(Food $food, $number = 0)
     {
         $restaurants = getWorkspace()->restaurants;
         if($restaurants->count() == 0) return 1;
@@ -41,7 +45,7 @@ class Restaurant extends Model
             $result = \DB::table('food_restaurant')->insert([
                 'food_id' => $food->id,
                 'restaurant_id' => $restaurant->id,
-                'status' => 1
+                'number' => $number
             ]);
             if(!$result){ break; }
         }

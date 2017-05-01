@@ -36,7 +36,9 @@ Route::group(['namespace' => 'RestaurantApp','middleware' => 'check_workspace','
 		Route::resource('employees', 'EmployeeController');
 		Route::resource('employees/{employee}/works', 'WorkController');
 		Route::resource('foods', 'FoodController');
+		Route::post('foods/{food}/update_number', 'FoodController@update_food_number')->name('foods.update_number');
 		Route::resource('orders', 'OrderController');
+		Route::post('orders/{order}/update_status', 'OrderController@update_status')->name('orders.updateStatus');
 		Route::resource('admins', 'AdminController');
 	});
 });

@@ -25,7 +25,7 @@ class OrderRequest extends FormRequest
     {
         $workspace = \App\Models\Workspace::where('url',$this->route('workspace'))->first();
         $workspace_id = $workspace->id;
-        $order = $this->route('order');
+        $order = \App\Models\Order::findOrFail($this->route('order'));
         $except = '';
         if ($order) {
             $except = $order->id;

@@ -9,11 +9,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        if( getWorkspaceAdmin()->restaurantAdmin() ){
-    		return view($this->restaurant_app_view_location . '.restaurants.show',[
-    			'restaurant' => getWorkspaceAdmin()->restaurant,
-			]);
-    	}
+    	if( getWorkspaceAdmin()->restaurantAdmin() ){
+            $restaurant = getWorkspaceAdmin()->restaurant;
+	        return view($this->restaurant_app_view_location.'.restaurants.show', compact('restaurant'));
+        }
     	return 'dashboard';
     }
 }

@@ -27,6 +27,9 @@ class LoginController extends Controller
             if ($user) {
                 if ($user->password == $request->password) {
                     session([$workspace->url.'-admin' => $user]);
+                    if ($user->restaurantAdmin()) {
+                        return redirect($workspace->url);
+                    }
                     return redirect($workspace->url.'/employees');
                 }else{
                     return back()->with('errors','Mật khẩu không đúng')

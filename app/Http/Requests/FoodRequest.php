@@ -29,7 +29,7 @@ class FoodRequest extends FormRequest
         return [
             'name' => 'required',
             'avatar' => 'image',
-            // unique food_id,workspace_id
+            'number' => 'alpha_num',
             'food_id' => 'required|unique:foods,NULL,'.$this->route('food').',id,workspace_id,'.$workspace_id,
         ];
     }

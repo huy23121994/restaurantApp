@@ -46,10 +46,9 @@
           <ul class="nav side-menu">
             <li data="employees"><a href="{{ route('employees.index', [getWorkspaceUrl()]) }}"><i class="fa fa-users"></i> Nhân viên</a>
             </li>
-            <li data="orders"><a><i class="fa fa-sticky-note-o"></i> Đơn hàng<span class="fa fa-chevron-down"></span></a>
-              <ul class="nav child_menu">
-                <li><a href="{{ route('orders.index', [getWorkspaceUrl()]) }}">Danh sách đơn hàng</a></li>
-              </ul>
+            <li data="foods"><a href="{{ route('foods.index', [getWorkspaceUrl()]) }}"><i class="fa fa-cutlery"></i> Món ăn</a>
+            </li>
+            <li data="orders"><a href="{{ route('orders.index', [getWorkspaceUrl()]) }}"><i class="fa fa-sticky-note-o"></i> Đơn hàng</a>
             </li>
             <li data="restaurants"><a href="{{ route('app_index', [getWorkspaceUrl()]) }}"><i class="fa fa-info-circle"></i> Thông tin nhà hàng </a>
             </li>

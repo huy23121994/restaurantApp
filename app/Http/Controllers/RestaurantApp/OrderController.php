@@ -6,22 +6,26 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
+use App\Models\WorkspaceAdmin;
 
 class OrderController extends Controller
 {
     function __construct()
     {
         $this->middleware('workspace_access', ['except' => ['index','create','store']]);
-        $this->middleware('check_restaurant_role', ['except' => ['index']]);
+        $this->middleware('check_restaurant_role', ['except' => ['index','show','update_status']]);
     }
     
     public function index()
     {
-        if (getWorkspaceAdmin()->restaurantAdmin()) {
-            
+        $admin = WorkspaceAdmin::find(getWorkspaceAdmin()->id);
+        if ($admin->restaurantAdmin()) {
+            $orders = $admin->restaurant->orders;
+        }else{
+            $orders = getWorkspace()->orders;
         }
         return view($this->restaurant_app_view_location . '.orders.index',[
-            'orders' => getWorkspace()->orders,
+            'orders' => $orders,
         ]);
     }
 
@@ -51,6 +55,8 @@ class OrderController extends Controller
             'customer' => $request->customer,
             'address' => $request->address,
             'description' => $request->description,
+            'restaurant_id' => $request->restaurant,
+            'status' => 0,
         ]);
         \DB::beginTransaction();
         if (getWorkspace()->orders()->save($order)) {
@@ -101,13 +107,15 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(OrderRequest $request, $workspace, Order $order)
+    public function update(OrderRequest $request, $workspace, $order)
     {
+        $order = Order::find($order);
         $result = $order->update([
             'order_id' => $request->order_id,
             'customer' => $request->customer,
             'address' => $request->address,
             'description' => $request->description,
+            'restaurant_id' => $request->restaurant,
         ]);
         if ($result) {
             $order->foods()->detach();
@@ -132,4 +140,15 @@ class OrderController extends Controller
         }
     }
 
+    public function update_status(Request $request,$workspace, $order)
+    {
+        $order = Order::findOrFail($order);
+        // dd($request->all());
+        // dd($order->status['value']);
+        $update = $order->update(['status' => $request->status]);
+        if ($update) {
+            return back();
+        }
+        return 'ok';
+    }
 }

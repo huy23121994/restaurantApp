@@ -21,6 +21,9 @@
                         <th>Khách hàng</th>
                         <th>Địa chỉ</th>
                         <th>Thông tin bổ sung</th>
+                        @if( getWorkspaceAdmin()->restaurantAdmin() )
+                          <th>Trạng thái</th>
+                        @endif
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -32,11 +35,16 @@
                         <td>{{ $order->customer }}</td>
                         <td>{{ $order->address }}</td>
                         <td>{{ $order->description }}</td>
+                        @if( getWorkspaceAdmin()->restaurantAdmin() )
+                          <td><button class="btn btn-xs btn-default">{{ $order->status['status'] }}</button></td>
+                        @endif
                         <td>
                           <a href="{{ route('orders.show',[getWorkspaceUrl(), $order->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
-                          <a href="{{ route('orders.edit',[getWorkspaceUrl(), $order->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
-                          <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_confirm.{{ $order->id }}" title="Xóa"><i class="fa fa-trash"></i></button>
-                          @include('restaurant_app.partials.modal_delete_confirm',['action'=>route('orders.destroy',[getWorkspaceUrl(), $order->id]) , 'delete_id' => $order->id ])
+                          @if( !getWorkspaceAdmin()->restaurantAdmin() )
+                            <a href="{{ route('orders.edit',[getWorkspaceUrl(), $order->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
+                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_confirm.{{ $order->id }}" title="Xóa"><i class="fa fa-trash"></i></button>
+                            @include('restaurant_app.partials.modal_delete_confirm',['action'=>route('orders.destroy',[getWorkspaceUrl(), $order->id]) , 'delete_id' => $order->id ])
+                          @endif
                         </td>
                       </tr>
                     @endforeach

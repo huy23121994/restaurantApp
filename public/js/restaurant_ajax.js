@@ -29,7 +29,7 @@ $('#order #check_restaurant').click(function(){
 		food_id = food_data[i].split('|');
 		foods.push(food_id[0]);
 	}
-	$.post(url,{ foods : foods },function(data){
+	$.post(url,{ foods : foods, food_data : food_data },function(data){
 		data = JSON.parse(data);
 		$('.restaurant_id').removeClass('text-success').addClass('text-danger').html('<i class="fa fa-times"></i>');
 		$.each(data, function(id,restaurant){
@@ -39,7 +39,7 @@ $('#order #check_restaurant').click(function(){
 			}
 			$('.restaurants .foods.' + id).html('');
 			$.each(restaurant.foods, function(id,food){
-				var html = '<li class="row m_l_r_0 p_b_10"><div class="col-xs-6">- '+food.name+food.status+'</div><div class="col-xs-2 col-xs-offset-2 text-center p_l_0">';
+				var html = '<li class="row m_l_r_0 p_b_10"><div class="col-xs-6">- '+food.name+'</div><div class="col-xs-2 text-left p_l_0">'+food.number+'</div><div class="col-xs-2 text-center p_l_0">';
 				if (food.status) {
 					html += '<i class="fa fa-check text-success"></i></div></li>';
 				}else{
@@ -50,4 +50,24 @@ $('#order #check_restaurant').click(function(){
 		});
 		$this.find('i').removeClass('fa-spin');
 	});
+})
+
+$('.inEdit .submit').click(function(){
+	var $number_el = $(this).parents('.action').siblings('.number'),
+		$action_el = $(this).parent(),
+		number = $number_el.find('input[name="number"]').val();
+	$.post(
+		$(this).data('url'),
+		{
+			restaurant_id : $(this).data('restaurant'),
+			number: number
+		},
+		function(data){
+			if (data) {
+				$action_el.hide().siblings('.edit_food_number').show();
+				$number_el.find('.text').html(number).show();
+				$number_el.find('.input').hide();
+			}
+		}
+	);
 })

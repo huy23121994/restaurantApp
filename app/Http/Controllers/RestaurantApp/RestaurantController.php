@@ -78,7 +78,11 @@ class RestaurantController extends Controller
      */
     public function show($workspace, $restaurant_id)
     {
-        $restaurant = Restaurant::findOrFail($restaurant_id);
+        if( getWorkspaceAdmin()->restaurantAdmin() ){
+            $restaurant = getWorkspaceAdmin()->restaurant;
+        }else{
+            $restaurant = Restaurant::findOrFail($restaurant_id);
+        }
         return view($this->restaurant_app_view_location.'.restaurants.show', compact('restaurant'));
     }
 
@@ -142,20 +146,27 @@ class RestaurantController extends Controller
     {
         $restaurants = getWorkspace()->restaurants;
         $data = [];
+
+        // Proccess foods data 'x|x' to array [x,x]
+        $food_data = [];
+        foreach ($request->food_data as $food) {
+            $x = explodeData($food);
+            $food_data[$x[0]] = $x[1];
+        }
+        $foods = $request->foods ? $request->foods : [] ;
+        
         foreach ($restaurants as $restaurant) {
-            $foods_active = $restaurant->foods_active->pluck('id')->toArray();
-            $food_data = $request->foods ? $request->foods : [] ;
-            if ( count(array_intersect($foods_active, $food_data)) == count($food_data) ) {
-                $status = 1;
-            }else{
-                $status = 0;
-            }
-            $data[$restaurant->id] = ['status' => $status];
-            foreach ($restaurant->foods->whereIn('id', $food_data) as $food) {
+            $data[$restaurant->id] = ['status' => 1];
+            foreach ($restaurant->foods->whereIn('id', $foods) as $food) {
                 $data[$restaurant->id]['foods'][$food->id] = [
                     'name' => $food->name,
-                    'status' => $food->pivot->status 
+                    'number' => $food->pivot->number,
+                    'status' => 1
                 ];
+                if ($food_data[$food->id] > $food->pivot->number) {
+                    $data[$restaurant->id]['status'] = 0;
+                    $data[$restaurant->id]['foods'][$food->id]['status'] = 0;
+                }
             }
         }
         return json_encode($data);

@@ -9,7 +9,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-        	<div class="col-xs-12 col-sm-6">
+        	<div class="col-xs-12 col-sm-5">
         		@include('restaurant_app.foods.form_new', ['action' => route('foods.store',[getWorkspaceUrl()])] )
 			</div>
 	  	</div>

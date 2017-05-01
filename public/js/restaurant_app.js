@@ -241,4 +241,20 @@ function setFoods(){
 
   // END SELECT FOOD IN ORDERS ROUTE
 
+// UPDATE FOOD NUMBER IN RESTAURANT
+$('.edit_food_number').click(function(){
+  $(this).hide().siblings('.inEdit').show();
+  var $el = $(this).parent().siblings('.number');
+  $el.find('.text').hide();
+  $el.find('.input').show();
+})  
+
+$('.inEdit .cancle').click(function(){
+  $(this).parent().hide().siblings('.edit_food_number').show();
+  var $el = $(this).parents('.action').siblings('.number');
+  $el.find('.text').show();
+  $el.find('.input').hide();
+})
+// END UPDATE FOOD NUMBER IN RESTAURANT
+
   

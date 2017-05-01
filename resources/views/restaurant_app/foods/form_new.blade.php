@@ -11,13 +11,20 @@
     		<span class="help-block">{{ $errors->first('name') }}</span>
     	@endif
   	</div>
-  	<div class="form-group {{ $errors->has('food_id') ? 'has-error' : '' }}">
-    	<label>Mã món ăn</label>
-    	<input type="text" class="form-control" name="food_id" placeholder="Mã món ăn" value="{{ isset($food) ? $food->food_id : old('food_id') }}">
-    	@if($errors->has('food_id'))
-    		<span class="help-block">{{ $errors->first('food_id') }}</span>
-    	@endif
-  	</div>
+    <div class="form-group {{ $errors->has('food_id') ? 'has-error' : '' }}">
+      <label>Mã món ăn</label>
+      <input type="text" class="form-control" name="food_id" placeholder="Mã món ăn" value="{{ isset($food) ? $food->food_id : old('food_id') }}">
+      @if($errors->has('food_id'))
+        <span class="help-block">{{ $errors->first('food_id') }}</span>
+      @endif
+    </div>
+    <div class="form-group {{ $errors->has('number') ? 'has-error' : '' }}">
+      <label>Cập nhật số lượng</label>
+      <input type="number" class="form-control" name="number" placeholder="Số lượng" value="{{ old('number') }}" min="0">
+      @if($errors->has('number'))
+        <span class="help-block">{{ $errors->first('number') }}</span>
+      @endif
+    </div>
   	<div class="form-group">
     	<label>Thông tin bổ sung</label>
     	<textarea name="description" placeholder="Thông tin bổ sung" class="form-control" rows="3">{{ isset($food) ? $food->description : old('description') }}</textarea>

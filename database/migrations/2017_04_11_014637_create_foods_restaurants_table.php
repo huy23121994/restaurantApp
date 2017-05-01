@@ -17,7 +17,7 @@ class CreateFoodsRestaurantsTable extends Migration
             $table->increments('id');
             $table->integer('restaurant_id')->unsigned();
             $table->integer('food_id')->unsigned();
-            $table->boolean('status')->default(1);
+            $table->integer('number')->default(1);
             $table->timestamps();
 
             $table->foreign('food_id')->references('id')->on('foods')->onDelete('cascade');
