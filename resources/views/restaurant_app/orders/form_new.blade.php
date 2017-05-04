@@ -25,6 +25,26 @@
             <label>Thông tin bổ sung</label>
             <textarea name="description" placeholder="Thông tin bổ sung" class="form-control" rows="3">{{ isset($order) ? $order->description : old('description') }}</textarea>
           </div>
+          <div class="form-group">
+            <label>Trạng thái</label>
+            <select class="form-control" name="status">
+              <option value="0" {{ isset($order) && $order->status['value'] == 0  ? 'selected' : '' }}>
+                Chưa xử lý
+              </option>
+              <option value="1" {{ isset($order) && $order->status['value'] == 1  ? 'selected' : '' }}>
+                Đang xử lý
+              </option>
+              <option value="2" {{ isset($order) && $order->status['value'] == 2  ? 'selected' : '' }}>
+                Đã xử lý
+              </option>
+              <option value="3" {{ isset($order) && $order->status['value'] == 3  ? 'selected' : '' }}>
+                Đơn hàng bị hủy
+              </option>
+              <option value="4" {{ isset($order) && $order->status['value'] == 4  ? 'selected' : '' }}>
+                Hủy yêu cầu
+              </option>
+            </select>
+          </div>
       </div>
       <div class="col-sm-6 col-xs-12 col-sm-offset-1">
         @include('restaurant_app.orders._select_food')

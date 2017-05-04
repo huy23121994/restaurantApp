@@ -16,28 +16,34 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>STT</th>
+                        {{-- <th>STT</th> --}}
                         <th>Mã đơn hàng</th>
                         <th>Khách hàng</th>
                         <th>Địa chỉ</th>
                         <th>Thông tin bổ sung</th>
-                        @if( getWorkspaceAdmin()->restaurantAdmin() )
-                          <th>Trạng thái</th>
+                        @if( !getWorkspaceAdmin()->restaurantAdmin() )
+                          <th>Nhà hàng</th>
                         @endif
+                        <th width="150">Trạng thái</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="list_orders">
                     @foreach($orders as $order)
-                      <tr>
-                        <td>{{ $loop->index + 1 }}</td>
+                      <tr class="order_{{ $order->id }}">
+                        {{-- <td>{{ $loop->index + 1 }}</td> --}}
                         <td><a href="{{ route('orders.show',[getWorkspaceUrl(), $order->id]) }}" class="text-primary">{{ $order->order_id }}</a></td>
                         <td>{{ $order->customer }}</td>
                         <td>{{ $order->address }}</td>
                         <td>{{ $order->description }}</td>
-                        @if( getWorkspaceAdmin()->restaurantAdmin() )
-                          <td><button class="btn btn-xs btn-default">{{ $order->status['status'] }}</button></td>
+                        @if( !getWorkspaceAdmin()->restaurantAdmin() )
+                          <td>{{ $order->restaurant->name }}</td>
                         @endif
+                        <td class="status">
+                          <button class="btn btn-xs {{ $order->status['class'] }}">
+                            {{ $order->status['status'] }}
+                          </button>
+                        </td>
                         <td>
                           <a href="{{ route('orders.show',[getWorkspaceUrl(), $order->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
                           @if( !getWorkspaceAdmin()->restaurantAdmin() )

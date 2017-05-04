@@ -18,7 +18,7 @@
 					</div>
 					<div class="col-xs-2 restaurant_id {{$restaurant->id}} text-center cursor_auto"><i class="fa fa-question-circle"></i></div>
 					<div class="col-xs-2 text-center cursor_auto">
-						<input type="radio" class="flat" name="restaurant" value="{{ $restaurant->id }}" {{ $restaurant->id == $order->restaurant_id ? 'checked' : '' }}>
+						<input type="radio" class="flat" name="restaurant" value="{{ $restaurant->id }}" {{ isset($order) && $restaurant->id == $order->restaurant_id ? 'checked' : '' }}>
 					</div>
 				</div>
 				<ul class="collapse {{$restaurant->id}} foods m_b_0 p_l_20">

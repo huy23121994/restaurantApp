@@ -24,32 +24,36 @@ $('#order #check_restaurant').click(function(){
 		url = $this.attr('url'),
 		food_data = $('#foods').val(),
 		foods = [];
-	$this.find('i').addClass('fa-spin');
-	for (var i = 0; i < food_data.length; i++) {
-		food_id = food_data[i].split('|');
-		foods.push(food_id[0]);
-	}
-	$.post(url,{ foods : foods, food_data : food_data },function(data){
-		data = JSON.parse(data);
-		$('.restaurant_id').removeClass('text-success').addClass('text-danger').html('<i class="fa fa-times"></i>');
-		$.each(data, function(id,restaurant){
-			var restaurant_id = id;
-			if (restaurant.status == 1) { 
-				$('.restaurant_id.' + id).removeClass('text-danger').addClass('text-success').html('<i class="fa fa-check"></i>');
-			}
-			$('.restaurants .foods.' + id).html('');
-			$.each(restaurant.foods, function(id,food){
-				var html = '<li class="row m_l_r_0 p_b_10"><div class="col-xs-6">- '+food.name+'</div><div class="col-xs-2 text-left p_l_0">'+food.number+'</div><div class="col-xs-2 text-center p_l_0">';
-				if (food.status) {
-					html += '<i class="fa fa-check text-success"></i></div></li>';
-				}else{
-					html += '<i class="fa fa-times text-danger"></i></div></li>';
+	if (food_data.length == 0) {
+		alert('Cần chọn ít nhất một món ăn!');
+	}else{
+		$this.find('i').addClass('fa-spin');
+		for (var i = 0; i < food_data.length; i++) {
+			food_id = food_data[i].split('|');
+			foods.push(food_id[0]);
+		}
+		$.post(url,{ foods : foods, food_data : food_data },function(data){
+			data = JSON.parse(data);
+			$('.restaurant_id').removeClass('text-success').addClass('text-danger').html('<i class="fa fa-times"></i>');
+			$.each(data, function(id,restaurant){
+				var restaurant_id = id;
+				if (restaurant.status == 1) { 
+					$('.restaurant_id.' + id).removeClass('text-danger').addClass('text-success').html('<i class="fa fa-check"></i>');
 				}
-				$('.restaurants .foods.' + restaurant_id).append(html);
-			})
+				$('.restaurants .foods.' + id).html('');
+				$.each(restaurant.foods, function(id,food){
+					var html = '<li class="row m_l_r_0 p_b_10"><div class="col-xs-6">- '+food.name+'</div><div class="col-xs-2 text-left p_l_0">'+food.number+'</div><div class="col-xs-2 text-center p_l_0">';
+					if (food.status) {
+						html += '<i class="fa fa-check text-success"></i></div></li>';
+					}else{
+						html += '<i class="fa fa-times text-danger"></i></div></li>';
+					}
+					$('.restaurants .foods.' + restaurant_id).append(html);
+				})
+			});
+			$this.find('i').removeClass('fa-spin');
 		});
-		$this.find('i').removeClass('fa-spin');
-	});
+	}
 })
 
 $('.inEdit .submit').click(function(){

@@ -27,7 +27,7 @@
                   </select>
                 </form>
               @else
-                <button class="btn btn-default btn-xs">{{ $order->status['status'] }}</button>
+                <button class="btn btn-xs {{ $order->status['class'] }}">{{ $order->status['status'] }}</button>
               @endif
             </small>
             <small>Thông tin bổ sung: <span class="text-primary">{{ $order->description }}</span></small>

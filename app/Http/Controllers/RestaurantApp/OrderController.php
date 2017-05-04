@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\WorkspaceAdmin;
+use App\Events\UpdateOrderStatus;
+use App\Events\DataPusher;
 
 class OrderController extends Controller
 {
@@ -14,6 +16,7 @@ class OrderController extends Controller
     {
         $this->middleware('workspace_access', ['except' => ['index','create','store']]);
         $this->middleware('check_restaurant_role', ['except' => ['index','show','update_status']]);
+        $this->middleware('restaurant_noti', ['except' => ['index','show','update_status']]);
     }
     
     public function index()
@@ -29,11 +32,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view($this->restaurant_app_view_location . '.orders.create', [
@@ -42,12 +40,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(OrderRequest $request, $workspace)
     {
         $order = new Order([
@@ -56,7 +48,8 @@ class OrderController extends Controller
             'address' => $request->address,
             'description' => $request->description,
             'restaurant_id' => $request->restaurant,
-            'status' => 0,
+            'status' => $request->status,
+            'workspace_admin_id' => getWorkspaceAdmin()->id,
         ]);
         \DB::beginTransaction();
         if (getWorkspace()->orders()->save($order)) {
@@ -66,16 +59,13 @@ class OrderController extends Controller
                 if ($result) \DB::rollBack();
             }
             \DB::commit();
+            $data = $order->toArray();
+            $data['url'] = route('orders.show',[getWorkspaceUrl(),$order->id]);
+            event(new DataPusher(json_encode($data)));
             return redirect()->route('orders.show',[getWorkspaceUrl(),$order->id]);
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($workspace, $order_id)
     {
         $order = Order::with('foods')->findOrFail($order_id);
@@ -84,12 +74,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($workspace, $order_id)
     {
         $order = Order::with('foods')->findOrFail($order_id);
@@ -100,13 +84,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(OrderRequest $request, $workspace, $order)
     {
         $order = Order::find($order);
@@ -116,6 +93,7 @@ class OrderController extends Controller
             'address' => $request->address,
             'description' => $request->description,
             'restaurant_id' => $request->restaurant,
+            'status' => $request->status,
         ]);
         if ($result) {
             $order->foods()->detach();
@@ -127,12 +105,6 @@ class OrderController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($workspace, Order $order)
     {
         if ($order->delete()) {
@@ -143,12 +115,11 @@ class OrderController extends Controller
     public function update_status(Request $request,$workspace, $order)
     {
         $order = Order::findOrFail($order);
-        // dd($request->all());
-        // dd($order->status['value']);
         $update = $order->update(['status' => $request->status]);
         if ($update) {
+            $data = json_encode($order);
+            event(new UpdateOrderStatus($data));
             return back();
         }
-        return 'ok';
     }
 }

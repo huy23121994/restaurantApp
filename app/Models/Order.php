@@ -36,19 +36,19 @@ class Order extends Model
     {
         switch ($value) {
             case 0:
-                $result = [ 'status' => 'Chưa xử lý', 'value' => 0];
+                $result = [ 'status' => 'Chưa xử lý', 'value' => 0, 'class' => 'btn-info'];
                 break;
             case 1:
-                $result = [ 'status' => 'Đang xử lý', 'value' => 1];
+                $result = [ 'status' => 'Đang xử lý', 'value' => 1, 'class' => 'btn-warning'];
                 break;
             case 2:
-                $result = [ 'status' => 'Đã xử lý', 'value' => 2];
+                $result = [ 'status' => 'Đã xử lý', 'value' => 2, 'class' => 'btn-success'];
                 break;
             case 3:
-                $result = [ 'status' => 'Đơn hàng bị hủy', 'value' => 3];
+                $result = [ 'status' => 'Đơn hàng bị hủy', 'value' => 3, 'class' => 'btn-danger'];
                 break;
             case 4:
-                $result = [ 'status' => 'Hủy yêu cầu', 'value' => 4];
+                $result = [ 'status' => 'Hủy yêu cầu', 'value' => 4, 'class' => 'btn-danger'];
                 break;
         }
         return $result;

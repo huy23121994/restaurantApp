@@ -46,7 +46,7 @@ class LoginController extends Controller
     public function logout(Request $request, $workspace)
     {
         $workspace = session('workspace');
-        session()->forget($workspace->url.'-admin');
+        session()->flush();
     	return redirect( $workspace->url . '/login');
     }
 }

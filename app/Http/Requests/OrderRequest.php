@@ -25,9 +25,10 @@ class OrderRequest extends FormRequest
     {
         $workspace = \App\Models\Workspace::where('url',$this->route('workspace'))->first();
         $workspace_id = $workspace->id;
-        $order = \App\Models\Order::findOrFail($this->route('order'));
+        $order = $this->route('order');
         $except = '';
         if ($order) {
+            $order = \App\Models\Order::findOrFail($this->route('order'));
             $except = $order->id;
         }
         return [
@@ -35,6 +36,14 @@ class OrderRequest extends FormRequest
             'customer' => 'required',
             'address' => 'required',
             'foods' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Không được bỏ trống trường này',
+            'unique' => 'Mã đơn hàng này đã tồn tại'
         ];
     }
 }

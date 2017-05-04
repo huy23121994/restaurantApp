@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'workspace_logged' => \App\Http\Middleware\CheckWorkspaceLogin::class,
         'workspace_access' => \App\Http\Middleware\WorkspaceAccess::class,
         'check_restaurant_role' => \App\Http\Middleware\CheckRestaurantRole::class,
+        'restaurant_noti' => \App\Http\Middleware\RestaurantNotification::class,
     ];
 }

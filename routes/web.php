@@ -25,7 +25,7 @@ Route::group(['namespace' => 'RestaurantApp','middleware' => 'check_workspace','
 	    Route::post('login','LoginController@login');
 	    Route::post('logout','LoginController@logout')->name('workspace.logout');
 	});
-	Route::group(['middleware' => 'workspace_logged'],function(){
+	Route::group(['middleware' => ['workspace_logged','restaurant_noti']],function(){
 		Route::get('/', 'DashboardController@index')->name('app_index');
 		Route::get('dashboard', 'DashboardController@index')->name('ws_dashboard');
 		Route::resource('restaurants', 'RestaurantController');
