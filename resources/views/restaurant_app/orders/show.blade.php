@@ -13,7 +13,7 @@
             <small>Mã đơn hàng: <span class="text-primary">{{ $order->order_id }}</span></small>
             <small>Tên khách hàng: <span class="text-primary">{{ $order->customer }}</span></small>
             <small>Địa chỉ: <span class="text-primary">{{ $order->address }}</span></small>
-            <small>Nhà hàng xử lý: <span class="text-primary">{{ $order->restaurant->name }}</span></small>
+            <small>Nhà hàng xử lý: <span class="text-primary">{{ $order->restaurant ? $order->restaurant->name : '' }}</span></small>
             <small>Trạng thái: 
               @if(getWorkspaceAdmin()->restaurantAdmin())
                 <form action="{{ route('orders.updateStatus', [getWorkspaceUrl(), $order->id]) }}" method="POST" class="updateStatus" style="display: inline-table;">

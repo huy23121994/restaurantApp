@@ -2,13 +2,16 @@
 
 @section('content')
 <div class="row">
+  <button id="test">ok</button>
     <div class="col-xs-12">
       <div class="x_panel">
         <div class="x_title">
           <h2>Danh sách đơn hàng</h2>
-          <div class="x_button_helper">
-            <a href="{{ route('orders.create',[getWorkspaceUrl()]) }}" class="btn btn-primary btn-xs m_l_10"><i class="fa fa-plus"></i> Thêm mới</a>
-          </div>
+          @if(!getWorkspaceAdmin()->restaurantAdmin())
+            <div class="x_button_helper">
+              <a href="{{ route('orders.create',[getWorkspaceUrl()]) }}" class="btn btn-primary btn-xs m_l_10"><i class="fa fa-plus"></i> Thêm mới</a>
+            </div>
+          @endif
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -37,7 +40,7 @@
                         <td>{{ $order->address }}</td>
                         <td>{{ $order->description }}</td>
                         @if( !getWorkspaceAdmin()->restaurantAdmin() )
-                          <td>{{ $order->restaurant->name }}</td>
+                          <td>{{ $order->restaurant ? $order->restaurant->name : ''}}</td>
                         @endif
                         <td class="status">
                           <button class="btn btn-xs {{ $order->status['class'] }}">
