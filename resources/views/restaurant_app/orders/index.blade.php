@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="row">
-  <button id="test">ok</button>
     <div class="col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -15,55 +14,47 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-        	@if( $orders->count() > 0 )
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        {{-- <th>STT</th> --}}
-                        <th>Mã đơn hàng</th>
-                        <th>Khách hàng</th>
-                        <th>Địa chỉ</th>
-                        <th>Thông tin bổ sung</th>
+          <table class="table table-striped" id="datatable">
+              <thead>
+                  <tr>
+                      <th>STT</th>
+                      <th class="hide">counter</th>
+                      <th>Mã đơn hàng</th>
+                      <th>Khách hàng</th>
+                      <th>Địa chỉ</th>
+                      <th>Thông tin bổ sung</th>
+                      <th class="{{ !getWorkspaceAdmin()->restaurantAdmin() ? '' : 'hide' }}">Nhà hàng</th>
+                      <th width="150">Trạng thái</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody class="list_orders">
+                  @foreach($orders as $order)
+                    <tr">
+                      <td></td>
+                      <td class="hide"><i class="order_{{ $order->id }}"></i></td>
+                      <td><a href="{{ route('orders.show',[getWorkspaceUrl(), $order->id]) }}" class="text-primary">{{ $order->order_id }}</a></td>
+                      <td>{{ $order->customer }}</td>
+                      <td>{{ $order->address }}</td>
+                      <td>{{ $order->description }}</td>
+                      <td class="{{ !getWorkspaceAdmin()->restaurantAdmin() ? '' : 'hide' }}">{{ $order->restaurant ? $order->restaurant->name : ''}}</td>
+                      <td class="status">
+                        <button class="btn btn-xs {{ $order->status['class'] }}">
+                          {{ $order->status['status'] }}
+                        </button>
+                      </td>
+                      <td>
+                        <a href="{{ route('orders.show',[getWorkspaceUrl(), $order->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
                         @if( !getWorkspaceAdmin()->restaurantAdmin() )
-                          <th>Nhà hàng</th>
+                          <a href="{{ route('orders.edit',[getWorkspaceUrl(), $order->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
+                          <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_confirm.{{ $order->id }}" title="Xóa"><i class="fa fa-trash"></i></button>
+                          @include('restaurant_app.partials.modal_delete_confirm',['action'=>route('orders.destroy',[getWorkspaceUrl(), $order->id]) , 'delete_id' => $order->id ])
                         @endif
-                        <th width="150">Trạng thái</th>
-                        <th>Action</th>
+                      </td>
                     </tr>
-                </thead>
-                <tbody class="list_orders">
-                    @foreach($orders as $order)
-                      <tr class="order_{{ $order->id }}">
-                        {{-- <td>{{ $loop->index + 1 }}</td> --}}
-                        <td><a href="{{ route('orders.show',[getWorkspaceUrl(), $order->id]) }}" class="text-primary">{{ $order->order_id }}</a></td>
-                        <td>{{ $order->customer }}</td>
-                        <td>{{ $order->address }}</td>
-                        <td>{{ $order->description }}</td>
-                        @if( !getWorkspaceAdmin()->restaurantAdmin() )
-                          <td>{{ $order->restaurant ? $order->restaurant->name : ''}}</td>
-                        @endif
-                        <td class="status">
-                          <button class="btn btn-xs {{ $order->status['class'] }}">
-                            {{ $order->status['status'] }}
-                          </button>
-                        </td>
-                        <td>
-                          <a href="{{ route('orders.show',[getWorkspaceUrl(), $order->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
-                          @if( !getWorkspaceAdmin()->restaurantAdmin() )
-                            <a href="{{ route('orders.edit',[getWorkspaceUrl(), $order->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
-                            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_confirm.{{ $order->id }}" title="Xóa"><i class="fa fa-trash"></i></button>
-                            @include('restaurant_app.partials.modal_delete_confirm',['action'=>route('orders.destroy',[getWorkspaceUrl(), $order->id]) , 'delete_id' => $order->id ])
-                          @endif
-                        </td>
-                      </tr>
-                    @endforeach
-                </tbody>
-            </table>
-          @else
-            <blockquote>
-              <p>Chưa có đơn hàng nào để hiển thị.</p>
-            </blockquote>
-          @endif
+                  @endforeach
+              </tbody>
+          </table>
 	  	</div>
       </div>
     </div>

@@ -24,6 +24,8 @@ class OrderController extends Controller
         $admin = WorkspaceAdmin::find(getWorkspaceAdmin()->id);
         if ($admin->restaurantAdmin()) {
             $orders = $admin->restaurant->orders;
+        }elseif ($admin->globalAdmin()) {
+            $orders = $admin->orders;
         }else{
             $orders = getWorkspace()->orders;
         }
@@ -49,7 +51,7 @@ class OrderController extends Controller
             'description' => $request->description,
             'restaurant_id' => $request->restaurant,
             'status' => $request->status,
-            'workspace_admin_id' => getWorkspaceAdmin()->id,
+            'admin_id' => getWorkspaceAdmin()->id,
         ]);
         \DB::beginTransaction();
         if (getWorkspace()->orders()->save($order)) {
@@ -61,6 +63,7 @@ class OrderController extends Controller
             \DB::commit();
             $data = $order->toArray();
             $data['url'] = route('orders.show',[getWorkspaceUrl(),$order->id]);
+            $data['restaurant'] = $order->restaurant->name;
             event(new DataPusher(json_encode($data)));
             return redirect()->route('orders.show',[getWorkspaceUrl(),$order->id]);
         }
@@ -105,8 +108,9 @@ class OrderController extends Controller
         }
     }
 
-    public function destroy($workspace, Order $order)
+    public function destroy($workspace, $order)
     {
+        $order = Order::findOrFail($order);
         if ($order->delete()) {
             return redirect()->route('orders.index',[getWorkspaceUrl()]);
         }

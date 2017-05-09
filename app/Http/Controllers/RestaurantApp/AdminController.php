@@ -29,6 +29,7 @@ class AdminController extends Controller
     {
         return view('restaurant_app.admins.create', [
             'restaurants' => getWorkspace()->restaurants,
+            'employees' => getWorkspace()->employees,
             'roles' => RestaurantRole::all(),
         ]);
     }
@@ -41,6 +42,7 @@ class AdminController extends Controller
         $admin->restaurant_id = $request->restaurant_id;
         $admin->role_id = $request->role_id;
         $admin->workspace_id = getWorkspace()->id;
+        $admin->employee_id = $request->employee_id;
         if ( $admin->save() ) {
             return redirect()->route('admins.show',[getWorkspaceUrl(),$admin->id]);
         } 
@@ -57,6 +59,7 @@ class AdminController extends Controller
         $admin = WorkspaceAdmin::findOrFail($admin);
         return view('restaurant_app.admins.edit', [
             'restaurants' => getWorkspace()->restaurants,
+            'employees' => getWorkspace()->employees,
             'roles' => RestaurantRole::all(),
             'admin' => $admin
         ]);
@@ -69,6 +72,7 @@ class AdminController extends Controller
         $admin->password = $request->password;
         $admin->restaurant_id = $request->restaurant_id;
         $admin->role_id = $request->role_id;
+        $admin->employee_id = $request->employee_id;
         if ( $admin->save() ) {
             session()->flash('notice-success', 'Cập nhật thành công');
             return redirect()->route('admins.show',[getWorkspaceUrl(),$admin->id]);

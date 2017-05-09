@@ -16,6 +16,11 @@ class Employee extends Model
         return $this->belongsTo(Workspace::class);
     }
 
+    public function admin()
+    {
+        return $this->hasOne(WorkspaceAdmin::class);
+    }
+
     public static function get_all_from_workspace() {
         return getWorkspace()->employees;
     }

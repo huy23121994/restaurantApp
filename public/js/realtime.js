@@ -25,33 +25,33 @@ function changeFoodStatus(data) {
     $('.food_'+ data.food_id).attr('data-status', data.status);
 }
 
+var row;
 function changeOrderStatus(data) {
-    var order = JSON.parse(data.data);
-    var $status = $('.order_'+order.id).find('td.status').find('button');
-    $status.text(order.status.status);
-    $status.attr('class','').addClass('btn btn-xs');
-    switch(order.status.value){
-      case 0:
-        $status.addClass('btn-info');
-        break;
-      case 1:
-        $status.addClass('btn-warning');
-        break;
-      case 2:
-        $status.addClass('btn-success');
-        break;
-      case 3:
-        $status.addClass('btn-danger');
-        break;
-      case 4:
-        $status.addClass('btn-danger');
-        break;
-    }
-
+    var order = JSON.parse(data.data),
+        $order_el = $('.order_'+order.id).parent().parent();
+    $order_el.click();
+    table.cell(row,7).data('<button class="btn btn-xs '+order.status.class+'">'+order.status.status+'</button>');
 }
 
+var table;
 function updateListOrder(data) {
     var order = JSON.parse(data.data);
-    console.log(order);
-    $('.list_orders').prepend('<tr class="order_'+order.id+'"><td><a href="'+order.url+'" class="text-primary">'+order.order_id+'</a></td><td>'+order.customer+'</td><td>'+order.address+'</td><td></td><td class="status"><button class="btn btn-xs '+order.status.class+'">'+order.status.status+'</button></td><td><a href="'+order.url+'" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a></td></tr>');
+    table.column(1).visible(false);
+    if (admin_role == 1) {
+      table.column(6).visible(false);
+    }
+    table.row.add( [
+        '',
+        '<i class="order_'+order.id+'"></i>',
+        '<a href="'+order.url+'" class="text-primary">'+order.order_id+'</a>',
+        order.customer,
+        order.address,
+        order.description,
+        order.restaurant,
+        '<button class="btn btn-xs '+order.status.class+'">'+order.status.status+'</button>',
+        '<a href="'+order.url+'" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>',
+    ] ).draw( false );
+    table.order([1, 'desc']).draw();
+    table.columns.adjust().draw();
+    $("#datatable").width("100%");
 }

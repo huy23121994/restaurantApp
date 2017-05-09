@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->longText('description')->nullable();
             $table->integer('restaurant_id')->unsigned()->nullable();
             $table->boolean('status')->default(0);
+            $table->integer('admin_id')->unsigned();
             $table->integer('workspace_id')->unsigned();
             $table->timestamps();
 

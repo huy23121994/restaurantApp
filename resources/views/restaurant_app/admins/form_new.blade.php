@@ -18,16 +18,26 @@
     		<span class="text-danger">{{ $errors->first('password') }}</span>
     	@endif
   	</div>
-	<div class="form-group">
-	    <label>Quyền</label>
-	    <select class="select2_single form-control" tabindex="-1" name="role_id" style="width:100%" data-placeholder="Chọn quyền">
+    <div class="form-group">
+      <label>Chọn nhân viên</label>
+      <select class="select2_single form-control" tabindex="-1" name="employee_id" style="width:100%" data-placeholder="Chọn nhân viên">
+            <option></option>
+            @foreach($employees as $employee)
+                <option value="{{ $employee->id }}" {{ isset($admin) && $employee->id == $admin->employee_id ? 'selected'  : '' }}>{{ $employee->fullname }}</option>
+            @endforeach
+        </select>
+        {!! $errors->has('employee_id') ? '<p class="m_t_5 text-danger">* '. $errors->first('employee_id') .'</p>' : '' !!}
+    </div>
+    <div class="form-group">
+      <label>Quyền</label>
+      <select class="select2_single form-control" tabindex="-1" name="role_id" style="width:100%" data-placeholder="Chọn quyền">
             <option></option>
             @foreach($roles as $role)
                 <option value="{{ $role->id }}" {{ isset($admin) && $role->id == $admin->role_id ? 'selected'  : '' }}>{{ $role->name }}</option>
             @endforeach
         </select>
         {!! $errors->has('restaurant_id') ? '<p class="m_t_5 text-danger">* '. $errors->first('restaurant_id') .'</p>' : '' !!}
-	</div>
+    </div>
 	<div class="form-group">
 	    <label>Nơi làm việc</label>
 	    <select class="select2_single form-control" tabindex="-1" name="restaurant_id" style="width:100%" data-placeholder="Chọn một địa điểm">

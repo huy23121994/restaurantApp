@@ -19,6 +19,7 @@ class CreateWorkspaceAdminTable extends Migration
             $table->string('password');
             $table->integer('role_id')->default(3);
             $table->integer('restaurant_id')->nullable();
+            $table->integer('employee_id')->nullable();
             $table->integer('workspace_id');
             $table->timestamps();
 

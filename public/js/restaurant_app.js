@@ -4,7 +4,7 @@
 
 $(document).ready(function() {
   // Datatable
-  var table = $('#datatable').DataTable({
+  table = $('#datatable').DataTable({
   	'order': [[ 1, 'asc' ]],
     // "columnDefs": [
     //   {
@@ -30,6 +30,9 @@ $(document).ready(function() {
         } );
     } ).draw();
 
+  $(document).on( 'click', '#datatable tr', function () {
+    row = table.row(this).index();
+  } );
   // $('#datatable tbody').on('dblclick', 'tr', function () {
   //   var data = table.row( this ).data();
   //   Turbolinks.visit(data[0]);

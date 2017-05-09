@@ -16,6 +16,11 @@ class WorkspaceAdmin extends Model
         return $this->belongsTo(Restaurant::class);
     }
 
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
+
     public function restaurantAdmin()
     {
         if ($this->role_id == 1) {

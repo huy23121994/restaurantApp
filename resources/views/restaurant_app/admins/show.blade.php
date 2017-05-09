@@ -18,6 +18,11 @@
           <blockquote>
             <small>Tên đăng nhập: <span class="text-primary">{{ $admin->username }}</span></small>
             <small>Mật khẩu: <span class="text-primary">{{ $admin->password }}</span></small>
+            <small>Nhân viên: 
+              @if($admin->employee)
+                <u><a href="{{ route('employees.show',[getWorkspaceUrl(),$admin->employee->id]) }}" class="text-primary">{{ $admin->employee->fullname }}</a></u>
+              @endif
+            </small>
             <small>Quyền: <span class="text-primary">{{ $admin->role->name }}</span></small>
             <small>Nhà hàng làm việc: <span class="text-primary">
             	@if($admin->restaurant)

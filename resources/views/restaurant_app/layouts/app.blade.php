@@ -28,6 +28,7 @@
   	<script src="/js/lib/daterangepicker.js"></script>
   	<!-- jquery.inputmask -->
   	<script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+  	<script type="text/javascript" src="/js/conf.js"></script>
   	<script type="text/javascript" src="/js/realtime.js"></script>
 @endsection
 
@@ -50,6 +51,7 @@
 
 		</div>
 	</div>
+	<div class="admin_role">{{ getWorkspaceAdmin()->role_id }}</div>
 @endsection
 
 @section('bottom_js')

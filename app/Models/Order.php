@@ -14,7 +14,7 @@ class Order extends Model
     *               4 => Huy yeu cau
     */
 	protected $fillable = [
-        'order_id', 'customer', 'address', 'description', 'restaurant_id', 'status'
+        'order_id', 'customer', 'address', 'description', 'restaurant_id', 'status', 'admin_id'
     ];
 
     public function workspace()
