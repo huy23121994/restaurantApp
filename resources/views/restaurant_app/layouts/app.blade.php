@@ -28,6 +28,9 @@
   	<script src="/js/lib/daterangepicker.js"></script>
   	<!-- jquery.inputmask -->
   	<script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn0oLar3kzwByYvpk-6dodmO9dzg4ar_4&libraries=places"
+    async defer></script>
+  	<script type="text/javascript" src="/js/map.js"></script>
   	<script type="text/javascript" src="/js/conf.js"></script>
   	<script type="text/javascript" src="/js/realtime.js"></script>
 @endsection

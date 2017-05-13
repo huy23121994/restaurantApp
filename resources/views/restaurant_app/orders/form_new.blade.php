@@ -18,7 +18,11 @@
           </div>
           <div class="form-group">
             <label>Địa chỉ</label>
-            <input type="text" class="form-control" name="address" placeholder="Địa chỉ" value="{{ isset($order) ? $order->address : old('address') }}">
+            <input type="text" class="form-control" name="address" placeholder="Địa chỉ" value="{{ isset($order) ? $order->address['title'] : old('address') }}" id="map-search">
+            <input type="hidden" name="lat" class="lat" value="{{ isset($order) ? $order->address['lat'] : old('lat') }}">
+            <input type="hidden" name="lng" class="lng" value="{{ isset($order) ? $order->address['lng'] : old('lng') }}">
+            <br>
+            <div id="map" style="height: 300px;"></div>
           {!! $errors->has('address') ? '<p class="m_t_5 text-danger">* '. $errors->first('address') .'</p>' : '' !!}
           </div>
           <div class="form-group">
@@ -54,9 +58,9 @@
     </div>
   	
   	@if( currentRouteName() == 'orders.create')
-      <button type="submit" class="btn btn-success" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Processing...">Đăng ký</button>
+      <button type="button" onclick="$('form').submit()" class="btn btn-success" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Processing...">Đăng ký</button>
   	@else
-      <button type="submit" class="btn btn-success" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Processing...">Cập nhật</button>
+      <button type="button" onclick="$('form').submit()" class="btn btn-success" data-loading-text="<i class='fa fa-cog fa-spin fa-fw'></i> Processing...">Cập nhật</button>
       <a href="{{ route('orders.show',[getWorkspaceUrl(),$order->id]) }}" class="btn btn-danger"><i class="fa fa-ban"></i> Hủy</a>
   	@endif
 </form>

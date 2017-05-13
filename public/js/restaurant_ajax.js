@@ -34,15 +34,15 @@ $('#order #check_restaurant').click(function(){
 		}
 		$.post(url,{ foods : foods, food_data : food_data },function(data){
 			data = JSON.parse(data);
-			$('.restaurant_id').removeClass('text-success').addClass('text-danger').html('<i class="fa fa-times"></i>');
+			$('.restaurant_id .status').removeClass('text-success').addClass('text-danger').html('<i class="fa fa-times"></i>');
 			$.each(data, function(id,restaurant){
 				var restaurant_id = id;
 				if (restaurant.status == 1) { 
-					$('.restaurant_id.' + id).removeClass('text-danger').addClass('text-success').html('<i class="fa fa-check"></i>');
+					$('.restaurant_id.' + id + ' .status').removeClass('text-danger').addClass('text-success').html('<i class="fa fa-check"></i>');
 				}
 				$('.restaurants .foods.' + id).html('');
 				$.each(restaurant.foods, function(id,food){
-					var html = '<li class="row m_l_r_0 p_b_10"><div class="col-xs-6">- '+food.name+'</div><div class="col-xs-2 text-left p_l_0">'+food.number+'</div><div class="col-xs-2 text-center p_l_0">';
+					var html = '<li class="row m_l_r_0 p_b_10"><div class="col-xs-4 p_l_20">- '+food.name+'</div><div class="col-xs-2 text-left">'+food.number+'</div><div class="col-xs-2 text-center">';
 					if (food.status) {
 						html += '<i class="fa fa-check text-success"></i></div></li>';
 					}else{

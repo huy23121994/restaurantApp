@@ -63,4 +63,14 @@ class Restaurant extends Model
     {
     	return $this->belongsToMany(Employee::class, 'works')->wherePivot('status', 1);
     }
+
+    public function setLocationAttribute($location)
+    {
+        $this->attributes['location'] = json_encode($location);
+    }
+
+    public function getLocationAttribute($location)
+    {
+        return json_decode($location,true);
+    }
 }

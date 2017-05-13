@@ -20,7 +20,7 @@
 					<div class="col-xs-10">
 						<div class="col-xs-6">
 							<h4 class="m_t_0"><strong>{{ $restaurant->name }}</strong></h4>
-							<p>{{ $restaurant->location }}</p>
+							<p>{{ $restaurant->location['title'] }}</p>
 						</div>
 						<div class="col-xs-6">
 							<p>Nhan vien: 100</p>

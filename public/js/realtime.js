@@ -36,22 +36,31 @@ function changeOrderStatus(data) {
 var table;
 function updateListOrder(data) {
     var order = JSON.parse(data.data);
-    table.column(1).visible(false);
-    if (admin_role == 1) {
-      table.column(6).visible(false);
+    if(
+        $('#datatable').hasClass('restaurant_'+order.restaurant.id)
+        || $('#datatable').hasClass('global')
+    ){
+        table.column(1).visible(false);
+        if (admin_role == 1) {
+          table.column(6).visible(false);
+        }
+        var edit_action = null;
+        if ($('#datatable').hasClass('global')) {
+            edit_action = '<a href="'+order.url+'/edit" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>'
+        }
+        table.row.add( [
+            '',
+            order.id,
+            '<i class="hide order_'+order.id+'"></i><a href="'+order.url+'" class="text-primary">'+order.order_id+'</a>',
+            order.customer,
+            order.address,
+            order.description,
+            order.restaurant.name,
+            '<button class="btn btn-xs '+order.status.class+'">'+order.status.status+'</button>',
+            '<a href="'+order.url+'" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>'+(edit_action ? edit_action : ''),
+        ] ).draw( false );
+        table.order([1, 'desc']).draw();
+        table.columns.adjust().draw();
+        $("#datatable").width("100%");
     }
-    table.row.add( [
-        '',
-        '<i class="order_'+order.id+'"></i>',
-        '<a href="'+order.url+'" class="text-primary">'+order.order_id+'</a>',
-        order.customer,
-        order.address,
-        order.description,
-        order.restaurant,
-        '<button class="btn btn-xs '+order.status.class+'">'+order.status.status+'</button>',
-        '<a href="'+order.url+'" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>',
-    ] ).draw( false );
-    table.order([1, 'desc']).draw();
-    table.columns.adjust().draw();
-    $("#datatable").width("100%");
 }

@@ -6,7 +6,7 @@ li{
 }
 img{
 	max-width: 100%;
-	max-height: 100%;
+	/*max-height: 100%;*/
 }
 .m_10{
 	margin: 10px;
@@ -49,7 +49,7 @@ img{
 	padding-top: 20px;
 }
 .p_l_20{
-	padding-left: 20px;
+	padding-left: 20px!important;
 }
 .full_width{
 	width: 100%;

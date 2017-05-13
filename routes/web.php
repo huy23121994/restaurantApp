@@ -2,6 +2,9 @@
 
 Auth::routes();
 
+Route::get('map', function(){
+	return view('map');
+});
 Route::group(['middleware' => 'authenticated'],function(){
 	Route::get('/', 'UserController@index');
 	Route::get('profile', 'UserController@edit')->name('profile.edit');

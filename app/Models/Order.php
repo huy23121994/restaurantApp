@@ -53,4 +53,14 @@ class Order extends Model
         }
         return $result;
     }
+
+    public function setAddressAttribute($address)
+    {
+        $this->attributes['address'] = json_encode($address);
+    }
+
+    public function getAddressAttribute($address)
+    {
+        return json_decode($address,true);
+    }
 }

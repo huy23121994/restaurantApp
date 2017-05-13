@@ -49,7 +49,11 @@ class RestaurantController extends Controller
         $restaurant = new Restaurant;
         $restaurant->name = $request->name;
         $restaurant->description = $request->description;
-        $restaurant->location = $request->location;
+        $restaurant->location = [
+            'title' => $request->location,
+            'lat' => $request->lat,
+            'lng' => $request->lng
+        ];
         $restaurant->workspace_id = $workspace->id;
         if ($request->hasFile('avatar')) {
             $result = save_image( $request->avatar, $this->restaurant_avatar_storage, uniqid());
@@ -113,7 +117,11 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::findOrFail($id);
         $restaurant->name = $request->name;
         $restaurant->description = $request->description;
-        $restaurant->location = $request->location;
+        $restaurant->location = [
+            'title' => $request->location,
+            'lat' => $request->lat,
+            'lng' => $request->lng
+        ];
         if ($request->hasFile('avatar')) {
             $result = save_image( $request->avatar, $this->restaurant_avatar_storage, $restaurant->id);
             if ($result) {

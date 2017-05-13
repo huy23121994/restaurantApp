@@ -31,6 +31,7 @@ class OrderController extends Controller
         }
         return view($this->restaurant_app_view_location . '.orders.index',[
             'orders' => $orders,
+            'restaurant' => getWorkspaceAdmin()->restaurant,
         ]);
     }
 
@@ -47,7 +48,11 @@ class OrderController extends Controller
         $order = new Order([
             'order_id' => $request->order_id,
             'customer' => $request->customer,
-            'address' => $request->address,
+            'address' => [
+                'title' => $request->address,
+                'lat' => $request->lat,
+                'lng' => $request->lng
+            ],
             'description' => $request->description,
             'restaurant_id' => $request->restaurant,
             'status' => $request->status,
@@ -63,7 +68,7 @@ class OrderController extends Controller
             \DB::commit();
             $data = $order->toArray();
             $data['url'] = route('orders.show',[getWorkspaceUrl(),$order->id]);
-            $data['restaurant'] = $order->restaurant->name;
+            $data['restaurant'] = $order->restaurant;
             event(new DataPusher(json_encode($data)));
             return redirect()->route('orders.show',[getWorkspaceUrl(),$order->id]);
         }
@@ -93,7 +98,11 @@ class OrderController extends Controller
         $result = $order->update([
             'order_id' => $request->order_id,
             'customer' => $request->customer,
-            'address' => $request->address,
+            'address' => [
+                'title' => $request->address,
+                'lat' => $request->lat,
+                'lng' => $request->lng
+            ],
             'description' => $request->description,
             'restaurant_id' => $request->restaurant,
             'status' => $request->status,
@@ -104,6 +113,12 @@ class OrderController extends Controller
                 $food_data = explodeData($food);
                 $order->foods()->attach($food_data[0], ['number' => $food_data[1]]);
             }
+
+            $data = $order->toArray();
+            $data['url'] = route('orders.show',[getWorkspaceUrl(),$order->id]);
+            $data['restaurant'] = $order->restaurant;
+            event(new DataPusher(json_encode($data)));
+            
             return redirect()->route('orders.show',[getWorkspaceUrl(),$order->id]);
         }
     }

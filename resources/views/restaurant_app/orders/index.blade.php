@@ -14,7 +14,7 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <table class="table table-striped" id="datatable">
+          <table class="table table-striped {{ $restaurant ? 'restaurant_'.$restaurant->id : 'global' }}" id="datatable">
               <thead>
                   <tr>
                       <th>STT</th>
@@ -35,7 +35,7 @@
                       <td class="hide"><i class="order_{{ $order->id }}"></i></td>
                       <td><a href="{{ route('orders.show',[getWorkspaceUrl(), $order->id]) }}" class="text-primary">{{ $order->order_id }}</a></td>
                       <td>{{ $order->customer }}</td>
-                      <td>{{ $order->address }}</td>
+                      <td>{{ $order->address['title'] }}</td>
                       <td>{{ $order->description }}</td>
                       <td class="{{ !getWorkspaceAdmin()->restaurantAdmin() ? '' : 'hide' }}">{{ $order->restaurant ? $order->restaurant->name : ''}}</td>
                       <td class="status">
@@ -47,8 +47,6 @@
                         <a href="{{ route('orders.show',[getWorkspaceUrl(), $order->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
                         @if( !getWorkspaceAdmin()->restaurantAdmin() )
                           <a href="{{ route('orders.edit',[getWorkspaceUrl(), $order->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
-                          <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_confirm.{{ $order->id }}" title="Xóa"><i class="fa fa-trash"></i></button>
-                          @include('restaurant_app.partials.modal_delete_confirm',['action'=>route('orders.destroy',[getWorkspaceUrl(), $order->id]) , 'delete_id' => $order->id ])
                         @endif
                       </td>
                     </tr>

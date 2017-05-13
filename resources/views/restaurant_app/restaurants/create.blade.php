@@ -23,7 +23,9 @@
 				  	</div>
 				  	<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
 				    	<label>Địa chỉ</label>
-				    	<input type="text" class="form-control" name="location" placeholder="Địa chỉ">
+				    	<input type="text" class="form-control" name="location" placeholder="Địa chỉ" id="map-search">
+				    	<input type="hidden" name="lat" class="lat">
+				    	<input type="hidden" name="lng" class="lng">
 				    	@if($errors->has('location'))
 				    		<span class="help-block">{{ $errors->first('location') }}</span>
 				    	@endif
@@ -37,8 +39,11 @@
 				    		<span class="help-block">{{ $errors->first('avatar') }}</span>
 				    	@endif
 				  	</div>
-				  	<button type="submit" class="btn btn-success">Đăng ký</button>
+				  	<button type="button" onclick="$('form').submit()" class="btn btn-success">Đăng ký</button>
 				</form>
+	  		</div>
+	  		<div class="col-xs-12 col-sm-5 col-sm-offset-1">
+	  			<div id="map"></div>
 	  		</div>
 	  	</div>
 	</div>
