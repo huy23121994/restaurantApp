@@ -79,6 +79,7 @@ class OrderController extends Controller
         $order = Order::with('foods')->findOrFail($order_id);
         return view($this->restaurant_app_view_location . '.orders.show', [
             'order' => $order,
+            'restaurants' => getWorkspace()->restaurants,
         ]);
     }
 

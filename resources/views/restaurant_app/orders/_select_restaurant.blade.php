@@ -27,10 +27,10 @@
 					</div>
 				</div>
 				<ul class="collapse {{$restaurant->id}} foods m_b_0">
-					{{-- <li class="row m_l_r_0 p_b_10">
-						<div class="col-xs-6">- Món ăn</div>
-						<div class="col-xs-2 col-xs-offset-2 text-center p_l_0"><i class="fa fa-check"></i></div>
-					</li> --}}
+					<!--<li class="row m_l_r_0 p_b_10">-->
+					<!--	<div class="col-xs-6">- Món ăn</div>-->
+					<!--	<div class="col-xs-2 col-xs-offset-2 text-center p_l_0"><i class="fa fa-check"></i></div>-->
+					<!--</li>-->
 				</ul>
 			</div>
 		@endforeach
