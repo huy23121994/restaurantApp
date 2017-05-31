@@ -118,6 +118,7 @@ function initMap() {
           marker.setMap(null);
         });
         marker.setMap(null);
+        order_marker.setMap(null);
         markers = [];
 
         // For each place, get the icon, name and location.

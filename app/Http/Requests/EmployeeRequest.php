@@ -27,15 +27,14 @@ class EmployeeRequest extends FormRequest
     public function rules()
     {
         $except_id = $this->route('employee');
+        $workspace = Workspace::where('url',$this->route('workspace'))->first();
+        $workspace_id = $workspace->id;
+        
         return [
             'fullname' => 'required|min:5',
-            'email' => 'email',
+            'email' => 'required|email',
             'avatar' => 'image',
-            'people_id' => Rule::unique('employees')->ignore($except_id)->where(function ($query) {
-                $workspace = Workspace::where('url',$this->route('workspace'))->first();
-                $workspace_id = $workspace->id;
-                $query->where('workspace_id', $workspace_id);
-            }),
+            'people_id' => 'required|unique:employees,NULL,'. $except_id .',id,workspace_id,'.$workspace_id,
         ];
     }
 }

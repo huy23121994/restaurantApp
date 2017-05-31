@@ -13,7 +13,7 @@
 			<blockquote>
 				<p>Công việc hiện tại</p>
 				<small>Nhà hàng: <a href="{{ route('restaurants.edit',[getWorkspaceUrl(),$current_work->restaurant->id]) }}" class="text-primary"><u>{{ $current_work->restaurant->name }}</u></a></small>
-				<small>Địa chỉ: <span class="text-primary">{{ $current_work->restaurant->location }}</span></small>
+				<small>Địa chỉ: <span class="text-primary">{{ $current_work->restaurant->location['title'] }}</span></small>
 				<small>Ngày bắt đầu làm việc: <span class="text-primary">{{ $current_work->start_date }}</span></small>
 			</blockquote>
 			<hr>
@@ -35,7 +35,7 @@
 					<tr class="{{ $work->status ? 'active' : '' }}">
 						<td></td>
 						<td><a href="{{ route('restaurants.edit',[getWorkspaceUrl(),$work->restaurant->id]) }}" class="text-primary">{{ $work->restaurant->name }}</a></td>
-						<td>{{ $work->restaurant->location }}</td>
+						<td>{{ $work->restaurant->location['title'] }}</td>
 						<td>{{ $work->start_date }}</td>
 						<td>{{ $work->end_date }}</td>
 						<td>{!! $work->status ? '<button class="btn btn-primary btn-xs">Đang làm việc</button>' : '<button class="btn btn-default btn-xs">Kết thúc</button>' !!}</td>

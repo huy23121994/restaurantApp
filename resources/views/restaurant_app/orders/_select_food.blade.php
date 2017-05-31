@@ -1,7 +1,7 @@
 
 <div class="list_food_select">
   <div class="row">
-     <div class="col-xs-9"><label>Mã món ăn</label></div>
+     <div class="col-xs-9"><label>Chọn món ăn</label></div>
      <div class="col-xs-2"><label>Số lượng</label></div>
   </div>
   @if(currentRouteName() == 'orders.create') 

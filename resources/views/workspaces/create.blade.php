@@ -35,7 +35,7 @@
 		    <label for="avatar">
 		    	Avatar
 		    	<div class="img-preview" style="height:100px;overflow:hidden;">
-		    		<img src="/img/workspace_avatar_default.jpg" alt="" class="img-thumbnail">
+		    		<img src="/img/workspace_avatar_default.jpg" style="max-height:100%" alt="" class="img-thumbnail">
 		    	</div>
 		    </label>
 		    <input type="file" id="avatar" data-img=".img-preview img" class="need_preview" name="avatar" accept="image/*">

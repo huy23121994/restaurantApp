@@ -23,8 +23,8 @@
 							<p>{{ $restaurant->location['title'] }}</p>
 						</div>
 						<div class="col-xs-6">
-							<p>Nhan vien: 100</p>
-							<p>Quan ly: Tran Thi Hong Nhung</p>
+							<p>Nhân viên: {{ $restaurant->employees_count }}</p>
+							<p>Admin: {{ ($restaurant->admin)? $restaurant->admin->employee->fullname : ''}}</p>
 						</div>
 						<div class="col-xs-12">
 							<a href="{{ route('restaurants.show',[getWorkspaceUrl(),$restaurant->id]) }}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> Chi tiết</a></a>

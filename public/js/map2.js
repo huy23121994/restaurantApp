@@ -14,15 +14,16 @@ function initMap() {
           anchor: new google.maps.Point(17, 34),
           scaledSize: new google.maps.Size(25, 45)
         };
-    var default_locationc = {lat: 20.9909745, lng: 105.8389606};
+    var default_location = {lat: 20.9909745, lng: 105.8389606};
     
-    var checkPosition = function(){
-        if($('.havePosition').text(){
+    var havePosition = function(){
+        var check = $('.havePosition').text();
+        if(check){
             return true;
         }
         return false;
     }
-    if (checkPosition) {
+    if (havePosition) {
         // have position
         var restaurants = [];
         $('.restaurant_id').each(function(){
@@ -46,11 +47,35 @@ function initMap() {
     }else{
         // no position
         map = new google.maps.Map(document.getElementById('map'), {
-        center: default_location,
-        zoom: 12,
-        mapTypeId: 'roadmap',
-        zoomControl: false,
-        streetViewControl: false
+            center: default_location,
+            zoom: 12,
+            zoomControl: false,
+            streetViewControl: false
         });
     }
+    
+    var myMarkers = [];
+    $.each(restaurants, function(key,value){
+        var newMarker = new google.maps.Marker({
+          position: value,
+          map: map,
+          draggable: true
+        });
+        
+        var infoWindow = new google.maps.InfoWindow({
+          content: '<div>'+value.name+'</div>',
+          maxwidth: 200
+        })
+        newMarker.addListener('click', function(){
+          infoWindow.open(map, newMarker);
+        })
+    })
+    
+    var orderPosition = { lat: Number($('.order_lat').text()), lng: Number($('.order_lng').text())};
+    var orderMarker = new google.maps.Marker({
+            position: orderPosition,
+            icon: green_icon_marker,
+            map: map,
+            draggable: true
+        });
 }

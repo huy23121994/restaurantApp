@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border-bottom: 1px solid #536271;">
-      <a href="<%= root_url %>" class="site_title text-center" data-no-turbolink><i class="fa fa-paw"></i> <span>Yum Yum</span></a>
+      <a href="{{ url('/') }}" class="site_title text-center" data-no-turbolink><i class="fa fa-paw"></i> <span>Yum Yum</span></a>
     </div>
 
     <div class="clearfix"></div>
@@ -10,7 +10,7 @@
       <div class="menu_section">
         @if(!getWorkspaceAdmin()->restaurantAdmin())
           <ul class="nav side-menu">
-            <li data="dashboard"><a href="{{ url('/dashboard') }}"><i class="fa fa-home"></i> Tổng quan </a></li>
+            <li data=""><a href="#"><i class="fa fa-home"></i> Tổng quan </a></li>
             <li data="restaurants"><a><i class="fa fa-sitemap"></i> Chuỗi nhà hàng <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><a href="{{ route('restaurants.index', [getWorkspaceUrl()]) }}">Danh sách nhà hàng</a></li>

@@ -13,11 +13,12 @@
         </div>
         <div class="x_content">
             @if( $foods->count() > 0 )
-                <table class="table table-striped">
+                <table class="table table-striped" id="datatable">
                     <thead>
                         <tr>
+                            <th>STT</th>
                             <th>Avatar</th>
-                            <th>Tên món ăn</th>
+                            <th>Tên</th>
                             <th>Mã món ăn</th>
                             <th>Thông tin bổ sung</th>
                             <th>Action</th>
@@ -26,6 +27,7 @@
                     <tbody>
                         @foreach($foods as $food)
                             <tr>
+                                <td></td>
                                 <td><a href="{{ route('foods.show',[getWorkspaceUrl(), $food->id]) }}"><img src="{{ $food->avatar }}" width="40" height="40"></img></a></td>
                                 <td><a href="{{ route('foods.show',[getWorkspaceUrl(), $food->id]) }}" class="text-primary">{{ $food->name }}</a></td>
                                 <td>{{ $food->food_id }}</td>

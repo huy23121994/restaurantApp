@@ -67,6 +67,7 @@ class OrderController extends Controller
             }
             \DB::commit();
             $data = $order->toArray();
+            $data['address'] = $order->address['title'];
             $data['url'] = route('orders.show',[getWorkspaceUrl(),$order->id]);
             $data['restaurant'] = $order->restaurant;
             event(new DataPusher(json_encode($data)));
@@ -116,6 +117,7 @@ class OrderController extends Controller
             }
 
             $data = $order->toArray();
+            $data['address'] = $order->address['title'];
             $data['url'] = route('orders.show',[getWorkspaceUrl(),$order->id]);
             $data['restaurant'] = $order->restaurant;
             event(new DataPusher(json_encode($data)));

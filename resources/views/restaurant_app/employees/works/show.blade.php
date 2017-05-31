@@ -4,7 +4,7 @@
 	<blockquote>
 		<p>Thông tin công việc</p>
 		<small>Nhà hàng: <a href="{{ route('restaurants.edit',[getWorkspaceUrl(),$work->restaurant->id]) }}" class="text-primary"><u>{{ $work->restaurant->name }}</u></a></small>
-		<small>Địa chỉ: <span class="text-primary">{{ $work->restaurant->location }}</span></small>
+		<small>Địa chỉ: <span class="text-primary">{{ $work->restaurant->location['title'] }}</span></small>
 		<small>Ngày bắt đầu làm việc: <span class="text-primary">{{ $work->start_date }}</span></small>
 		<small>Ngày thôi việc: <span class="text-primary">{{ $work->end_date }}</span></small>
 		<small>Trạng thái: {!! $work->status ? '<span class="text-success"><i class="fa fa-check"></i> Đang làm việc' : '<span class="text-danger"><i class="fa fa-times"></i> Đã thôi việc</span>' !!}</small>

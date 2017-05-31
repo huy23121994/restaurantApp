@@ -47,13 +47,11 @@
           		<div class="hide multi_marker">1</div>
           		<input type="hidden" name="lat" class="order_lat lat" value="{{ $order->address['lat'] }}">
               <input type="hidden" name="lng" class="order_lng lng" value="{{ $order->address['lng'] }}">
-              @foreach($restaurants as $restaurant)
-                <div class="row restaurant_id {{$restaurant->id}}" id="{{$restaurant->id}}">
-          				<div class="res_lat">{{$restaurant->location['lat']}}</div>
-          				<div class="res_lng">{{$restaurant->location['lng']}}</div>
-        					<div class="name">{{ $restaurant->name }}</div>
-          			</div>
-      				@endforeach
+              <div class="restaurant_id {{$order->restaurant->id}}" id="{{$order->restaurant->id}}">
+        				<div class="res_lat">{{$order->restaurant->location['lat']}}</div>
+        				<div class="res_lng">{{$order->restaurant->location['lng']}}</div>
+      					<div class="name">{{ $order->restaurant->name }}</div>
+        			</div>
             </div>
             <div id="map"></div>
           </div>

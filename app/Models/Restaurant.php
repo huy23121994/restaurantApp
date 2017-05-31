@@ -21,6 +21,11 @@ class Restaurant extends Model
     {
     	return $this->belongsToMany(Employee::class, 'works');
     }
+    
+    public function admin()
+    {
+    	return $this->hasOne(WorkspaceAdmin::class);
+    }
 
     public function foods()
     {
@@ -39,15 +44,19 @@ class Restaurant extends Model
     public static function addFoodToAll(Food $food, $number = 0)
     {
         $restaurants = getWorkspace()->restaurants;
-        if($restaurants->count() == 0) return 1;
-        
+        if($restaurants->count() == 0) {
+            return 1;
+            
+        }
         foreach ($restaurants as $restaurant) {
             $result = \DB::table('food_restaurant')->insert([
                 'food_id' => $food->id,
                 'restaurant_id' => $restaurant->id,
                 'number' => $number
             ]);
-            if(!$result){ break; }
+            if(!$result){ 
+                break; 
+            }
         }
         return $result;
     }

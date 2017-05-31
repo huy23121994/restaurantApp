@@ -58,7 +58,6 @@
                       @include('restaurant_app.partials.modal_delete_confirm',['action'=>route('employees.destroy',[getWorkspaceUrl(), $employee->id]) , 'delete_id' => $employee->id ])
                     @else
                       <a href="{{ route('employees.show',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-success btn-xs" title="Chi tiết"><i class="fa fa-eye"></i></a>
-                      <a href="{{ route('employees.edit',[getWorkspaceUrl(), $employee->id]) }}" class="btn btn-warning btn-xs" title="Chỉnh sửa"><i class="fa fa-edit"></i></a>
                     @endif
                   </td>
 		        		</tr>

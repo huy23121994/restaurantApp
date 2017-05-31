@@ -10,13 +10,13 @@
 		    <select class="select2_single form-control" tabindex="-1" name="restaurant_id" style="width:100%" data-placeholder="Chọn nơi làm việc">
                 <option></option>
                 @foreach($restaurants as $restaurant)
-	                <option value="{{ $restaurant->id }}" {{ isset($work) && $restaurant->id == $work->restaurant_id ? 'selected'  : '' }}>{{ $restaurant->location }}</option>
+	                <option value="{{ $restaurant->id }}" {{ isset($work) && $restaurant->id == $work->restaurant_id ? 'selected'  : '' }}>{{ $restaurant->name . ' - ' .$restaurant->location['title'] }}</option>
                 @endforeach
             </select>
             {!! $errors->has('restaurant_id') ? '<p class="m_t_5 text-danger">* '. $errors->first('restaurant_id') .'</p>' : '' !!}
 		</div>
 		<div class="row">
-			<div class="col-xs-6">
+			<div class="col-xs-12 col-sm-6">
 			    <div class="form-group">
 				    <label for="start_date">Ngày bắt đầu làm việc</label>
 			        <div class="controls">
@@ -29,7 +29,7 @@
 			        </div>
 		      	</div>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-12 col-sm-6">
 			    <div class="form-group">
 				    <label for="end_date">Ngày thôi việc</label>
 			        <div class="controls">

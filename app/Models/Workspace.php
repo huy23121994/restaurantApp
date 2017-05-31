@@ -22,7 +22,7 @@ class Workspace extends Model
 
     public function restaurants()
     {
-        return $this->hasMany(Restaurant::class);
+        return $this->hasMany(Restaurant::class)->withCount('employees');
     }
 
     public function employees()

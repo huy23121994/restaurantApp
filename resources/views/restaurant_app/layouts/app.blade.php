@@ -54,7 +54,7 @@
 
 		</div>
 	</div>
-	<div class="admin_role">{{ getWorkspaceAdmin()->role_id }}</div>
+	<div class="admin_role hide">{{ getWorkspaceAdmin()->role_id }}</div>
 @endsection
 
 @section('bottom_js')

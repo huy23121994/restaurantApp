@@ -63,4 +63,9 @@ class Order extends Model
     {
         return json_decode($address,true);
     }
+    
+    public function getOrderIdAttribute($value)
+    {
+        return strtoupper($value);
+    }
 }

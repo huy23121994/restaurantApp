@@ -52,6 +52,15 @@ class WorkspaceAdmin extends Model
         return decrypt($value);
     }
 
+    public function setRoleIdAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['role_id'] = $value;
+        }else{
+            $this->attributes['role_id'] = 3;
+        }
+    }
+
     public function setRestaurantIdAttribute($value)
     {
         if ($value) {
@@ -61,12 +70,12 @@ class WorkspaceAdmin extends Model
         }
     }
 
-    public function setRoleIdAttribute($value)
+    public function setEmployeeIdAttribute($value)
     {
         if ($value) {
-            $this->attributes['role_id'] = $value;
+            $this->attributes['employee_id'] = $value;
         }else{
-            $this->attributes['role_id'] = 3;
+            $this->attributes['employee_id'] = 0;
         }
     }
 
