@@ -16,8 +16,8 @@
                             <th>STT</th>
                             <th>Avatar</th>
                             <th>Tên món ăn</th>
-                            <th>Mã món ăn</th>
-                            <th>Thông tin bổ sung</th>
+                            <th width="100">Mã món ăn</th>
+                            <th width="250">Thông tin bổ sung</th>
                             <th width="100">Số lượng</th>
                             <th width="150">Action</th>
                         </tr>

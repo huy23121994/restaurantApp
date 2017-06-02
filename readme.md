@@ -11,10 +11,13 @@
 Require before installing: Composer, Server Requirements for Laravel 5.3
 - Step 1: Clone or download this repository
 - Step 2: $ composer install
-- Step 3: $ php artisan migrate
-- Step 4: $ php artisan db:seed --class=UserTableSeeder
+- Step 3: Copy file .env.example to .env
+- Step 4: $ php artisan migrate
 - Step 5: $ php artisan storage:link
-- Step 6: And run with $ php artisan serve
+- Step 6: $ php artisan serve
+Now, you can run application in http://localhost:8000
+
+if you want to use data example, you can run $ php artisan db:seed
 
 You can login with account: 
 - Email: huytb.contact@gmail.com

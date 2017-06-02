@@ -15,7 +15,9 @@ class OrderController extends Controller
     function __construct()
     {
         $this->middleware('workspace_access', ['except' => ['index','create','store']]);
-        $this->middleware('check_restaurant_role', ['except' => ['index','show','update_status']]);
+        // $this->middleware('check_restaurant_role', [
+        //     'except' => ['index','show','create','store','update_status']
+        // ]);
         $this->middleware('restaurant_noti', ['except' => ['index','show','update_status']]);
     }
     
@@ -37,10 +39,15 @@ class OrderController extends Controller
 
     public function create()
     {
-        return view($this->restaurant_app_view_location . '.orders.create', [
+        $data = [
             'foods' => getWorkspace()->foods,
             'restaurants' => getWorkspace()->restaurants,
-        ]);
+        ];
+        $admin = getWorkspaceAdmin();
+        if ($admin->restaurantAdmin()) {
+            $data['restaurants'] = [$admin->restaurant];
+        }
+        return view($this->restaurant_app_view_location . '.orders.create', $data);
     }
 
     public function store(OrderRequest $request, $workspace)

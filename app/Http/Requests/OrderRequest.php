@@ -33,8 +33,8 @@ class OrderRequest extends FormRequest
         }
         return [
             'order_id' => 'required|unique:orders,NULL,'. $except .',id,workspace_id,'.$workspace_id,
-            'customer' => 'required',
-            'address' => 'required',
+            // 'customer' => 'required',
+            // 'address' => 'required',
             'foods' => 'required'
         ];
     }

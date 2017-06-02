@@ -13,7 +13,7 @@ class RestaurantController extends Controller
     function __construct()
     {
         $this->middleware('workspace_access', ['except' => ['index','create','store','checkRestaurantReady']]);
-        $this->middleware('check_restaurant_role');
+        $this->middleware('check_restaurant_role', ['except' => 'checkRestaurantReady']);
     }
     
     /**

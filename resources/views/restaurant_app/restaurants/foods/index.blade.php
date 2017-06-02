@@ -5,13 +5,14 @@
         <blockquote>
             Danh sách món ăn
         </blockquote>
-        <table class="table table-striped">
+        <table class="table table-striped" id="datatable">
             <thead>
                 <tr>
+                    <th>STT</th>
                     <th>Avatar</th>
                     <th>Tên món ăn</th>
-                    <th>Mã món ăn</th>
-                    <th>Thông tin bổ sung</th>
+                    <th width="100">Mã món ăn</th>
+                    <th width="250">Thông tin bổ sung</th>
                     <th width="200">Trạng thái</th>
                     <th>Action</th>
                 </tr>
@@ -19,6 +20,7 @@
             <tbody>
                 @foreach($foods as $food)
                     <tr>
+                        <td></td>
                         <td><a href="{{ route('foods.show',[getWorkspaceUrl(), $food->id]) }}"><img src="{{ $food->avatar }}" width="40" height="40"></img></a></td>
                         <td><a href="{{ route('foods.show',[getWorkspaceUrl(), $food->id]) }}" class="text-primary">{{ $food->name }}</a></td>
                         <td>{{ $food->food_id }}</td>

@@ -9,7 +9,11 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-      		@include('restaurant_app.orders.form_new', ['action' => route('orders.store',[getWorkspaceUrl()])] )
+          @if(!getWorkspaceAdmin()->restaurantAdmin())
+        		@include('restaurant_app.orders.form_new', ['action' => route('orders.store',[getWorkspaceUrl()])] )
+      		@else
+      		  @include('restaurant_app.orders.form_new_restaurant_role', ['action' => route('orders.store',[getWorkspaceUrl()])] )
+      		@endif
 	  	</div>
       </div>
     </div>
