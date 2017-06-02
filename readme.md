@@ -8,18 +8,28 @@
 </p>
 
 ## Install
-Require before installing: Composer, Server Requirements for Laravel 5.3
+Require before installing:
+- Composer
+- Server Requirements for Laravel 5.3 : 
+    PHP >= 5.6.4,
+    OpenSSL PHP Extension,
+    PDO PHP Extension,
+    Mbstring PHP Extension,
+    Tokenizer PHP Extension,
+    XML PHP Extension,
+
+Installing:
 - Step 1: Clone or download this repository
 - Step 2: $ composer install
 - Step 3: Copy file .env.example to .env
 - Step 4: $ php artisan migrate
 - Step 5: $ php artisan storage:link
 - Step 6: $ php artisan serve
+
 Now, you can run application in http://localhost:8000
 
-if you want to use data example, you can run $ php artisan db:seed
-
-You can login with account: 
+If you want to use data example, you can run $ php artisan db:seed
+then, you can login with account: 
 - Email: huytb.contact@gmail.com
 - Password: 123456
 
