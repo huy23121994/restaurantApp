@@ -8,41 +8,34 @@ use App\Models\Food;
 
 class Restaurant extends Model
 {
-     protected $fillable = [
+    protected $fillable = [
         'name', 'description', 'location', 'workspace_id'
     ];
 
-    public function workspace()
-    {
+    public function workspace(){
         return $this->belongsTo(Workspace::class);
     }
 
-    public function employees()
-    {
+    public function employees(){
     	return $this->belongsToMany(Employee::class, 'works');
     }
     
-    public function admin()
-    {
+    public function admin(){
     	return $this->hasOne(WorkspaceAdmin::class);
     }
 
-    public function foods()
-    {
+    public function foods(){
         return $this->belongsToMany(Food::class)->withPivot('number');
     }
 
-    public function foods_active()
-    {
+    public function foods_active(){
         return $this->belongsToMany(Food::class)->wherePivot('number','>', 0)->withPivot('number');
     }
 
-    public function orders()
-    {
+    public function orders(){
         return $this->hasMany(Order::class);
     }
-    public static function addFoodToAll(Food $food, $number = 0)
-    {
+    public static function addFoodToAll(Food $food, $number = 0){
         $restaurants = getWorkspace()->restaurants;
         if($restaurants->count() == 0) {
             return 1;
@@ -68,18 +61,27 @@ class Restaurant extends Model
         }
     }
     
-    public function employees_working()
-    {
+    public function updateFoodNumber($order){
+        $res_food = $this->foods;
+        foreach ($order->foods as $food) {
+            $order_number = $food->pivot->number;
+            $current_number = $res_food->where('id',$food->id)->first()->pivot->number;
+            if ($current_number > $order_number) {
+                $update_number = $current_number - $order_number;
+                $food->restaurants()->updateExistingPivot($this->id, ['number' => $update_number]);
+            }
+        }
+    }
+    
+    public function employees_working(){
     	return $this->belongsToMany(Employee::class, 'works')->wherePivot('status', 1);
     }
 
-    public function setLocationAttribute($location)
-    {
+    public function setLocationAttribute($location){
         $this->attributes['location'] = json_encode($location);
     }
 
-    public function getLocationAttribute($location)
-    {
+    public function getLocationAttribute($location){
         return json_decode($location,true);
     }
 }

@@ -42,7 +42,10 @@ $('#order #check_restaurant').click(function(){
 				}
 				$('.restaurants .foods.' + id).html('');
 				$.each(restaurant.foods, function(id,food){
-					var html = '<li class="row m_l_r_0 p_b_10"><div class="col-xs-4 p_l_20">- '+food.name+'</div><div class="col-xs-2 text-left">'+food.number+'</div><div class="col-xs-2 text-center">';
+					var html = '<li class="row m_l_r_0 p_b_10">'
+									+'<div class="col-xs-4 p_l_20">- '+food.name+'</div>'
+									+'<div class="col-xs-2 text-left">'+food.number+'</div>'
+									+'<div class="col-xs-2 text-center">';
 					if (food.status) {
 						html += '<i class="fa fa-check text-success"></i></div></li>';
 					}else{

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
+use App\Models\Food;
 use App\Models\WorkspaceAdmin;
 use App\Events\UpdateOrderStatus;
 use App\Events\DataPusher;
@@ -148,6 +149,12 @@ class OrderController extends Controller
         if ($update) {
             $data = json_encode($order);
             event(new UpdateOrderStatus($data));
+            
+            if ($request->status == 2) {
+                $restaurant = $order->restaurant;
+                $restaurant->updateFoodNumber($order);
+            }
+            
             return back();
         }
     }

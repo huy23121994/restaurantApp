@@ -194,7 +194,8 @@ function initMap() {
       }, function(response, status) {
         if (status == 'OK') {
           $.each(response.rows[0].elements, function(key,value){
-            $('.restaurant_id.'+restaurants[key].id+' .distance').html(value.distance.text)
+            $('.restaurant_id.'+restaurants[key].id+' .distance')
+              .html(value.distance.text + '<br>~ ' + value.duration.text);
           })
         }
       });
