@@ -33,34 +33,13 @@ then, you can login with account:
 - Email: huytb.contact@gmail.com
 - Password: 123456
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+## Chức năng chính
+- Tạo ra các workspace, mỗi workspace có thể quản lý 1 chuỗi nhà hàng
+- Mỗi workspace có một địa chỉ truy cập riêng, có thể sử dụng workspace bằng cách truy cập trực tiếp Url của workspace
+- Mỗi workspace là một trang quản lý nhà hàng, admin có thể thêm sửa xóa các nhà hàng, đánh dấu trên bản đồ địa chỉ của từng nhà hàng.
+- Quản lý nhân viên
+- Quản lý món ăn
+- Quản lý đơn hàng
+- Quản lý món ăn
+- Khi admin nhận order, admin nhập vào thông tin địa chỉ khách hàng, app sẽ trả về khoảng cách của từng nhà hàng thành viên đến địa chỉ khách hàng và tình trạng món ăn trong từng nhà hàng thành viên. Dựa vào đó admin có thể lựa chọn nhà hàng phù hợp để vận chuyển đơn hàng.
+- Sau khi nhận đơn hàng hệ thống sẽ thông báo cho admin tại nhà hàng thành viên để thực hiện đơn hàng hoặc thông báo tình trạng xử lý của đơn hàng (xử lý realtime).
